@@ -11,5 +11,12 @@ config_version=5
 [application]
 
 config/name="Munchkin"
+run/main_scene="res://Scenes/battle.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
