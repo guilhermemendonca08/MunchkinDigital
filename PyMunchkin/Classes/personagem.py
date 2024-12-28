@@ -1,9 +1,9 @@
 class Personagem:
-    def __init__(self, nivel, maldicoesAtivas, inventario):
-        self.nivel = nivel
+    def __init__(self):
+        self.nivel = 1
         self.raca = None
         self.classe = None
-        self.inventario = inventario
+        self.inventario = None
         self.maldicoesAtivas = None
         self.forcaCombate = self.calcularForcaCombate()
 

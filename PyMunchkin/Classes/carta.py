@@ -11,4 +11,6 @@ class Carta:
 
     def executarEfeito(self):
         pass
-
+    
+    def draw(self):
+        self.imagem.draw()

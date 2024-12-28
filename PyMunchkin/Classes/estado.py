@@ -3,10 +3,9 @@ from abc import ABC, abstractmethod
 
 class Estado(ABC):
     @abstractmethod
-    def executaFase(self):
+    def executaFase(self, controlador):
         pass
 
     @abstractmethod
-    def get_faseDoJogo(self, controlador):
+    def get_faseDoJogo(self):
         pass
-
