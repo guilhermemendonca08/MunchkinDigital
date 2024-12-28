@@ -3,6 +3,7 @@ from PPlay.gameimage import GameImage
 from PPlay.window import Window
 from Classes.jogador import Jogador
 from Classes.controladorjogo import ControladorJogo
+from Classes.ui_handler import UIHandler
 
 # from constants import CARD_WIDTH, CARD_HEIGHT
 # from Classes.carta_item import Item
@@ -11,6 +12,9 @@ from Classes.controladorjogo import ControladorJogo
 janela = Window(RES_WIDTH, RES_HEIGHT)
 teclado = Window.get_keyboard()
 mouse = Window.get_mouse()
+
+# Input default
+mouse_click = False
 
 # GameImages de estéticos.
 fundo = GameImage("Assets/TableAssets/MarbleBlack.jpg")
@@ -21,6 +25,8 @@ closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
 
 # Elementos de controle do jogo.
 controladorJogo = ControladorJogo()
+uihandler = UIHandler(mouse, controladorJogo)
+
 # Carregamento de informações
 controladorJogo.carregaCartas()
 
@@ -36,6 +42,24 @@ controladorJogo.executarFase()
 while True:
     dt = janela.delta_time()
     time_acc += dt
+
+    # Eventos
+    target = uihandler.mouse_over_card()
+
+    # if target:
+    #     print(f"Mouse is over: {target.get_nome()}")
+
+    if mouse.is_button_pressed(1):
+        mouse_click = True
+
+    if (mouse_click) and (not mouse.is_button_pressed(1)):
+        mouse_click = False
+        if target:
+            print(f"I play {target.get_nome()}!")
+            jogador1.remove_card(target)
+
+    if time_acc >= 0.2:
+        time_acc = 0
 
     # Draws
     fundo.draw()
