@@ -7,5 +7,5 @@ class Estado(ABC):
         pass
 
     @abstractmethod
-    def get_faseDoJogo(self):
+    def get_EstadoDoJogo(self) -> str:
         pass

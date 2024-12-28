@@ -1,4 +1,12 @@
 from Classes.estado_inicializacao import Inicializacao
+from Classes.estado_aguardandojogada import AguardandoJogada
+from Classes.estado_caridade import Caridade
+from Classes.estado_chutarporta import ChutarPorta
+from Classes.estado_combate import Combate
+from Classes.estado_finalizado import Finalizado
+from Classes.estado_fuga import Fuga
+from Classes.estado_procurarencrenca import ProcurarEncrenca
+from Classes.estado_saquear import Saquear
 from Classes.gerenciadorcombate import GerenciadorCombate
 from Classes.carta_item import Item
 from Classes.carta_classe import Classe
@@ -15,6 +23,16 @@ class ControladorJogo:
         self.jogadorAtual = None
         self.estadoDoJogo = Inicializacao()
         self.gerenciadorCombate = GerenciadorCombate()
+        self.estados = {
+            "AguardandoJogada": AguardandoJogada(),
+            "Caridade": Caridade(),
+            "ChutarPorta": ChutarPorta(),
+            "Combate": Combate(),
+            "Finalizado": Finalizado(),
+            "Fuga": Fuga(),
+            "ProcurarEncrenca": ProcurarEncrenca(),
+            "Saquear": Saquear(),
+        }
 
     # Deck related stuff
     # Adiciona uma carta ao topo deck
@@ -35,14 +53,8 @@ class ControladorJogo:
 
     # End of deck related stuff
 
-    def iniciarJogo(self):
-        pass
-
     def proximoTurno(self):
         pass
-
-    def executarFase(self):
-        self.estadoDoJogo.executaFase(self)
 
     def verificarVencedor(self):
         winners = []
@@ -54,19 +66,29 @@ class ControladorJogo:
     def finalizarJogo(self):
         pass
 
-    # Getters
+    def add_jogador(self, jogador):
+        self.jogadores.append(jogador)
+
     def get_jogadorAtual(self):
         if not self.jogadorAtual:
             return "Nenhum jogador"
         return self.jogadorAtual
 
+    # Gerenciamento de estados do jogo
+    def iniciarJogo(self):
+        pass
+
+    def executarFase(self):
+        self.estadoDoJogo.executaFase(self)
+
+    def proximoEstado(self, novoEstado):
+        self.estadoDoJogo = self.estados[novoEstado]
+
     def get_estadoDoJogo(self):
-        faseDoJogo = self.estadoDoJogo.get_faseDoJogo()
-        return faseDoJogo
+        estadoDoJogo = self.estadoDoJogo.get_EstadoDoJogo()
+        return estadoDoJogo
 
-    def add_jogador(self, jogador):
-        self.jogadores.append(jogador)
-
+    # Carregamento de cartas
     def carregaCartas(self):
         cartas_tesouro = [
             Item(

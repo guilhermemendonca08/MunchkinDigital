@@ -11,12 +11,10 @@ class Inicializacao(Estado):
         for each in controlador.jogadores:
             for _ in range(4):
                 each.receber_carta(controlador.comprarCarta(controlador.deckDungeon))
+            for _ in range(4):
                 each.receber_carta(controlador.comprarCarta(controlador.deckTesouro))
             print(f"Jogador {each.get_nome()} recebeu {each.get_size_mao()} cartas")
+        controlador.proximoEstado("AguardandoJogada")
 
-    def comprarCarta(self, deck):
-        # print("Executando fase", controlador.get_estadoDoJogo())
-        pass
-
-    def get_faseDoJogo(self):
+    def get_EstadoDoJogo(self):
         return self.nome

@@ -46,8 +46,6 @@ while True:
     # Eventos
     target = uihandler.mouse_over_card()
 
-    # if target:
-    #     print(f"Mouse is over: {target.get_nome()}")
 
     if mouse.is_button_pressed(1):
         mouse_click = True

@@ -8,6 +8,6 @@ class ProcurarEncrenca(Estado):
     def executaFase(self):
         pass
 
-    def get_faseDoJogo(self):
+    def get_EstadoDoJogo(self):
         return self.nome
 
