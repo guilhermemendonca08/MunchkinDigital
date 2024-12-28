@@ -12,11 +12,12 @@ from Classes.carta_item import Item
 from Classes.carta_classe import Classe
 from Classes.carta_raca import Raca
 from Classes.cardstack import CardStack
+from Classes.listacircular import ListaCircular
 
 
 class ControladorJogo:
     def __init__(self):
-        self.jogadores = []
+        self.jogadores = ListaCircular()
         self.observers = []
         self.deckDungeon = CardStack()
         self.deckTesouro = CardStack()
@@ -54,7 +55,7 @@ class ControladorJogo:
     # End of deck related stuff
 
     def proximoTurno(self):
-        pass
+        self.jogadorAtual = self.jogadores.proximo()
 
     def verificarVencedor(self):
         winners = []
@@ -67,11 +68,15 @@ class ControladorJogo:
         pass
 
     def add_jogador(self, jogador):
-        self.jogadores.append(jogador)
+        self.jogadores.adiciona(jogador)
+        # self.jogadores.append(jogador)
+
+    def set_jogadorAtual(self, jogador):
+        self.jogadorAtual = jogador
 
     def get_jogadorAtual(self):
         if not self.jogadorAtual:
-            return "Nenhum jogador"
+            return None
         return self.jogadorAtual
 
     # Gerenciamento de estados do jogo
@@ -148,6 +153,54 @@ class ControladorJogo:
                 1,
                 0,
                 200,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/109 (small).png",
+                "Bad-Ass Bandana",
+                " ",
+                "headgear",
+                "item",
+                3,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/111 (small).png",
+                "Dagger Of Treachery",
+                " ",
+                "weapon",
+                "item",
+                3,
+                1,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/113 (small).png",
+                "Chainsaw of Bloody Dismemberment",
+                " ",
+                "weapon",
+                "item",
+                3,
+                2,
+                600,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
                 None,
                 False,
             ),
