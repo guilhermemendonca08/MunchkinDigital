@@ -1,9 +1,20 @@
 from random import randint
+from PPlay.gameimage import GameImage
 
 
 class CardStack:
-    def __init__(self):
+    def __init__(self, imagepath):
+        self.imagem = GameImage(imagepath)
         self.pilha = []
+
+    # PPLAY stuff
+    def draw(self):
+        self.imagem.draw()
+
+    def set_position(self, x, y):
+        self.imagem.set_position(x, y)
+
+    # End of PPLAY stuff
 
     def getSize(self):
         return len(self.pilha)

@@ -1,13 +1,23 @@
+from constants import (
+    RES_WIDTH,
+    RES_HEIGHT,
+    DOOR_HURTBOX_OFFSET_X,
+    DOOR_HURTBOX_OFFSET_Y,
+    CARD_WIDTH,
+    CARD_HEIGHT,
+)
 from Classes.estado import Estado
+from PPlay.gameimage import GameImage
 
 
 class Combate(Estado):
     def __init__(self):
         self.nome = "Combate"
 
-    def executaFase(self):
-        pass
+    def executaFase(self, controlador):
+        closeddoor = GameImage("Assets/TableAssets/OpenDoor50.png")
+        closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
+        closeddoor.draw()
 
     def get_EstadoDoJogo(self):
         return self.nome
-

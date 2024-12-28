@@ -30,6 +30,9 @@ class Jogador:
         return self.personagem.calcularForcaCombate()
 
     # Card Managment
+    def has_card(self, card):
+        return card in self.mao
+
     def get_card(self, card):
         self.mao.append(card)
 

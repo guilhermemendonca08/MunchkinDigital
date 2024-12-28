@@ -11,9 +11,15 @@ class Carta:
 
     def executarEfeito(self):
         pass
+    
+    def get_descricao(self):
+        return self.descricao
 
     def draw(self):
         self.imagem.draw()
 
     def get_nome(self):
         return self.nome
+
+    def get_tipo(self):
+        return self.tipo

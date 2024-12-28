@@ -1,3 +1,4 @@
+from PPlay.window import mouse
 from Classes.estado_inicializacao import Inicializacao
 from Classes.estado_aguardandojogada import AguardandoJogada
 from Classes.estado_caridade import Caridade
@@ -11,17 +12,23 @@ from Classes.gerenciadorcombate import GerenciadorCombate
 from Classes.carta_item import Item
 from Classes.carta_classe import Classe
 from Classes.carta_raca import Raca
+from Classes.carta_monstro import Monstro
 from Classes.cardstack import CardStack
 from Classes.listacircular import ListaCircular
+from Classes.ui_handler import UIHandler
 
 
 class ControladorJogo:
-    def __init__(self):
+    # def __init__(self, mouse_input):
+    def __init__(self, janela):
         self.jogadores = ListaCircular()
         self.observers = []
-        self.deckDungeon = CardStack()
-        self.deckTesouro = CardStack()
+        self.deckDungeon = CardStack("Assets/Door/000 (small).png")
+        self.deckDungeonDiscard = CardStack("Assets/Door/000 (small)darkmode.png")
+        self.deckTesouro = CardStack("Assets/Treasure/100 (small).png")
+        self.deckTesouroDiscard = CardStack("Assets/Treasure/100 (small)darkmode.png")
         self.jogadorAtual = None
+        self.cartaEmJogo = None
         self.estadoDoJogo = Inicializacao()
         self.gerenciadorCombate = GerenciadorCombate()
         self.estados = {
@@ -34,6 +41,24 @@ class ControladorJogo:
             "ProcurarEncrenca": ProcurarEncrenca(),
             "Saquear": Saquear(),
         }
+        self.uihandler = UIHandler(janela.get_mouse())
+        self.mouse_input = janela.get_mouse()
+        self.janela = janela
+
+    # def set_uihandler(self, uihandler):
+    #     self.uihandler = UIHandler(mouse)
+
+    def colocaCartaEmJogo(self, carta):
+        self.cartaEmJogo = carta
+
+    def get_cartaEmJogo(self):
+        return self.cartaEmJogo
+
+    def mouse_over_card(self):
+        return self.uihandler.mouse_over_card(self.jogadores)
+
+    def mouse_over_door(self, door):
+        return self.uihandler.mouse_over_door(door)
 
     # Deck related stuff
     # Adiciona uma carta ao topo deck
@@ -327,6 +352,116 @@ class ControladorJogo:
                 None,
                 "classe",
                 "Flight Spell",
+            ),
+            Monstro(
+                "Assets/Door/061 (small).png",
+                "Maul Rat",
+                "A creature from Hell. +3 against Clerics.",
+                None,  # efeito
+                "monstro",  # tipo
+                1,  # nivel
+                1,  # qntTesouro
+                "level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/062 (small).png",
+                "Lame Goblin",
+                "+1 to run away",
+                None,  # efeito
+                "monstro",  # tipo
+                1,  # nivel
+                1,  # qntTesouro
+                "level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/064 (small).png",
+                "Flying Frogs",
+                "-1 to run away",
+                None,  # efeito
+                "monstro",  # tipo
+                2,  # nivel
+                1,  # qntTesouro
+                "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/065 (small).png",
+                "Gelatinous Octahedron",
+                "+1 to run away",
+                None,  # efeito
+                "monstro",  # tipo
+                2,  # nivel
+                1,  # qntTesouro
+                "Drop all big items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/066 (small).png",
+                "Mr. Bones",
+                "If you must flee, you lose a level even when you escape.",
+                None,  # efeito
+                "monstro",  # tipo
+                2,  # nivel
+                1,  # qntTesouro
+                "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/067 (small).png",
+                "Large Angry Chicken",
+                "Fried Chicken is delicious. Gain an extra level if you kill it with fire or flame.",
+                None,  # efeito
+                "monstro",  # tipo
+                2,  # nivel
+                1,  # qntTesouro
+                "level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/068 (small).png",
+                "Pit Bull",
+                "If you can't defeat it, you may escape by dropping any wand, pole or staff",
+                None,  # efeito
+                "monstro",  # tipo
+                2,  # nivel
+                1,  # qntTesouro
+                "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/069 (small).png",
+                "Leperchaun",
+                "He's gross! +5 against elves",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 2 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/070 (small).png",
+                "Undead Horse",
+                "+5 against dwarves",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/071 (small).png",
+                "Harpies",
+                "+5 against wizards",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
             ),
         ]
         for each in cartas_dungeon:
