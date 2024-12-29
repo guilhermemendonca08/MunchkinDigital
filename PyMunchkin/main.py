@@ -7,6 +7,7 @@ from constants import (
     DOOR_HURTBOX_OFFSET_Y,
 )
 from PPlay.gameimage import GameImage
+from PPlay.sprite import Sprite
 from PPlay.window import Window
 from Classes.jogador import Jogador
 from Classes.controladorjogo import ControladorJogo
@@ -22,7 +23,7 @@ mouse = Window.get_mouse()
 
 # Debug Hotkeys
 hotkey_1 = False  # passa turno pra outro jogador
-hotkey_2 = False
+hotkey_2 = False  # +1 level
 hotkey_3 = False
 hotkey_4 = False
 
@@ -33,6 +34,7 @@ mouse_click = False
 fundo = GameImage("Assets/TableAssets/MarbleBlack.jpg")
 borda = GameImage("Assets/TableAssets/Border_Gray50.png")
 borda.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
+displaynivel = Sprite("Assets/Niveis/leveldisplay.png", 10)
 
 # Elementos de controle do jogo.
 # controladorJogo = ControladorJogo(mouse)
@@ -68,8 +70,6 @@ while True:
 
     # Eventos
     target = controladorJogo.mouse_over_card()
-    # if target:
-    #     print(f"Mouse over: {target.get_nome()}")
 
     if mouse.is_button_pressed(1):
         mouse_click = True
@@ -84,19 +84,23 @@ while True:
                 print(f"{target.get_descricao()}")
 
     # Debugging Events
+    # Muda de quem é a vez.
     if teclado.key_pressed("1") and not hotkey_1:
         hotkey_1 = True
         controladorJogo.proximoTurno()
-        # Do something
     if not teclado.key_pressed("1"):
         hotkey_1 = False
 
+    # Muda o nivel do personagem
+    if teclado.key_pressed("2") and not hotkey_2:
+        hotkey_2 = True
+        controladorJogo.get_jogadorAtual().mudarNivelPersonagem(1)
+
+    if not teclado.key_pressed("2"):
+        hotkey_2 = False
     # Draws
     # Background, everything else should be placed AFTER this.
     fundo.draw()
-
-    # Game Logic / Draws from phases
-    controladorJogo.executarFase()
 
     borda.draw()
 
@@ -120,8 +124,18 @@ while True:
             each.scaled_draw_mao(0 + avatar_offset_x, 100, 80, 124)
             avatar_offset_x += RES_WIDTH / 3
 
-    # jogador1.draw_mao(RES_WIDTH / 2, RES_HEIGHT - CARD_HEIGHT)
-    # jogador2.draw_mao(RES_WIDTH / 2, 0)
+    # Draw Player's level
+    avatar_offset_x = 0
+    for each in controladorJogo.jogadores:
+        if each == controladorJogo.get_jogadorAtual():
+            displaynivel.set_position(each.get_avatar_x(), RES_HEIGHT - 100)
+            displaynivel.set_curr_frame(each.getNivelPersonagem() - 1)
+            displaynivel.draw()
+        else:
+            displaynivel.set_position(100 + avatar_offset_x, 0)
+            displaynivel.set_curr_frame(each.getNivelPersonagem() - 1)
+            displaynivel.draw()
+            avatar_offset_x += RES_WIDTH / 3
 
     # Draw Card Stacks
     # Door Pile
@@ -148,6 +162,9 @@ while True:
     )
     controladorJogo.deckTesouroDiscard.draw()
 
+    # Game Logic / Draws from phases
+    controladorJogo.executarFase()
+
     # Debugging Text
     jogadoratual = controladorJogo.get_jogadorAtual()
     if jogadoratual:
@@ -170,4 +187,5 @@ while True:
         size=25,
         color=(255, 255, 0),
     )
+
     janela.update()

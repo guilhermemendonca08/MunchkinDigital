@@ -11,12 +11,15 @@ class Carta:
 
     def executarEfeito(self):
         pass
-    
+
     def get_descricao(self):
         return self.descricao
 
     def draw(self):
         self.imagem.draw()
+
+    def set_position(self, x, y):
+        self.imagem.set_position(x, y)
 
     def scaled_draw(self, new_width, new_height):
         self.imagem.scaled_draw(new_width, new_height)

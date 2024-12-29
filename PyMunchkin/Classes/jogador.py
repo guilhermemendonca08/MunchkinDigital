@@ -13,6 +13,10 @@ class Jogador:
         self.inventario = Inventario()
 
     # Avatar stuff
+
+    def mudarNivelPersonagem(self, quantidade):
+        self.personagem.mudarNivel(quantidade)
+
     def set_avatar_position(self, x, y):
         self.avatar.set_position(x, y)
 
@@ -24,6 +28,10 @@ class Jogador:
 
     def get_nome(self):
         return self.nome
+
+    # Stats
+    def getNivelPersonagem(self):
+        return self.personagem.getNivel()
 
     # Combate
     def calcularForcaCombate(self):
@@ -56,7 +64,7 @@ class Jogador:
         peek_window = 100
         hand_pixel_size = peek_window * (self.get_size_mao() - 1) + CARD_WIDTH
         for i, card in enumerate(self.mao):
-            card.imagem.set_position(
+            card.set_position(
                 offset_x + (-hand_pixel_size / 2 + i * peek_window), offset_y + 0
             )
             card.draw()
@@ -64,5 +72,5 @@ class Jogador:
     def scaled_draw_mao(self, offset_x, offset_y, new_width, new_height):
         peek_window = 60
         for i, card in enumerate(self.mao):
-            card.imagem.set_position(offset_x + (i * peek_window), offset_y + 0)
+            card.set_position(offset_x + (i * peek_window), offset_y + 0)
             card.scaled_draw(new_width, new_height)
