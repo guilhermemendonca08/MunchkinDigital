@@ -13,7 +13,7 @@ class Jogador:
         self.inventario = Inventario()
 
     # Avatar stuff
-    def set_position(self, x, y):
+    def set_avatar_position(self, x, y):
         self.avatar.set_position(x, y)
 
     def get_avatar_x(self):
@@ -49,9 +49,20 @@ class Jogador:
     def draw(self):
         self.avatar.draw()
 
+    def scaled_draw(self, new_width, new_height):
+        self.avatar.scaled_draw(new_width, new_height)
+
     def draw_mao(self, offset_x, offset_y):
         peek_window = 100
         hand_pixel_size = peek_window * (self.get_size_mao() - 1) + CARD_WIDTH
         for i, card in enumerate(self.mao):
-            card.imagem.set_position(offset_x + (-hand_pixel_size/2 + i * peek_window), offset_y + 0)
+            card.imagem.set_position(
+                offset_x + (-hand_pixel_size / 2 + i * peek_window), offset_y + 0
+            )
             card.draw()
+
+    def scaled_draw_mao(self, offset_x, offset_y, new_width, new_height):
+        peek_window = 60
+        for i, card in enumerate(self.mao):
+            card.imagem.set_position(offset_x + (i * peek_window), offset_y + 0)
+            card.scaled_draw(new_width, new_height)

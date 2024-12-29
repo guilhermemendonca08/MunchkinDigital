@@ -93,8 +93,10 @@ class ControladorJogo:
         pass
 
     def add_jogador(self, jogador):
-        self.jogadores.adiciona(jogador)
-        # self.jogadores.append(jogador)
+        if self.jogadores.get_size() < 4:
+            self.jogadores.adiciona(jogador)
+        else:
+            print("Número máximo de jogadores atingido")
 
     def set_jogadorAtual(self, jogador):
         self.jogadorAtual = jogador
@@ -214,6 +216,258 @@ class ControladorJogo:
                 3,
                 2,
                 600,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),  # repeats after this point
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
+                None,
+                False,
+            ),
+            Item(
+                "Assets/treasure/115 (small).png",
+                "Boots of Butt-Kicking",
+                " ",
+                "footgear",
+                "item",
+                2,
+                0,
+                400,
                 None,
                 False,
             ),
@@ -452,6 +706,116 @@ class ControladorJogo:
                 4,  # nivel
                 2,  # qntTesouro
                 "2x level down",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),  # repeats after this point
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
+            ),
+            Monstro(
+                "Assets/Door/072 (small).png",
+                "Snails on speed",
+                "-2 to Run Away",
+                None,  # efeito
+                "monstro",  # tipo
+                4,  # nivel
+                2,  # qntTesouro
+                "Lose 1-6 items",  # coisaRuim
             ),
             Monstro(
                 "Assets/Door/072 (small).png",

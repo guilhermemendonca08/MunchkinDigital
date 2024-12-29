@@ -55,6 +55,13 @@ class GameImage(gameobject.GameObject):
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
         window.Window.get_screen().blit(self.image, self.rect)
 
+    """Like Draw1, but better!"""
+
+    def scaled_draw(self, new_width, new_height):
+        scaled_image = pygame.transform.scale(self.image, (new_width, new_height))
+        self.rect = pygame.Rect(self.x, self.y, new_width, new_height)
+        window.Window.get_screen().blit(scaled_image, self.rect)
+
     """Sets the (X,Y) image position on the screen"""
 
     def set_position(self, x, y):

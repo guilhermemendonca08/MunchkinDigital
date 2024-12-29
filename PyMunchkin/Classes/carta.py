@@ -18,6 +18,9 @@ class Carta:
     def draw(self):
         self.imagem.draw()
 
+    def scaled_draw(self, new_width, new_height):
+        self.imagem.scaled_draw(new_width, new_height)
+
     def get_nome(self):
         return self.nome
 
