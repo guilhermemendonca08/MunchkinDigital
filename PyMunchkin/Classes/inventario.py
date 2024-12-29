@@ -1,6 +1,6 @@
 class Inventario:
     def __init__(self):
-        self.itensEquipados = {}
+        self.itensEquipados = []
         self.itensCarregados = []
         self.itensProibidos = []
 

@@ -2,12 +2,17 @@ from PPlay.gameimage import GameImage
 
 
 class Carta:
-    def __init__(self, imagepath, nome, descricao, efeito, tipo):
+    def __init__(self, imagepath, nome, descricao, efeito, tipo, deckOrigem=None):
         self.imagem = GameImage(imagepath)
         self.nome = nome
         self.descricao = descricao
         self.efeito = efeito
-        self.tipo = tipo
+        self.tipo = tipo  # item, monstro, maldicao, etc
+        self.deckOrigem = None  # tesouro/dungeon
+
+    def jogarCarta(self, alvo):
+        # self.efeito.executarEfeito(alvo)
+        pass
 
     def executarEfeito(self):
         pass

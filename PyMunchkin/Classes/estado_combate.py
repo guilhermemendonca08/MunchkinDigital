@@ -8,11 +8,14 @@ from constants import (
 )
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
+from PPlay.sprite import Sprite
 
 
 class Combate(Estado):
     def __init__(self):
         self.nome = "Combate"
+        self.mouse_click = False
+        self.resolve_request = False
 
     def executaFase(self, controlador):
         closeddoor = GameImage("Assets/TableAssets/OpenDoor50.png")
@@ -20,9 +23,39 @@ class Combate(Estado):
         closeddoor.draw()
 
         controlador.get_cartaEmJogo().set_position(
-            RES_WIDTH / 2 - CARD_WIDTH/2 - 2, RES_HEIGHT / 2 - CARD_HEIGHT / 2
+            RES_WIDTH / 2 - CARD_WIDTH / 2 - 2, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
         controlador.get_cartaEmJogo().draw()
+
+        botao_resolve = Sprite("Assets/TableAssets/ButtonSpriteHighlight.png", 2)
+        botao_resolve.set_position(
+            RES_WIDTH - 1.5 * botao_resolve.width,
+            RES_HEIGHT - 1.5 * botao_resolve.height,
+        )
+
+        # Button Hover
+        target = controlador.mouse_over_object(botao_resolve)
+        if target:
+            botao_resolve.set_curr_frame(1)
+        botao_resolve.draw()
+
+        if controlador.mouse_input.is_button_pressed(1):
+            self.mouse_click = True
+
+        # sets button pressed flag
+        if (
+            (self.mouse_click)
+            and (not controlador.mouse_input.is_button_pressed(1))
+            and (not self.resolve_request)  # Evita request duplo
+        ):
+            self.mouse_click = False
+            if target:
+                self.resolve_request = True
+                print("Clicou botao")
+                # LEMBRETE: Aqui o gerenciadorcombate seria chamado
+                # mas agora vo parar para fazer sistema de equipar e
+                # o método de calcular força do jogador e monstro.
+                # Porque são pre-requisitos para o gerenciador de combate.
 
     def get_EstadoDoJogo(self):
         return self.nome

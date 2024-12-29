@@ -70,6 +70,7 @@ while True:
 
     # Eventos
     target = controladorJogo.mouse_over_card()
+    # print(f"target name: {target.get_nome() if target else None}")
 
     if mouse.is_button_pressed(1):
         mouse_click = True

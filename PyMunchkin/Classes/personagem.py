@@ -10,6 +10,9 @@ class Personagem:
     def getNivel(self):
         return self.nivel
 
+    def mudarForcaCombate(self, quantidade):
+        self.forcaCombate += quantidade
+
     def mudarNivel(self, quantidade):
         if self.nivel == 10 and quantidade > 0:
             return

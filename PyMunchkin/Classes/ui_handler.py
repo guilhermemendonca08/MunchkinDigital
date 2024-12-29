@@ -15,9 +15,9 @@ class UIHandler:
                     selection = carta
         return selection
 
-    def mouse_over_door(self, door):
-        if self.mouse.is_over_object(door):
+    def mouse_over_object(self, objeto):
+        if self.mouse.is_over_object(objeto):
             return True
-        else: 
+        else:
             return False
 

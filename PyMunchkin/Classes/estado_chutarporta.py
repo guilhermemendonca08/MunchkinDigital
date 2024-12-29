@@ -38,7 +38,7 @@ class ChutarPorta(Estado):
         doorhurtbox.draw()
 
         # Door hover/click detection
-        target = controlador.mouse_over_door(doorhurtbox)
+        target = controlador.mouse_over_object(doorhurtbox)
 
         if controlador.mouse_input.is_button_pressed(1):
             self.mouse_click = True
@@ -47,7 +47,7 @@ class ChutarPorta(Estado):
         if (
             (self.mouse_click)
             and (not controlador.mouse_input.is_button_pressed(1))
-            and (not self.door_kicked)
+            and (not self.door_kicked)  # Evita abrir a porta duas vezes.
         ):
             self.mouse_click = False
             if target:

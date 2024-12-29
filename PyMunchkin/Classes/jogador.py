@@ -1,7 +1,6 @@
 from constants import CARD_WIDTH, CARD_HEIGHT
 from PPlay.gameimage import GameImage
 from Classes.personagem import Personagem
-from Classes.inventario import Inventario
 
 
 class Jogador:
@@ -10,10 +9,8 @@ class Jogador:
         self.nome = nome
         self.personagem = Personagem()
         self.mao = []
-        self.inventario = Inventario()
 
     # Avatar stuff
-
     def mudarNivelPersonagem(self, quantidade):
         self.personagem.mudarNivel(quantidade)
 
@@ -36,6 +33,9 @@ class Jogador:
     # Combate
     def calcularForcaCombate(self):
         return self.personagem.calcularForcaCombate()
+
+    def fugir(self, monstro):
+        pass
 
     # Card Managment
     def has_card(self, card):
