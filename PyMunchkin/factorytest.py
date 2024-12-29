@@ -17,7 +17,9 @@ cf = CardFactory()
 cards = cf.carrega_cartas(data)
 
 for each in cards:
-    print(each.get_nome())
-    print(f"valor: {each.efeito.valor}")
+    each.debug()
+    print("----------------------")
+    # print(each.get_nome())
+    # print(f"valor: {each.efeito.valor}")
     # print(each.efeito.debug())
-
+print(len(cards))

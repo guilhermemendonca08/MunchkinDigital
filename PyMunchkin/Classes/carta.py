@@ -10,6 +10,13 @@ class Carta:
         self.tipo = tipo  # item, monstro, maldicao, etc
         self.deckOrigem = None  # tesouro/dungeon
 
+    def debug(self):
+        print(f"Nome: {self.nome}")
+        print(f"Descrição: {self.descricao}")
+        print(f"Efeito: {self.efeito}")
+        print(f"Tipo: {self.tipo}")
+        print(f"Deck de origem: {self.deckOrigem}")
+
     def jogarCarta(self, alvo):
         # self.efeito.executarEfeito(alvo)
         pass

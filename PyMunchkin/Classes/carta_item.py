@@ -24,3 +24,12 @@ class Item(Carta):
         self.restricao = restricao
         self.usoUnico = usoUnico
         self.slot = slot
+
+    def debug(self):
+        super().debug()
+        print(f"Poder: {self.poder}")
+        print(f"Tamanho: {self.tamanho}")
+        print(f"Valor: {self.valor}")
+        print(f"Restrição: {self.restricao}")
+        print(f"Uso único: {self.usoUnico}")
+        print(f"Slot: {self.slot}")

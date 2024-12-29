@@ -5,6 +5,7 @@ from Classes.carta_classe import Classe
 from Classes.carta_raca import Raca
 from Classes.carta_amplificador import Amplificador
 from Classes.efeito import Buff
+from Classes.efeito import LevelUp
 
 
 class CardFactory:
@@ -17,7 +18,7 @@ class CardFactory:
             "raca": Raca,
             "amplificador": Amplificador,
         }
-        self.efeitos = {"buff": Buff}
+        self.efeitos = {"buff": Buff, "levelup": LevelUp}
 
     def carrega_efeito(self, id_efeito, **kwargs):
         """
@@ -51,7 +52,8 @@ class CardFactory:
         """
         cards = []
         for card_data in cards_dict:
-            if "efeito" in card_data["attributes"]:
+            # if "efeito" in card_data["attributes"]:
+            if card_data["attributes"].get("efeito"):
                 card_data["attributes"]["efeito"] = self.carrega_efeito(
                     card_data["attributes"]["efeito"],
                     **card_data["attributes"].get("parameters", {}),

@@ -13,3 +13,9 @@ class Buff(Efeito):
     # def debug(self):
     #     return f"Buff: {self.valor}"
 
+class LevelUp(Efeito):
+    def __init__(self, valor):
+        self.valor = valor
+
+    def aplicarEfeito(self, alvo):
+        alvo.mudarNivel(self.valor)
