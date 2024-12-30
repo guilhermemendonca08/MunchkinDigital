@@ -1,4 +1,5 @@
 from constants import TREASURE_JSON_DATA
+from constants import DUNGEON_JSON_DATA
 import json
 import io
 from Classes.cardfactory import CardFactory
@@ -9,7 +10,8 @@ janela = Window(1920, 1080)
 teclado = Window.get_keyboard()
 mouse = Window.get_mouse()
 
-pseudo_json_file = io.StringIO(TREASURE_JSON_DATA)
+# pseudo_json_file = io.StringIO(TREASURE_JSON_DATA)
+pseudo_json_file = io.StringIO(DUNGEON_JSON_DATA)
 data = json.load(pseudo_json_file)
 # print(data)
 
@@ -23,3 +25,4 @@ for each in cards:
     # print(f"valor: {each.efeito.valor}")
     # print(each.efeito.debug())
 print(len(cards))
+

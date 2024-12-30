@@ -8,7 +8,7 @@ class Carta:
         self.descricao = descricao
         self.efeito = efeito
         self.tipo = tipo  # item, monstro, maldicao, etc
-        self.deckOrigem = None  # tesouro/dungeon
+        self.deckOrigem = deckOrigem  # tesouro/dungeon
 
     def debug(self):
         print(f"Nome: {self.nome}")

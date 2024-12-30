@@ -1,3 +1,5 @@
+import json
+import io
 from constants import (
     RES_WIDTH,
     RES_HEIGHT,
@@ -5,6 +7,8 @@ from constants import (
     CARD_HEIGHT,
     DOOR_HURTBOX_OFFSET_X,
     DOOR_HURTBOX_OFFSET_Y,
+    TREASURE_JSON_DATA,
+    DUNGEON_JSON_DATA,
 )
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
@@ -12,6 +16,7 @@ from PPlay.window import Window
 from Classes.jogador import Jogador
 from Classes.controladorjogo import ControladorJogo
 from Classes.ui_handler import UIHandler
+from Classes.cardfactory import CardFactory
 
 # from constants import CARD_WIDTH, CARD_HEIGHT
 # from Classes.carta_item import Item
@@ -37,13 +42,21 @@ borda.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
 displaynivel = Sprite("Assets/Niveis/leveldisplay.png", 10)
 
 # Elementos de controle do jogo.
-# controladorJogo = ControladorJogo(mouse)
 controladorJogo = ControladorJogo(janela)
-# uihandler = UIHandler(mouse)
-# controladorJogo.set_uihandler(uihandler)
 
-# Carregamento de informações
-controladorJogo.carregaCartas()
+# Carregamento de cartas
+card_factory = CardFactory()
+# Carrega cartas Tesouro
+treasure_json_file = io.StringIO(TREASURE_JSON_DATA)  # Simula abertura do json
+treasure_card_data = json.load(treasure_json_file)  # De json -> dict
+treasure_cards = card_factory.carrega_cartas(treasure_card_data)  # dict -> lista
+controladorJogo.carregaCartas(treasure_cards, controladorJogo.get_deckTesouro())
+
+# Carrega cartas Dungeon
+dungeon_json_file = io.StringIO(DUNGEON_JSON_DATA)
+dungeon_card_data = json.load(dungeon_json_file)
+dungeon_cards = card_factory.carrega_cartas(dungeon_card_data)
+controladorJogo.carregaCartas(dungeon_cards, controladorJogo.get_deckDungeon())
 
 # Inicia Jogador
 jogador1 = Jogador("Apollo", "Assets/Portraits/Archer.png")
@@ -95,7 +108,7 @@ while True:
     # Muda o nivel do personagem
     if teclado.key_pressed("2") and not hotkey_2:
         hotkey_2 = True
-        controladorJogo.get_jogadorAtual().mudarNivelPersonagem(1)
+        controladorJogo.get_jogadorAtual().adicionaAoNivelPersonagem(1)
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False

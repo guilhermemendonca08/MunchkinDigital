@@ -1,11 +1,19 @@
 from Classes.carta_item import Item
 from Classes.carta_monstro import Monstro
 from Classes.carta_maldicao import Maldicao
-from Classes.carta_classe import Classe
 from Classes.carta_raca import Raca
 from Classes.carta_amplificador import Amplificador
 from Classes.efeito import Buff
-from Classes.efeito import LevelUp
+from Classes.efeito import AddToLevel
+from Classes.efeito import DiscardGear
+from Classes.efeito import DiscardCards
+from Classes.efeito import DiscardRace
+from Classes.efeito import DiscardClass
+from Classes.efeito import Death
+from Classes.classe_clerigo import Clerigo
+from Classes.classe_guerreiro import Guerreiro
+from Classes.classe_ladrao import Ladrao
+from Classes.classe_mago import Mago
 
 
 class CardFactory:
@@ -14,11 +22,23 @@ class CardFactory:
             "item": Item,
             "monstro": Monstro,
             "maldicao": Maldicao,
-            "classe": Classe,
+            # "classe": Classe,
             "raca": Raca,
             "amplificador": Amplificador,
+            "clerigo": Clerigo,
+            "guerreiro": Guerreiro,
+            "ladrao": Ladrao,
+            "mago": Mago,
         }
-        self.efeitos = {"buff": Buff, "levelup": LevelUp}
+        self.efeitos = {
+            "buff": Buff,
+            "addtolevel": AddToLevel,
+            "discardcards": DiscardCards,
+            "discardgear": DiscardGear,
+            "discardrace": DiscardRace,
+            "discardclass": DiscardClass,
+            "death": Death,
+        }
 
     def carrega_efeito(self, id_efeito, **kwargs):
         """
@@ -30,6 +50,8 @@ class CardFactory:
         effectclass = self.efeitos.get(id_efeito)
         if not effectclass:
             raise ValueError(f"Efeito inválido: {id_efeito}")
+        if not kwargs:
+            return effectclass()
         return effectclass(**kwargs)
 
     def carrega_carta(self, card_data):
@@ -54,10 +76,15 @@ class CardFactory:
         for card_data in cards_dict:
             # if "efeito" in card_data["attributes"]:
             if card_data["attributes"].get("efeito"):
-                card_data["attributes"]["efeito"] = self.carrega_efeito(
-                    card_data["attributes"]["efeito"],
-                    **card_data["attributes"].get("parameters", {}),
-                )
+                if card_data["attributes"].get("parameters", {}):
+                    card_data["attributes"]["efeito"] = self.carrega_efeito(
+                        card_data["attributes"]["efeito"],
+                        **card_data["attributes"].get("parameters", {}),
+                    )
+                else:
+                    card_data["attributes"]["efeito"] = self.carrega_efeito(
+                        card_data["attributes"]["efeito"]
+                    )
             card_data["attributes"].pop("parameters", None)
             card = self.carrega_carta(card_data)
             cards.append(card)

@@ -13,9 +13,42 @@ class Buff(Efeito):
     # def debug(self):
     #     return f"Buff: {self.valor}"
 
-class LevelUp(Efeito):
+
+class AddToLevel(Efeito):
     def __init__(self, valor):
         self.valor = valor
 
     def aplicarEfeito(self, alvo):
-        alvo.mudarNivel(self.valor)
+        alvo.adicionaAoNivelPersonagem(self.valor)
+
+
+class DiscardGear(Efeito):
+    def __init__(self, valor):
+        self.valor = valor
+
+    def aplicarEfeito(self, alvo):
+        pass
+
+
+class DiscardCards(Efeito):
+    def __init__(self, valor):
+        self.valor = valor
+
+    def aplicarEfeito(self, alvo):
+        pass
+
+
+class DiscardRace(Efeito):
+
+    def aplicarEfeito(self, alvo):
+        pass
+
+
+class DiscardClass(Efeito):
+    def aplicarEfeito(self, alvo):
+        pass
+
+class Death(Efeito):
+    def aplicarEfeito(self, alvo):
+        pass
+

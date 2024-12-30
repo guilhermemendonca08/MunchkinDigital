@@ -1,0 +1,83 @@
+{
+  "_comentario" : "Exemplo de Monstro",
+  "formato": 
+  {
+      "type": "monstro",
+      "attributes": {
+          "imagepath": "Assets/Door/059 (small).png",
+          "nome": "Drooling Slime",
+          "descricao": "Yucky Slime! +4 against elves",
+          "efeito": "discard",
+          "tipo": "monstro",
+          "deckOrigem": "dungeon",
+
+          "nivel": 1,
+          "qntTesouro": 1,
+          "parameters": null
+      }
+  },
+  "_comentario" : "Exemplo de Maldição",
+  "formato": 
+  {
+      "type": "maldicao",
+      "attributes": {
+          "imagepath": "Assets/Door/040 (small).png",
+          "nome": "Curse! Lose your Race",
+          "descricao": "Sem descrição",
+          "efeito": "racediscard",
+          "tipo": "maldicao",
+          "deckOrigem": "dungeon",
+
+          "duracao": null,
+          "parameters": null
+      }
+  },
+  "_comentario" : "Exemplo de Amplificador",
+  "formato": 
+  {
+      "type": "amplificador",
+      "attributes": {
+          "imagepath": "Assets/Door/035 (small).png",
+          "nome": "Baby",
+          "descricao": "-5 to monster",
+          "efeito": "buff",
+          "tipo": "amplificador",
+          "deckOrigem": "dungeon",
+
+          "parameters": {"valor": -5}
+      }
+  },
+  "_comentario" : "Exemplo de Classe",
+  "formato": 
+  {
+      "type": "clerigo",
+      "attributes": {
+          "imagepath": "Assets/Door/010 (small).png",
+          "nome": "Cleric",
+          "descricao": "Sem descrição",
+          "efeito": null,
+          "tipo": "classe",
+          "deckOrigem": "dungeon",
+
+          "nomeClasse": "clerigo",
+          "parameters": null
+      }
+  },
+  "_comentario" : "Exemplo de Raca",
+  "formato": 
+  {
+      "type": "raca",
+      "attributes": {
+          "imagepath": "Assets/Door/001 (small).png",
+          "nome": "Elf",
+          "descricao": "+1 to Runaway. Extra level for helping",
+          "efeito": null,
+          "tipo": "raca",
+          "deckOrigem": "dungeon",
+          
+          "nomeRaca": "elf",
+          "parameters": null
+      }
+  }
+}
+

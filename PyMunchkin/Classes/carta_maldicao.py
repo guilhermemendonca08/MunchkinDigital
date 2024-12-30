@@ -9,10 +9,9 @@ class Maldicao(Carta):
         descricao,
         efeito,
         tipo,
-        tipoMaldicao,
+        deckOrigem,
         duracao,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo)
-        self.tipoMaldicao = tipoMaldicao
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
         self.duracao = duracao
 

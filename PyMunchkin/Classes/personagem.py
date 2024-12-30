@@ -13,7 +13,7 @@ class Personagem:
     def mudarForcaCombate(self, quantidade):
         self.forcaCombate += quantidade
 
-    def mudarNivel(self, quantidade):
+    def adicionaAoNivel(self, quantidade):
         if self.nivel == 10 and quantidade > 0:
             return
         if self.nivel == 1 and quantidade < 0:

@@ -11,8 +11,9 @@ class Jogador:
         self.mao = []
 
     # Avatar stuff
-    def mudarNivelPersonagem(self, quantidade):
-        self.personagem.mudarNivel(quantidade)
+    # def mudarNivelPersonagem(self, quantidade):
+    def adicionaAoNivelPersonagem(self, quantidade):
+        self.personagem.adicionaAoNivel(quantidade)
 
     def set_avatar_position(self, x, y):
         self.avatar.set_position(x, y)

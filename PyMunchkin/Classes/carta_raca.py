@@ -9,21 +9,9 @@ class Raca(Carta):
         descricao,
         efeito,
         tipo,
-        habilidadesRaca,
-        # poder,
-        # tamanho,
-        # valor,
-        # restricao,
-        # usoUnico,
+        deckOrigem,
+        nomeRaca,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo)
-        self.habilidadesClasse = habilidadesRaca
-        # self.poder = poder
-        # self.tamanho = tamanho
-        # self.valor = valor
-        # self.restricao = restricao
-        # self.usoUnico = usoUnico
-
-    def habilidadeClasse(self):
-        pass
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
+        self.nomeRaca = nomeRaca
 
