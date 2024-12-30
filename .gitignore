@@ -1,3 +1,4 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
+# Cache files
+/PyMunchkin/PPlay/__pycache__/
+/PyMunchkin/Classes/__pycache__/
+/PyMunchkin/__pycache__/
