@@ -9,9 +9,28 @@ class Jogador:
         self.nome = nome
         self.personagem = Personagem()
         self.mao = []
+        self.inventario = None
+        self._discard_callback = None
+
+    # Equip stuff
+    def equiparClasse(self, classe):
+        if self.personagem.getClasse() is not None:
+            self.discard(self.personagem.getClasse())
+        self.personagem.equiparClasse(classe)
+
+    def equiparRaca(self, raca):
+        if self.personagem.getRaca() is not None:
+            self.discard(self.personagem.getRaca())
+        self.personagem.equiparRaca(raca)
+
+    # Set Discard Callback.
+    def set_discard_callback(self, callback):
+        self._discard_callback = callback
+
+    def discard(self, card):
+        self._discard_callback(card)
 
     # Avatar stuff
-    # def mudarNivelPersonagem(self, quantidade):
     def adicionaAoNivelPersonagem(self, quantidade):
         self.personagem.adicionaAoNivel(quantidade)
 
@@ -30,6 +49,23 @@ class Jogador:
     # Stats
     def getNivelPersonagem(self):
         return self.personagem.getNivel()
+
+    def getStats(self):
+        stats = {}
+        stats["Nome"] = self.nome
+        stats["Nivel"] = self.getNivelPersonagem()
+        stats["Raca"] = (
+            self.personagem.getRaca().get_nome_raca()
+            if (self.personagem.getRaca() is not None)
+            else "Humano"
+        )
+        stats["Classe"] = (
+            self.personagem.getClasse().get_nome_classe()
+            if (self.personagem.getClasse() is not None)
+            else "Nenhuma"
+        )
+        stats["Forca de Combate"] = self.personagem.getForcaCombate()
+        return stats
 
     # Combate
     def calcularForcaCombate(self):
@@ -54,6 +90,7 @@ class Jogador:
     def get_size_mao(self):
         return len(self.mao)
 
+    # PPLAY STUFF
     # Draws
     def draw(self):
         self.avatar.draw()

@@ -33,3 +33,13 @@ class Item(Carta):
         print(f"Restrição: {self.restricao}")
         print(f"Uso único: {self.usoUnico}")
         print(f"Slot: {self.slot}")
+
+    def get_usoUnico(self):
+        return self.usoUnico
+
+    def executarEfeito(self, alvo):
+        if not self.usoUnico:
+            print(f"{alvo.get_nome()} equipou {self.get_nome()}")
+            # alvo.equparItem(self)
+        if not self.usoUnico:
+            self.efeito.aplicarEfeito(alvo)

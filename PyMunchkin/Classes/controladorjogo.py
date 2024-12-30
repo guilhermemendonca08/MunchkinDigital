@@ -57,6 +57,9 @@ class ControladorJogo:
     def mouse_over_object(self, objeto):
         return self.uihandler.mouse_over_object(objeto)
 
+    def aceita_carta(self, carta):
+        return self.estadoDoJogo.aceita_carta(carta)
+
     # Deck related stuff
     # Adiciona uma carta ao topo deck
     def adicionaAoDeck(self, deck, carta):
@@ -80,6 +83,21 @@ class ControladorJogo:
     def get_deckTesouro(self):
         return self.deckTesouro
 
+    def discard_card(self, card):
+        print(f"Carta descartada: {card.get_nome()}")
+        if card.get_deckOrigem() == "dungeon":
+            self.retornaAoDeck(self.deckDungeonDiscard, card)
+            print(
+                # f"Novo tamanho da pilha descarte: {self.deckDungeonDiscard.getSize()}"
+            )
+        elif card.get_deckOrigem() == "tesouro":
+            self.retornaAoDeck(self.deckTesouroDiscard, card)
+            print(
+                # f"Novo tamanho da pilha descarte: {self.deckTesouroDiscard.getSize()}"
+            )
+        else:
+            raise Exception("Carta sem deck de origem")
+
     # End of deck related stuff
 
     def proximoTurno(self):
@@ -97,6 +115,7 @@ class ControladorJogo:
 
     def add_jogador(self, jogador):
         if self.jogadores.get_size() < 4:
+            jogador.set_discard_callback(self.discard_card)
             self.jogadores.adiciona(jogador)
         else:
             print("Número máximo de jogadores atingido")

@@ -10,6 +10,7 @@ from Classes.efeito import DiscardCards
 from Classes.efeito import DiscardRace
 from Classes.efeito import DiscardClass
 from Classes.efeito import Death
+from Classes.efeito import Equip
 from Classes.classe_clerigo import Clerigo
 from Classes.classe_guerreiro import Guerreiro
 from Classes.classe_ladrao import Ladrao
@@ -38,6 +39,7 @@ class CardFactory:
             "discardrace": DiscardRace,
             "discardclass": DiscardClass,
             "death": Death,
+            "equipar": Equip,
         }
 
     def carrega_efeito(self, id_efeito, **kwargs):

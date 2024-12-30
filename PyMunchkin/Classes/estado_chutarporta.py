@@ -21,7 +21,7 @@ class ChutarPorta(Estado):
         self.cardanimation.set_position(
             RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
-        self.new_card = None
+        self.cartas_aceitas = ["maldicao", "classe", "raca"]
 
     def executaFase(self, controlador):
         self.acc += controlador.janela.delta_time()
@@ -40,20 +40,25 @@ class ChutarPorta(Estado):
         # Door hover/click detection
         target = controlador.mouse_over_object(doorhurtbox)
 
+        # playtarget = controlador.mouse_over_card()
+
         if controlador.mouse_input.is_button_pressed(1):
             self.mouse_click = True
 
-        # sets timer for animation, flags door kick variable
-        if (
-            (self.mouse_click)
-            and (not controlador.mouse_input.is_button_pressed(1))
-            and (not self.door_kicked)  # Evita abrir a porta duas vezes.
-        ):
+        if (self.mouse_click) and (not controlador.mouse_input.is_button_pressed(1)):
             self.mouse_click = False
-            if target:
+
+            if target and (not self.door_kicked):
                 self.door_kicked = True
                 print("chutou porta")
                 self.acc = 0
+
+            # if playtarget:
+            #     if controlador.get_jogadorAtual().has_card(playtarget):
+            #         print(f"I play {playtarget.get_nome()}!")
+            #         controlador.get_jogadorAtual().remove_card(playtarget)
+            #     else:
+            #         print(f"{playtarget.get_descricao()}")
 
         # new card draw
         if self.door_kicked and not self.carddrawn:
@@ -78,3 +83,11 @@ class ChutarPorta(Estado):
 
     def get_EstadoDoJogo(self):
         return self.nome
+
+    def aceita_carta(self, carta):
+        if carta.get_tipo() in self.cartas_aceitas or (
+            carta.get_tipo() == "item" and not carta.get_usoUnico()
+        ):
+            return True
+        else:
+            return False

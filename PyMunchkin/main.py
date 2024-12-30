@@ -13,6 +13,7 @@ from constants import (
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
 from PPlay.window import Window
+from PPlay.sound import Sound
 from Classes.jogador import Jogador
 from Classes.controladorjogo import ControladorJogo
 from Classes.ui_handler import UIHandler
@@ -35,11 +36,18 @@ hotkey_4 = False
 # Input default
 mouse_click = False
 
+# Assets Básicos
 # GameImages estáticos.
 fundo = GameImage("Assets/TableAssets/MarbleBlack.jpg")
 borda = GameImage("Assets/TableAssets/Border_Gray50.png")
 borda.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
 displaynivel = Sprite("Assets/Niveis/leveldisplay.png", 10)
+
+# SFX
+hover = Sound("Assets/SFX/STS_SFX_CardHover3_v1.ogg")
+reject = Sound("Assets/SFX/SOTE_SFX_CardReject_v1.ogg")
+select = Sound("Assets/SFX/SOTE_SFX_CardSelect_v2.ogg")
+deal = Sound("Assets/SFX/STS_SFX_CardDeal8_v1.ogg")
 
 # Elementos de controle do jogo.
 controladorJogo = ControladorJogo(janela)
@@ -77,25 +85,32 @@ controladorJogo.add_jogador(jogador1)
 controladorJogo.add_jogador(jogador2)
 controladorJogo.add_jogador(jogador3)
 controladorJogo.add_jogador(jogador4)
+# controladorJogo.executarFase()
 while True:
     dt = janela.delta_time()
     time_acc += dt
 
     # Eventos
-    target = controladorJogo.mouse_over_card()
-    # print(f"target name: {target.get_nome() if target else None}")
+    card_hovered = controladorJogo.mouse_over_card()
+    # print(f"card_hovered name: {card_hovered.get_nome() if card_hovered else None}")
 
     if mouse.is_button_pressed(1):
         mouse_click = True
 
     if (mouse_click) and (not mouse.is_button_pressed(1)):
         mouse_click = False
-        if target:
-            if jogador1.has_card(target):
-                print(f"I play {target.get_nome()}!")
-                jogador1.remove_card(target)
+        if card_hovered:
+            jogador = controladorJogo.get_jogadorAtual()
+            if jogador.has_card(card_hovered):
+                if controladorJogo.aceita_carta(card_hovered):
+                    print(f"I play {card_hovered.get_nome()}!")
+                    select.play()
+                    jogador.remove_card(card_hovered)
+                    card_hovered.executarEfeito(jogador)
+                else:
+                    print("Carta não pode ser jogada")
             else:
-                print(f"{target.get_descricao()}")
+                print(f"{card_hovered.get_descricao()}")
 
     # Debugging Events
     # Muda de quem é a vez.
@@ -150,6 +165,26 @@ while True:
             displaynivel.set_curr_frame(each.getNivelPersonagem() - 1)
             displaynivel.draw()
             avatar_offset_x += RES_WIDTH / 3
+
+    # Draw Player Stats
+    player_stats_string = ""
+
+    if controladorJogo.get_jogadorAtual() is None:
+        player_stats_dict = {"No player present": "No player present"}
+    else:
+        player_stats_dict = controladorJogo.get_jogadorAtual().getStats()
+
+    stats_height_offset = 0
+    for key, value in player_stats_dict.items():
+        player_stats_string = f"{key}: {value}"
+        janela.draw_text(
+            player_stats_string,
+            250,
+            RES_HEIGHT - 200 + stats_height_offset,
+            size=25,
+            color=(255, 255, 0),
+        )
+        stats_height_offset += 30
 
     # Draw Card Stacks
     # Door Pile

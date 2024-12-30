@@ -19,3 +19,7 @@ class Inicializacao(Estado):
 
     def get_EstadoDoJogo(self):
         return self.nome
+
+
+    def aceita_carta(self, carta):
+        return False

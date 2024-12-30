@@ -7,8 +7,29 @@ class Personagem:
         self.maldicoesAtivas = None
         self.forcaCombate = self.calcularForcaCombate()
 
+    # Gets
     def getNivel(self):
         return self.nivel
+
+    def getRaca(self):
+        return self.raca
+
+    def getClasse(self):
+        return self.classe
+
+    def getForcaCombate(self):
+        return self.forcaCombate
+
+        # stats["Raca"] = self.personagem.getRaca()
+        # stats["Classe"] = self.personagem.getClasse()
+        # stats["Forca"] = self.personagem.getForcaCombate()
+
+    # Sets/Alter
+    def equiparRaca(self, raca):
+        self.raca = raca
+
+    def equiparClasse(self, classe):
+        self.classe = classe
 
     def mudarForcaCombate(self, quantidade):
         self.forcaCombate += quantidade
@@ -18,7 +39,7 @@ class Personagem:
             return
         if self.nivel == 1 and quantidade < 0:
             return
-        self.nivel += quantidade
 
+    # Combate
     def calcularForcaCombate(self):
         return self.nivel

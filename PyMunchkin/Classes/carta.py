@@ -21,7 +21,7 @@ class Carta:
         # self.efeito.executarEfeito(alvo)
         pass
 
-    def executarEfeito(self):
+    def executarEfeito(self, alvo):
         pass
 
     def get_descricao(self):
@@ -41,3 +41,6 @@ class Carta:
 
     def get_tipo(self):
         return self.tipo
+
+    def get_deckOrigem(self):
+        return self.deckOrigem

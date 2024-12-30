@@ -15,3 +15,10 @@ class Raca(Carta):
         super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
         self.nomeRaca = nomeRaca
 
+    def get_nome_raca(self):
+        return self.nomeRaca
+
+    def executarEfeito(self, alvo):
+        print(f"{alvo.get_nome()} equipou {self.nomeRaca}")
+        alvo.equiparRaca(self)
+

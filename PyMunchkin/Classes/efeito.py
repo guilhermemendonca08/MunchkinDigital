@@ -48,7 +48,14 @@ class DiscardClass(Efeito):
     def aplicarEfeito(self, alvo):
         pass
 
+
 class Death(Efeito):
     def aplicarEfeito(self, alvo):
         pass
+
+
+class Equip(Efeito):
+    def aplicarEfeito(self, alvo):
+        pass
+        # print(f"{alvo.get_nome()} equipou  )
 
