@@ -21,6 +21,13 @@ class Inventario:
             poderes_em_slot.append(item.get_poder())
         return poderes_em_slot
 
+    def get_bonus_combate(self):
+        bonus = 0
+        for slot in self.itens_equipados:
+            for item in self.itens_equipados[slot]:
+                bonus += item.get_poder()
+        return bonus
+
     # Equipa/desequipa itens
     def tem_espaco_para_equipar(self, item):
         item_slot = item.get_slot()

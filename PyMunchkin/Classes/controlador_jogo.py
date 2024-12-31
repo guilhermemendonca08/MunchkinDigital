@@ -1,3 +1,5 @@
+from Classes.subject import Subject
+from Classes.observer import Observer
 from PPlay.window import mouse
 from PPlay.sound import Sound
 from Classes.estado_inicializacao import Inicializacao
@@ -19,7 +21,7 @@ from Classes.lista_circular import ListaCircular
 from Classes.ui_handler import UIHandler
 
 
-class ControladorJogo:
+class ControladorJogo(Subject):
     def __init__(self, janela):
         self.jogadores = ListaCircular()
         self.observers = []
@@ -253,3 +255,13 @@ class ControladorJogo:
         for each in cards:
             pilha.push_wherever(each)
         pilha.shuffle()
+
+    # SUBJECT/ OBSERVER PATTERN
+    def add_observer(self, observer: Observer):
+        pass
+
+    def remove_observer(self, observer: Observer):
+        pass
+
+    def notify_observers(self, estado_do_jogo: str):
+        pass

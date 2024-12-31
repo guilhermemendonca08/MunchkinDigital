@@ -1,10 +1,11 @@
+from Classes.observer import Observer
 from constants import CARD_WIDTH, CARD_HEIGHT
 from PPlay.gameimage import GameImage
 from Classes.personagem import Personagem
 from Classes.inventario import Inventario
 
 
-class Jogador:
+class Jogador(Observer):
     def __init__(self, nome, avatar_image):
         self.avatar = GameImage(avatar_image)
         self.nome = nome
@@ -132,12 +133,15 @@ class Jogador:
             if (self.personagem.get_classe() is not None)
             else "Nenhuma"
         )
-        stats["Forca de Combate"] = self.personagem.get_forca_combate()
+        stats["Forca de Combate"] = self.calcular_forca_combate()
         return stats
 
     # Combate
     def calcular_forca_combate(self):
-        return self.personagem.calcular_forca_combate()
+        somatorio = 0
+        somatorio += self.personagem.calcular_forca_combate()
+        somatorio += self.inventario.get_bonus_combate()
+        return somatorio
 
     def fugir(self, monstro):
         pass
@@ -192,3 +196,7 @@ class Jogador:
         for i, card in enumerate(self.mao):
             card.set_position(offset_x + (i * peek_window), offset_y + 0)
             card.scaled_draw(new_width, new_height)
+
+    # SUBJECT/ OBSERVER PATTERN
+    def update(self, estado_do_jogo: str):
+        pass

@@ -5,6 +5,7 @@ class Personagem:
         self.classe = None
         self.inventario = None
         self.maldicoesAtivas = None
+        self.bonus_combate = 0
         self.forcaCombate = self.calcular_forca_combate()
 
     # Gets
@@ -43,4 +44,7 @@ class Personagem:
 
     # Combate
     def calcular_forca_combate(self):
-        return self.nivel
+        somatorio = 0
+        somatorio += self.nivel
+        somatorio += self.bonus_combate
+        return somatorio
