@@ -23,7 +23,7 @@ class ChutarPorta(Estado):
         )
         self.cartas_aceitas = ["maldicao", "classe", "raca"]
 
-    def executaFase(self, controlador):
+    def executa_fase(self, controlador):
         self.acc += controlador.janela.delta_time()
         # cardanimation = GameImage("Assets/Door/000 (small)discard.png")
         closeddoor = GameImage("Assets/TableAssets/ClosedDoor50.png")
@@ -64,8 +64,8 @@ class ChutarPorta(Estado):
         # new card draw
         if self.door_kicked and not self.carddrawn:
             self.carddrawn = True
-            controlador.colocaCartaEmJogo(
-                controlador.comprarCarta(controlador.deckDungeon)
+            controlador.coloca_carta_em_jogo(
+                controlador.comprarCarta(controlador.deck_dungeon)
             )
             # print(f"Carta nova: {controlador.get_cartaEmJogo().get_nome()}")
 
@@ -77,17 +77,17 @@ class ChutarPorta(Estado):
                     self.acc = 0
                 self.cardanimation.draw()
             else:
-                if controlador.get_cartaEmJogo().get_tipo() == "monstro":
+                if controlador.get_carta_em_jogo().get_tipo() == "monstro":
                     controlador.proximoEstado("Combate")
                 else:
                     controlador.proximoEstado("ProcurarEncrenca")
 
-    def get_EstadoDoJogo(self):
+    def get_estado_do_jogo(self):
         return self.nome
 
     def aceita_carta(self, carta):
         if carta.get_tipo() in self.cartas_aceitas or (
-            carta.get_tipo() == "item" and not carta.get_usoUnico()
+            carta.get_tipo() == "item" and not carta.get_uso_unico()
         ):
             return True
         else:

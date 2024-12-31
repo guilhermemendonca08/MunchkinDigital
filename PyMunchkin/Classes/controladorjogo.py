@@ -21,16 +21,17 @@ from Classes.ui_handler import UIHandler
 
 class ControladorJogo:
     def __init__(self, janela):
+        self.sfx = None
         self.jogadores = ListaCircular()
         self.observers = []
-        self.deckDungeon = CardStack("Assets/Door/000 (small).png")
-        self.deckDungeonDiscard = CardStack("Assets/Door/000 (small)darkmode.png")
-        self.deckTesouro = CardStack("Assets/Treasure/100 (small).png")
-        self.deckTesouroDiscard = CardStack("Assets/Treasure/100 (small)darkmode.png")
-        self.jogadorAtual = None
-        self.cartaEmJogo = None
-        self.estadoDoJogo = Inicializacao()
-        self.gerenciadorCombate = GerenciadorCombate()
+        self.deck_dungeon = CardStack("Assets/Door/000 (small).png")
+        self.deck_dungeon_discard = CardStack("Assets/Door/000 (small)darkmode.png")
+        self.deck_tesouro = CardStack("Assets/Treasure/100 (small).png")
+        self.deck_tesouro_discard = CardStack("Assets/Treasure/100 (small)darkmode.png")
+        self.jogador_atual = None
+        self.carta_em_jogo = None
+        self.estado_do_jogo = Inicializacao()
+        self.gerenciador_combate = GerenciadorCombate()
         self.estados = {
             "AguardandoJogada": AguardandoJogada(),
             "Caridade": Caridade(),
@@ -41,15 +42,15 @@ class ControladorJogo:
             "ProcurarEncrenca": ProcurarEncrenca(),
             "Saquear": Saquear(),
         }
-        self.uihandler = UIHandler(janela.get_mouse())
+        self.ui_handler = UIHandler(janela.get_mouse())
         self.pending_card = None
         self.choice_needed = False
         self.mouse_input = janela.get_mouse()
         self.janela = janela
         self.freeze = False
 
-    def Set_SFX(self, hover, reject, select, deal):
-        self.SFX = {"hover": hover, "reject": reject, "select": select, "deal": deal}
+    def set_sfx(self, hover, reject, select, deal):
+        self.sfx = {"hover": hover, "reject": reject, "select": select, "deal": deal}
 
     def freeze_game(self):
         self.freeze = True
@@ -57,20 +58,20 @@ class ControladorJogo:
     def unfreeze_game(self):
         self.freeze = False
 
-    def colocaCartaEmJogo(self, carta):
-        self.cartaEmJogo = carta
+    def coloca_carta_em_jogo(self, carta):
+        self.carta_em_jogo = carta
 
-    def get_cartaEmJogo(self):
-        return self.cartaEmJogo
+    def get_carta_em_jogo(self):
+        return self.carta_em_jogo
 
-    def play_SFX(self, sound):
-        self.SFX[sound].play()
+    def play_sfx(self, sound):
+        self.sfx[sound].play()
 
     # UI related stuff
 
     # Mouse related stuff
     def is_mouse_left_click_pressed(self):
-        return self.uihandler.is_mouse_left_click_pressed(self.freeze)
+        return self.ui_handler.is_mouse_left_click_pressed(self.freeze)
         # if self.freeze is False:
         #     return self.mouse_input.is_button_pressed(1)
         # else:
@@ -83,13 +84,13 @@ class ControladorJogo:
             return False
 
     def mouse_over_card(self):
-        return self.uihandler.mouse_over_card(self.jogadores)
+        return self.ui_handler.mouse_over_card(self.jogadores)
 
     def mouse_over_object(self, objeto):
-        return self.uihandler.mouse_over_object(objeto)
+        return self.ui_handler.mouse_over_object(objeto)
 
     def clicked(self, target):
-        return self.uihandler.clicked(target, self.freeze)
+        return self.ui_handler.clicked(target, self.freeze)
 
     # Game Logic Stuff
     def is_choice_needed(self):
@@ -103,32 +104,32 @@ class ControladorJogo:
                 for each in self.jogadores:
                     acceptable_targets.append(each)
             elif target_type == "monstro":
-                for each in self.gerenciadorCombate.get_monstros():
+                for each in self.gerenciador_combate.get_monstros():
                     acceptable_targets.append(each)
             elif target_type == "self":
-                acceptable_targets.append(self.jogadorAtual)
+                acceptable_targets.append(self.jogador_atual)
             # elif target_type = "carry":
             # acceptable_targets.append(self.jogadorAtual.get_inventario())
         return acceptable_targets
 
     def detect_choice(self):
-        return self.uihandler.detect_choice(self.get_target_choices())
+        return self.ui_handler.detect_choice(self.get_target_choices())
 
     def play_choice(self, choice):
         self.play_attempt(self.pending_card, target=choice)
 
     def play_attempt(self, carta, **kwargs):
-        jogador = self.jogadorAtual
+        jogador = self.jogador_atual
         if jogador.has_card(carta):
-            if self.estadoDoJogo.aceita_carta(carta):
+            if self.estado_do_jogo.aceita_carta(carta):
                 if (
                     carta.get_tipo() == "raca"
                     or carta.get_tipo() == "classe"
-                    or (carta.get_tipo() == "item" and not carta.get_usoUnico())
+                    or (carta.get_tipo() == "item" and not carta.get_uso_unico())
                 ):
-                    self.play_SFX("select")
+                    self.play_sfx("select")
                     print(f"I play {carta.get_nome()}!")
-                    carta.jogarCarta(jogador)  # self cast
+                    carta.jogar_carta(jogador)  # self cast
                     jogador.remove_card(carta)
                 else:
                     if kwargs.get("target") is None:
@@ -139,8 +140,8 @@ class ControladorJogo:
                         self.freeze = False
                         self.choice_needed = False
                         self.pending_card = None
-                        self.play_SFX("select")
-                        carta.jogarCarta(kwargs.get("target"))
+                        self.play_sfx("select")
+                        carta.jogar_carta(kwargs.get("target"))
                         jogador.remove_card(carta)
             else:
                 # self.play_SFX("reject")
@@ -166,20 +167,20 @@ class ControladorJogo:
         return deck.pop()
 
     def get_deckDungeon(self):
-        return self.deckDungeon
+        return self.deck_dungeon
 
     def get_deckTesouro(self):
-        return self.deckTesouro
+        return self.deck_tesouro
 
     def discard_card(self, card):
         print(f"Carta descartada: {card.get_nome()}")
         if card.get_deckOrigem() == "dungeon":
-            self.retornaAoDeck(self.deckDungeonDiscard, card)
+            self.retornaAoDeck(self.deck_dungeon_discard, card)
             print(
                 # f"Novo tamanho da pilha descarte: {self.deckDungeonDiscard.getSize()}"
             )
         elif card.get_deckOrigem() == "tesouro":
-            self.retornaAoDeck(self.deckTesouroDiscard, card)
+            self.retornaAoDeck(self.deck_tesouro_discard, card)
             print(
                 # f"Novo tamanho da pilha descarte: {self.deckTesouroDiscard.getSize()}"
             )
@@ -189,7 +190,7 @@ class ControladorJogo:
     # End of deck related stuff
 
     def proximoTurno(self):
-        self.jogadorAtual = self.jogadores.proximo()
+        self.jogador_atual = self.jogadores.proximo()
 
     def verificarVencedor(self):
         winners = []
@@ -209,25 +210,25 @@ class ControladorJogo:
             print("Número máximo de jogadores atingido")
 
     def set_jogadorAtual(self, jogador):
-        self.jogadorAtual = jogador
+        self.jogador_atual = jogador
 
     def get_jogadorAtual(self):
-        if not self.jogadorAtual:
+        if not self.jogador_atual:
             return None
-        return self.jogadorAtual
+        return self.jogador_atual
 
     # Gerenciamento de estados do jogo
     def iniciarJogo(self):
         pass
 
     def executarFase(self):
-        self.estadoDoJogo.executaFase(self)
+        self.estado_do_jogo.executa_fase(self)
 
     def proximoEstado(self, novoEstado):
-        self.estadoDoJogo = self.estados[novoEstado]
+        self.estado_do_jogo = self.estados[novoEstado]
 
     def get_estadoDoJogo(self):
-        estadoDoJogo = self.estadoDoJogo.get_EstadoDoJogo()
+        estadoDoJogo = self.estado_do_jogo.get_estado_do_jogo()
         return estadoDoJogo
 
     # Carregamento de cartas

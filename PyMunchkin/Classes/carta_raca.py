@@ -9,16 +9,16 @@ class Raca(Carta):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
-        nomeRaca,
+        deck_origem,
+        nome_raca,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
-        self.nomeRaca = nomeRaca
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
+        self.nome_raca = nome_raca
 
     def get_nome_raca(self):
-        return self.nomeRaca
+        return self.nome_raca
 
-    def jogarCarta(self, alvo):
-        print(f"{alvo.get_nome()} equipou {self.nomeRaca}")
-        alvo.equiparRaca(self)
+    def jogar_carta(self, alvo):
+        print(f"{alvo.get_nome()} equipou {self.nome_raca}")
+        alvo.equipar_raca(self)
 

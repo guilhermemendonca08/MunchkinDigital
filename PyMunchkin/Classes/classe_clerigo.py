@@ -9,11 +9,11 @@ class Clerigo(Classe):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
-        nomeClasse,
+        deck_origem,
+        nome_classe,
     ):
         super().__init__(
-            imagepath, nome, descricao, efeito, tipo, deckOrigem, nomeClasse
+            imagepath, nome, descricao, efeito, tipo, deck_origem, nome_classe
         )
 
     def Resurrection(self):

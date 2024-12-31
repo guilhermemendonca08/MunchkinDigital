@@ -9,10 +9,10 @@ class Monstro(Carta):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
+        deck_origem,
         nivel,
-        qntTesouro,
+        qnt_tesouro,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
         self.nivel = nivel
-        self.qntTesouro = qntTesouro
+        self.qntTesouro = qnt_tesouro

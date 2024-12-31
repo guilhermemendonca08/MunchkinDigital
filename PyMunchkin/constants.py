@@ -15,9 +15,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "+1 to Runaway. Extra level for helping",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "elf",
+            "nome_raca": "elf",
             "parameters": null
         }
     },
@@ -29,9 +29,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "+1 to Runaway. Extra level for helping",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "elf",
+            "nome_raca": "elf",
             "parameters": null
         }
     },
@@ -43,9 +43,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "+1 to Runaway. Extra level for helping",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "elf",
+            "nome_raca": "elf",
             "parameters": null
         }
     },
@@ -57,9 +57,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You may sell one item each turn for double price",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "halfling",
+            "nome_raca": "halfling",
             "parameters": null
         }
     },
@@ -71,9 +71,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You may sell one item each turn for double price",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "halfling",
+            "nome_raca": "halfling",
             "parameters": null
         }
     },
@@ -85,9 +85,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You may sell one item each turn for double price",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "halfling",
+            "nome_raca": "halfling",
             "parameters": null
         }
     },
@@ -99,9 +99,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You can carry any number of Big items",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "dwarf",
+            "nome_raca": "dwarf",
             "parameters": null
         }
     },
@@ -113,9 +113,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You can carry any number of Big items",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "dwarf",
+            "nome_raca": "dwarf",
             "parameters": null
         }
     },
@@ -127,9 +127,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "You can carry any number of Big items",
             "efeito": null,
             "tipo": "raca",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeRaca": "dwarf",
+            "nome_raca": "dwarf",
             "parameters": null
         }
     },
@@ -141,9 +141,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "clerigo",
+            "nome_classe": "clerigo",
             "parameters": null
         }
     },
@@ -155,9 +155,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "clerigo",
+            "nome_classe": "clerigo",
             "parameters": null
         }
     },
@@ -169,9 +169,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "clerigo",
+            "nome_classe": "clerigo",
             "parameters": null
         }
     },
@@ -183,9 +183,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "ladrao",
+            "nome_classe": "ladrao",
             "parameters": null
         }
     },
@@ -197,9 +197,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "ladrao",
+            "nome_classe": "ladrao",
             "parameters": null
         }
     },
@@ -211,9 +211,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "ladrao",
+            "nome_classe": "ladrao",
             "parameters": null
         }
     },
@@ -225,9 +225,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "guerreiro",
+            "nome_classe": "guerreiro",
             "parameters": null
         }
     },
@@ -239,9 +239,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "guerreiro",
+            "nome_classe": "guerreiro",
             "parameters": null
         }
     },
@@ -253,9 +253,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "guerreiro",
+            "nome_classe": "guerreiro",
             "parameters": null
         }
     },
@@ -267,9 +267,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "mago",
+            "nome_classe": "mago",
             "parameters": null
         }
     },
@@ -281,9 +281,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "mago",
+            "nome_classe": "mago",
             "parameters": null
         }
     },
@@ -295,9 +295,9 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": null,
             "tipo": "classe",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
-            "nomeClasse": "mago",
+            "nome_classe": "mago",
             "parameters": null
         }
     },
@@ -309,7 +309,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "-5 to monster",
             "efeito": "buff",
             "tipo": "amplificador",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "parameters": {"valor": -5}
         }
@@ -322,7 +322,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "+5 to monster",
             "efeito": "buff",
             "tipo": "amplificador",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "parameters": {"valor": 5}
         }
@@ -335,7 +335,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "+5 to monster",
             "efeito": "buff",
             "tipo": "amplificador",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "parameters": {"valor": 5}
         }
@@ -348,7 +348,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "+10 to monster",
             "efeito": "buff",
             "tipo": "amplificador",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "parameters": {"valor": 10}
         }
@@ -361,7 +361,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "+10 to monster",
             "efeito": "buff",
             "tipo": "amplificador",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "parameters": {"valor": 10}
         }
@@ -374,7 +374,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardrace",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": null
@@ -388,7 +388,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardclass",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": null
@@ -402,7 +402,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "Lose a level",
             "efeito": "addtolevel",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": {"valor": -1}
@@ -416,7 +416,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "Lose a level",
             "efeito": "addtolevel",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": {"valor": -1}
@@ -430,7 +430,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "You should know better than to pick up a duck in a dungeon! Lose 2 levels",
             "efeito": "addtolevel",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": {"valor": -2}
@@ -444,7 +444,7 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardcards",
             "tipo": "maldicao",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "duracao": null,
             "parameters": {"valor": 2}
@@ -458,10 +458,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Yucky Slime! +4 against elves",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 1,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": "footgear"}
         }
     },
@@ -473,10 +473,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Cannot be Outrun",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 1,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": "footgear"}
         }
     },
@@ -488,10 +488,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Creature from Hell. +3 against clerics",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 1,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -1}
         }
     },
@@ -503,10 +503,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+1 to Run Away",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 1,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -1}
         }
     },
@@ -518,10 +518,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Elves draw an extra Treasure after defeating it",
             "efeito": null,
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 1,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": null
         }
     },
@@ -533,10 +533,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "-1 to Run Away",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 2,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -2}
         }
     },
@@ -548,10 +548,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+1 to Run Away",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 2,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": "bigitem"}
         }
     },
@@ -563,10 +563,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "If you must flee, you lose a level even if you escape",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 2,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -2}
         }
     },
@@ -578,10 +578,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Fried chicken is delicious. Gain extra level if you defeat it with flire",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 2,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -1}
         }
     },
@@ -593,10 +593,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "If you can't defeat it, you may distract it with a stick shapped item and escape",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 2,
-            "qntTesouro": 1,
+            "qnt_tesouro": 1,
             "parameters": {"valor": -2}
         }
     },
@@ -608,10 +608,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "He's gross! +5 against elves",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 4,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": "any"}
         }
     },
@@ -623,10 +623,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+5 against Dwarves",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 4,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -2}
         }
     },
@@ -638,10 +638,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+5 against Wizards",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 4,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -2}
         }
     },
@@ -653,10 +653,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "-2 to Run Away",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 4,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": "any"}
         }
     },
@@ -668,10 +668,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+6 against Warriors",
             "efeito": "discardrace",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 6,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": null
         }
     },
@@ -683,10 +683,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Gain an extra level if you defat it without help or bonus",
             "efeito": "discardcards",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 6,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": 5}
         }
     },
@@ -698,10 +698,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Will not attack a Thief",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 6,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -2}
         }
     },
@@ -713,10 +713,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Resist Magic. +6 against Wizards",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 6,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -2}
         }
     },
@@ -728,10 +728,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "No one can help you. You must face the Gazebo alone",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 8,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -3}
         }
     },
@@ -743,10 +743,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "No items or another bonus help against them",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 8,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": -4}
         }
     },
@@ -758,10 +758,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Will not attack females",
             "efeito": "discardclass",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 8,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": null
         }
     },
@@ -773,10 +773,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "It's gross +6 against elves",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 8,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": {"valor": "headgear"}
         }
     },
@@ -788,10 +788,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+6 against Dwarves, due to ancient grudges",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 10,
-            "qntTesouro": 2,
+            "qnt_tesouro": 2,
             "parameters": null
         }
     },
@@ -803,10 +803,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Can be bribed with  200 gold or more valued item",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 10,
-            "qntTesouro": 3,
+            "qnt_tesouro": 3,
             "parameters": {"valor": -3}
         }
     },
@@ -818,10 +818,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "He has no special powers, and he's really mad about it",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 10,
-            "qntTesouro": 3,
+            "qnt_tesouro": 3,
             "parameters": {"valor": -3}
         }
     },
@@ -833,10 +833,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "+3 against Dwarves and Halflings",
             "efeito": "discardgear",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 12,
-            "qntTesouro": 3,
+            "qnt_tesouro": 3,
             "parameters": {"valor": "headgear"}
         }
     },
@@ -848,10 +848,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "A creature from Hell. +4 against Clerics",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 12,
-            "qntTesouro": 3,
+            "qnt_tesouro": 3,
             "parameters": {"valor": -3}
         }
     },
@@ -863,10 +863,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 12,
-            "qntTesouro": 3,
+            "qnt_tesouro": 3,
             "parameters": {"valor": -3}
         }
     },
@@ -878,10 +878,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 14,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": null
         }
     },
@@ -893,10 +893,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardcards",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 14,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": {"valor": 3}
         }
     },
@@ -908,10 +908,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 14,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": null
         }
     },
@@ -923,10 +923,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardcards",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 16,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": {"valor": 5}
         }
     },
@@ -938,10 +938,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "addtolevel",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 16,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": {"valor": -8}
         }
     },
@@ -953,10 +953,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "discardcards",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 16,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": {"valor": 3}
         }
     },
@@ -968,10 +968,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 18,
-            "qntTesouro": 4,
+            "qnt_tesouro": 4,
             "parameters": null
         }
     },
@@ -983,10 +983,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Will not pursue anyone of level 4 or below",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 18,
-            "qntTesouro": 5,
+            "qnt_tesouro": 5,
             "parameters": null
         }
     },
@@ -998,10 +998,10 @@ DUNGEON_JSON_DATA = """
             "descricao": "Will not pursue anyone of level 5 or below",
             "efeito": "death",
             "tipo": "monstro",
-            "deckOrigem": "dungeon",
+            "deck_origem": "dungeon",
 
             "nivel": 20,
-            "qntTesouro": 5,
+            "qnt_tesouro": 5,
             "parameters": null
         }
     }
@@ -1018,12 +1018,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Use during combat. +5 to either side. Usable only once",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 300,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 5}
         }
@@ -1036,12 +1036,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Bad Breath",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 100,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 2}
         }
@@ -1054,12 +1054,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Human Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 4,
             "tamanho": "big",
             "valor": 600,
             "restricao": "humano",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "2hands",
             "parameters": null
         }
@@ -1072,12 +1072,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 2,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1090,12 +1090,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 200,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "armor",
             "parameters": null
         }
@@ -1108,12 +1108,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "headgear",
             "parameters": null
         }
@@ -1126,12 +1126,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Thief Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 400,
             "restricao": "ladrao",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1144,12 +1144,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "big",
             "valor": 600,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "2hands",
             "parameters": null
         }
@@ -1162,12 +1162,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 2,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "footgear",
             "parameters": null
         }
@@ -1180,12 +1180,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Use during any combat. Usable once only, +2 to each elf",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 100,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 2}
         }
@@ -1198,12 +1198,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 2,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": null,
             "parameters": null
         }
@@ -1216,12 +1216,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Elf Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 600,
             "restricao": "elfo",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1234,12 +1234,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 3}
         }
@@ -1252,12 +1252,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 2,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "armor",
             "parameters": null
         }
@@ -1270,12 +1270,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Cleric Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 400,
             "restricao": "clerigo",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1288,12 +1288,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 200,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 2}
         }
@@ -1306,12 +1306,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 2,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1324,12 +1324,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 100,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 3}
         }
@@ -1342,12 +1342,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Females Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 400,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1360,12 +1360,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Elf Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 4,
             "tamanho": "small",
             "valor": 800,
             "restricao": "elfo",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "2hands",
             "parameters": null
         }
@@ -1378,12 +1378,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Hey, it's better than nothing!",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 0,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1396,12 +1396,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 200,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "2hands",
             "parameters": null
         }
@@ -1414,12 +1414,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 100,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 3}
         }
@@ -1432,12 +1432,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 5}
         }
@@ -1450,12 +1450,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Wizard Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 5,
             "tamanho": "small",
             "valor": 800,
             "restricao": "mago",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "1hand",
             "parameters": null
         }
@@ -1468,12 +1468,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Not usable by Warrior",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 600,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": null,
             "parameters": null
         }
@@ -1486,12 +1486,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "addtolevel",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 1}
         }
@@ -1504,12 +1504,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 200,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "headgear",
             "parameters": null
         }
@@ -1522,12 +1522,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Wizard Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "small",
             "valor": 400,
             "restricao": "mago",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "headgear",
             "parameters": null
         }
@@ -1540,12 +1540,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 200,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": null,
             "parameters": null
         }
@@ -1558,12 +1558,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "addtolevel",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 1}
         }
@@ -1576,12 +1576,12 @@ TREASURE_JSON_DATA = """
             "descricao": "You can't use this if you are currently the Highest level player or tied.",
             "efeito": "addtolevel",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 1}
         }
@@ -1594,12 +1594,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": "big",
             "valor": 0,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "2hands",
             "parameters": null
         }
@@ -1612,13 +1612,13 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Warrior Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 4,
             "tamanho": "big",
             "valor": 600,
             "restricao": "guerreiro",
-            "usoUnico": false,
-            "slot": "1hands",
+            "uso_unico": false,
+            "slot": "1hand",
             "parameters": null
         }
     },
@@ -1630,12 +1630,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 200,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "armor",
             "parameters": null
         }
@@ -1648,12 +1648,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "addtolevel",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 0,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 1}
         }
@@ -1666,12 +1666,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Halfling Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 3,
             "tamanho": null,
             "valor": 400,
             "restricao": "halfling",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": null,
             "parameters": null
         }
@@ -1684,12 +1684,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 1,
             "tamanho": "small",
             "valor": 600,
             "restricao": null,
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": "headgear",
             "parameters": null
         }
@@ -1702,12 +1702,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Sem descrição",
             "efeito": "buff",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": null,
             "tamanho": null,
             "valor": 200,
             "restricao": null,
-            "usoUnico": true,
+            "uso_unico": true,
             "slot": null,
             "parameters": {"valor": 5}
         }
@@ -1720,12 +1720,12 @@ TREASURE_JSON_DATA = """
             "descricao": "Usable by Thief Only",
             "efeito": "equipar",
             "tipo": "item",
-            "deckOrigem": "tesouro",
+            "deck_origem": "tesouro",
             "poder": 4,
             "tamanho": "small",
             "valor": 600,
             "restricao": "ladrao",
-            "usoUnico": false,
+            "uso_unico": false,
             "slot": null,
             "parameters": null
         }

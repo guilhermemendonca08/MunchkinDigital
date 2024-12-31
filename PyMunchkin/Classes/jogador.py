@@ -4,8 +4,8 @@ from Classes.personagem import Personagem
 
 
 class Jogador:
-    def __init__(self, nome, avatarImage):
-        self.avatar = GameImage(avatarImage)
+    def __init__(self, nome, avatar_image):
+        self.avatar = GameImage(avatar_image)
         self.nome = nome
         self.personagem = Personagem()
         self.mao = []
@@ -13,15 +13,15 @@ class Jogador:
         self._discard_callback = None
 
     # Equip stuff
-    def equiparClasse(self, classe):
-        if self.personagem.getClasse() is not None:
-            self.discard(self.personagem.getClasse())
-        self.personagem.equiparClasse(classe)
+    def equipar_classe(self, classe):
+        if self.personagem.get_classe() is not None:
+            self.discard(self.personagem.get_classe())
+        self.personagem.equipar_classe(classe)
 
-    def equiparRaca(self, raca):
-        if self.personagem.getRaca() is not None:
-            self.discard(self.personagem.getRaca())
-        self.personagem.equiparRaca(raca)
+    def equipar_raca(self, raca):
+        if self.personagem.get_raca() is not None:
+            self.discard(self.personagem.get_raca())
+        self.personagem.equipar_raca(raca)
 
     # Set Discard Callback.
     def set_discard_callback(self, callback):
@@ -31,19 +31,19 @@ class Jogador:
         self._discard_callback(card)
 
     def discard_raca(self):
-        self.discard(self.personagem.getRaca())
-        self.personagem.equiparRaca(None)
+        self.discard(self.personagem.get_raca())
+        self.personagem.equipar_raca(None)
 
     def discard_classe(self):
-        self.discard(self.personagem.getClasse())
-        self.personagem.equiparClasse(None)
+        self.discard(self.personagem.get_classe())
+        self.personagem.equipar_classe(None)
 
     # Avatar stuff
     def get_hurtbox(self):
         return self.avatar
 
-    def adicionaAoNivelPersonagem(self, quantidade):
-        self.personagem.adicionaAoNivel(quantidade)
+    def adiciona_ao_nivel_personagem(self, quantidade):
+        self.personagem.adiciona_ao_nivel(quantidade)
 
     def set_avatar_position(self, x, y):
         self.avatar.set_position(x, y)
@@ -58,29 +58,29 @@ class Jogador:
         return self.nome
 
     # Stats
-    def getNivelPersonagem(self):
-        return self.personagem.getNivel()
+    def get_nivel_personagem(self):
+        return self.personagem.get_nivel()
 
-    def getStats(self):
+    def get_stats(self):
         stats = {}
         stats["Nome"] = self.nome
-        stats["Nivel"] = self.getNivelPersonagem()
+        stats["Nivel"] = self.get_nivel_personagem()
         stats["Raca"] = (
-            self.personagem.getRaca().get_nome_raca()
-            if (self.personagem.getRaca() is not None)
+            self.personagem.get_raca().get_nome_raca()
+            if (self.personagem.get_raca() is not None)
             else "Humano"
         )
         stats["Classe"] = (
-            self.personagem.getClasse().get_nome_classe()
-            if (self.personagem.getClasse() is not None)
+            self.personagem.get_classe().get_nome_classe()
+            if (self.personagem.get_classe() is not None)
             else "Nenhuma"
         )
-        stats["Forca de Combate"] = self.personagem.getForcaCombate()
+        stats["Forca de Combate"] = self.personagem.get_forca_combate()
         return stats
 
     # Combate
-    def calcularForcaCombate(self):
-        return self.personagem.calcularForcaCombate()
+    def calcular_forca_combate(self):
+        return self.personagem.calcular_forca_combate()
 
     def fugir(self, monstro):
         pass

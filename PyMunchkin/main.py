@@ -16,7 +16,7 @@ from PPlay.window import Window
 from PPlay.sound import Sound
 from Classes.jogador import Jogador
 from Classes.controladorjogo import ControladorJogo
-from Classes.ui_handler import UIHandler
+# from Classes.ui_handler import UIHandler
 from Classes.cardfactory import CardFactory
 
 # from constants import CARD_WIDTH, CARD_HEIGHT
@@ -69,7 +69,7 @@ dungeon_cards = card_factory.carrega_cartas(dungeon_card_data)
 controladorJogo.carregaCartas(dungeon_cards, controladorJogo.get_deckDungeon())
 
 # Carrega sons
-controladorJogo.Set_SFX(hover, reject, select, deal)
+controladorJogo.set_sfx(hover, reject, select, deal)
 
 # Inicia Jogadores
 jogador1 = Jogador("Apollo", "Assets/Portraits/Archer.png")
@@ -109,7 +109,7 @@ while True:
     # Muda o nivel do personagem
     if teclado.key_pressed("2") and not hotkey_2:
         hotkey_2 = True
-        controladorJogo.get_jogadorAtual().adicionaAoNivelPersonagem(1)
+        controladorJogo.get_jogadorAtual().adiciona_ao_nivel_personagem(1)
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
@@ -144,11 +144,11 @@ while True:
     for each in controladorJogo.jogadores:
         if each == controladorJogo.get_jogadorAtual():
             displaynivel.set_position(each.get_avatar_x(), RES_HEIGHT - 100)
-            displaynivel.set_curr_frame(each.getNivelPersonagem() - 1)
+            displaynivel.set_curr_frame(each.get_nivel_personagem() - 1)
             displaynivel.draw()
         else:
             displaynivel.set_position(100 + avatar_offset_x, 0)
-            displaynivel.set_curr_frame(each.getNivelPersonagem() - 1)
+            displaynivel.set_curr_frame(each.get_nivel_personagem() - 1)
             displaynivel.draw()
             avatar_offset_x += RES_WIDTH / 3
 
@@ -158,7 +158,7 @@ while True:
     if controladorJogo.get_jogadorAtual() is None:
         player_stats_dict = {"No player present": "No player present"}
     else:
-        player_stats_dict = controladorJogo.get_jogadorAtual().getStats()
+        player_stats_dict = controladorJogo.get_jogadorAtual().get_stats()
 
     stats_height_offset = 0
     for key, value in player_stats_dict.items():
@@ -174,28 +174,28 @@ while True:
 
     # Draw Card Stacks
     # Door Pile
-    controladorJogo.deckDungeon.set_position(
+    controladorJogo.deck_dungeon.set_position(
         RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deckDungeon.draw()
+    controladorJogo.deck_dungeon.draw()
 
     # Door Discard Pile
-    controladorJogo.deckDungeonDiscard.set_position(
+    controladorJogo.deck_dungeon_discard.set_position(
         RES_WIDTH - 1.25 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deckDungeonDiscard.draw()
+    controladorJogo.deck_dungeon_discard.draw()
 
     # Treasure Pile
-    controladorJogo.deckTesouro.set_position(
+    controladorJogo.deck_tesouro.set_position(
         0.25 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deckTesouro.draw()
+    controladorJogo.deck_tesouro.draw()
 
     # Treasure Discard Pile
-    controladorJogo.deckTesouroDiscard.set_position(
+    controladorJogo.deck_tesouro_discard.set_position(
         1.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deckTesouroDiscard.draw()
+    controladorJogo.deck_tesouro_discard.draw()
 
     # Game Logic / Draws from phases
     controladorJogo.executarFase()

@@ -9,7 +9,7 @@ class Amplificador(Carta):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
+        deck_origem,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
 

@@ -17,15 +17,15 @@ class Combate(Estado):
         self.mouse_click = False
         self.resolve_request = False
 
-    def executaFase(self, controlador):
+    def executa_fase(self, controlador):
         closeddoor = GameImage("Assets/TableAssets/OpenDoor50.png")
         closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         closeddoor.draw()
 
-        controlador.get_cartaEmJogo().set_position(
+        controlador.get_carta_em_jogo().set_position(
             RES_WIDTH / 2 - CARD_WIDTH / 2 - 2, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
-        controlador.get_cartaEmJogo().draw()
+        controlador.get_carta_em_jogo().draw()
 
         botao_resolve = Sprite("Assets/TableAssets/ButtonSpriteHighlight.png", 2)
         botao_resolve.set_position(
@@ -57,5 +57,5 @@ class Combate(Estado):
                 # o método de calcular força do jogador e monstro.
                 # Porque são pre-requisitos para o gerenciador de combate.
 
-    def get_EstadoDoJogo(self):
+    def get_estado_do_jogo(self):
         return self.nome

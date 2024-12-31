@@ -9,16 +9,16 @@ class Classe(Carta):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
-        nomeClasse,
+        deck_origem,
+        nome_classe,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
-        self.nomeClasse = nomeClasse
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
+        self.nome_classe = nome_classe
 
     def get_nome_classe(self):
-        return self.nomeClasse
+        return self.nome_classe
 
-    def jogarCarta(self, alvo):
-        print(f"{alvo.get_nome()} equipou {self.nomeClasse}")
-        alvo.equiparClasse(self)
+    def jogar_carta(self, alvo):
+        print(f"{alvo.get_nome()} equipou {self.nome_classe}")
+        alvo.equipar_classe(self)
 

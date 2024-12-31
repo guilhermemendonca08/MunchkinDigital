@@ -2,25 +2,25 @@ from PPlay.gameimage import GameImage
 
 
 class Carta:
-    def __init__(self, imagepath, nome, descricao, efeito, tipo, deckOrigem=None):
+    def __init__(self, imagepath, nome, descricao, efeito, tipo, deck_origem=None):
         self.imagem = GameImage(imagepath)
         self.nome = nome
         self.descricao = descricao
         self.efeito = efeito
         self.tipo = tipo  # item, monstro, maldicao, etc
-        self.deckOrigem = deckOrigem  # tesouro/dungeon
+        self.deck_origem = deck_origem  # tesouro/dungeon
 
     def debug(self):
         print(f"Nome: {self.nome}")
         print(f"Descrição: {self.descricao}")
         print(f"Efeito: {self.efeito}")
         print(f"Tipo: {self.tipo}")
-        print(f"Deck de origem: {self.deckOrigem}")
+        print(f"Deck de origem: {self.deck_origem}")
 
-    def jogarCarta(self, alvo):
+    def jogar_carta(self, alvo):
         pass
 
-    def executarEfeito(self, alvo):
+    def executar_efeito(self, alvo):
         pass
 
     def get_descricao(self):
@@ -42,7 +42,7 @@ class Carta:
         return self.tipo
 
     def get_deckOrigem(self):
-        return self.deckOrigem
+        return self.deck_origem
 
     def get_acceptable_targets(self):
         return []

@@ -5,9 +5,9 @@ class Fuga(Estado):
     def __init__(self):
         self.nome = "Fuga"
 
-    def executaFase(self):
+    def executa_fase(self):
         pass
 
-    def get_EstadoDoJogo(self):
+    def get_estado_do_jogo(self):
         return self.nome
 

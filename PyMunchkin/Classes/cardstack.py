@@ -16,14 +16,14 @@ class CardStack:
 
     # End of PPLAY stuff
 
-    def getSize(self):
+    def get_size(self):
         return len(self.pilha)
 
-    def isEmpty(self):
+    def is_empty(self):
         return not self.pilha
 
     def peek(self):
-        if self.isEmpty():
+        if self.is_empty():
             return None
         return self.pilha[-1]
 
@@ -34,19 +34,19 @@ class CardStack:
         self.pilha.insert(0, value)
 
     def push_wherever(self, value):
-        if self.isEmpty():
+        if self.is_empty():
             self.pilha.append(value)
             return
-        self.pilha.insert(randint(0, self.getSize() - 1), value)
+        self.pilha.insert(randint(0, self.get_size() - 1), value)
 
     def pop(self):
-        if self.isEmpty():
+        if self.is_empty():
             return None
         return self.pilha.pop()
 
     def shuffle(self):
         nova_pilha = []
-        tamanho = self.getSize()
+        tamanho = self.get_size()
         for i in range(tamanho):
             random_index = randint(0, tamanho - 1)
             nova_pilha.append(self.pilha.pop(random_index))

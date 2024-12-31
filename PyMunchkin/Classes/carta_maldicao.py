@@ -9,18 +9,18 @@ class Maldicao(Carta):
         descricao,
         efeito,
         tipo,
-        deckOrigem,
+        deck_origem,
         duracao,
     ):
-        super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
+        super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
         self.duracao = duracao
 
-    def jogarCarta(self, alvo):
-        self.executarEfeito(alvo)
+    def jogar_carta(self, alvo):
+        self.executar_efeito(alvo)
 
-    def executarEfeito(self, alvo):
+    def executar_efeito(self, alvo):
         print(f"{alvo.get_nome()} sofreu {self.get_nome()}")
-        self.efeito.aplicarEfeito(alvo)
+        self.efeito.aplicar_efeito(alvo)
 
     def get_target_type(self):
         return ["jogador"]

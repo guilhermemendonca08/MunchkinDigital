@@ -7,8 +7,8 @@ class ProcurarEncrenca(
     def __init__(self):
         self.nome = "Procurar Encrenca"
 
-    def executaFase(self, controlador):
+    def executa_fase(self, controlador):
         pass
 
-    def get_EstadoDoJogo(self):
+    def get_estado_do_jogo(self):
         return self.nome
