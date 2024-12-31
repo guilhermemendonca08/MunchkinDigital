@@ -98,6 +98,7 @@ class ControladorJogo:
 
     def get_target_choices(self):
         acceptable_targets = []
+        # TODO: utilizar valor sentinela para evitar warning de variável None.
         acceptable_types = self.pending_card.get_target_type()
         for target_type in acceptable_types:
             if target_type == "jogador":
@@ -131,6 +132,7 @@ class ControladorJogo:
 
     def play_attempt(self, carta, **kwargs):
         jogador = self.jogador_atual
+        # TODO: utilizar valor sentinela para evitar warning de variável None.
         if jogador.has_card(carta):
             if self.estado_do_jogo.aceita_carta(carta):
                 if (
@@ -140,7 +142,9 @@ class ControladorJogo:
                 ):
                     self.play_sfx("select")
                     print(f"I play {carta.get_nome()}!")
-                    carta.jogar_carta(jogador)  # self cast
+                    self.jogador_atual.jogar_carta(carta, jogador)
+                    # carta.jogar_carta(jogador)  # self cast
+                    # TODO: utilizar valor sentinela para evitar warning de variável None.
                     jogador.remove_card(carta)
                 else:
                     if kwargs.get("target") is None:
@@ -152,7 +156,9 @@ class ControladorJogo:
                         self.choice_needed = False
                         self.pending_card = None
                         self.play_sfx("select")
-                        carta.jogar_carta(kwargs.get("target"))
+                        self.jogador_atual.jogar_carta(carta, kwargs.get("target"))
+                        # carta.jogar_carta(kwargs.get("target"))
+                        # TODO: utilizar valor sentinela para evitar warning de variável None.
                         jogador.remove_card(carta)
             else:
                 # self.play_SFX("reject")
@@ -223,7 +229,7 @@ class ControladorJogo:
     def set_jogadorAtual(self, jogador):
         self.jogador_atual = jogador
 
-    def get_jogadorAtual(self):
+    def get_jogador_atual(self):
         if not self.jogador_atual:
             return None
         return self.jogador_atual

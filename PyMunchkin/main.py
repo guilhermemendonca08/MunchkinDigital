@@ -113,7 +113,8 @@ while True:
     # Muda o nivel do personagem
     if teclado.key_pressed("2") and not hotkey_2:
         hotkey_2 = True
-        controlador_jogo.get_jogadorAtual().adiciona_ao_nivel_personagem(1)
+        # TODO: utilizar valor sentinela para evitar warning de variável None.
+        controlador_jogo.get_jogador_atual().adiciona_ao_nivel_personagem(1)
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
@@ -126,7 +127,7 @@ while True:
     # Draw Players' Avatars
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogadorAtual():
+        if each == controlador_jogo.get_jogador_atual():
             each.avatar.set_position(0, RES_HEIGHT - each.get_avatar_y())
             each.draw()
         else:
@@ -137,7 +138,7 @@ while True:
     # Draw Players' Hands
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogadorAtual():
+        if each == controlador_jogo.get_jogador_atual():
             each.draw_mao(RES_WIDTH / 2, RES_HEIGHT - CARD_HEIGHT)
         else:
             each.scaled_draw_mao(0 + avatar_offset_x, 100, 80, 124)
@@ -146,7 +147,7 @@ while True:
     # Draw Player's level
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogadorAtual():
+        if each == controlador_jogo.get_jogador_atual():
             displaynivel.set_position(each.get_avatar_x(), RES_HEIGHT - 100)
             displaynivel.set_curr_frame(each.get_nivel_personagem() - 1)
             displaynivel.draw()
@@ -159,10 +160,11 @@ while True:
     # Draw Player Stats
     player_stats_string = ""
 
-    if controlador_jogo.get_jogadorAtual() is None:
+    if controlador_jogo.get_jogador_atual() is None:
         player_stats_dict = {"No player present": "No player present"}
     else:
-        player_stats_dict = controlador_jogo.get_jogadorAtual().get_stats()
+        # TODO: utilizar valor sentinela para evitar warning de variável None.
+        player_stats_dict = controlador_jogo.get_jogador_atual().get_stats()
 
     stats_height_offset = 0
     for key, value in player_stats_dict.items():
@@ -206,7 +208,7 @@ while True:
 
     # Debugging Text
     # Jogador da vez e Fase do turno
-    jogadoratual = controlador_jogo.get_jogadorAtual()
+    jogadoratual = controlador_jogo.get_jogador_atual()
     if jogadoratual:
         player_turn_debug_text = jogadoratual.get_nome()
         player_turn_debug_text += "'s turn"
@@ -227,6 +229,141 @@ while True:
         size=25,
         color=(255, 255, 0),
     )
+
+    # =========================Start of Equipment Debugging Messages===========================
+    # Equipamentos do jogador atual
+    pos = 0
+    text_equipamento_debug = "headgear"
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("headgear")
+    if aux:
+        text_equipamento_debug += (
+            ": " + aux[0].get_nome() + " +" + str(aux[0].get_poder())
+        )
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820,
+        size=25,
+        color=(255, 255, 0),
+    )
+    # ==============
+    text_equipamento_debug = "armor"
+    aux = None
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("armor")
+    pos += 30
+    if aux:
+        text_equipamento_debug += (
+            ": " + aux[0].get_nome() + " +" + str(aux[0].get_poder())
+        )
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820 + pos,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    # ==============
+    text_equipamento_debug = "footgear"
+    aux = None
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("footgear")
+    pos += 30
+    if aux:
+        text_equipamento_debug += (
+            ": " + aux[0].get_nome() + " +" + str(aux[0].get_poder())
+        )
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820 + pos,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    # ==============
+    aux = None
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("1hand")
+    pos += 30
+    text_equipamento_debug = "1 handed"
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820 + pos,
+        size=25,
+        color=(255, 255, 0),
+    )
+    if aux:
+        text_equipamento_debug = "1 handed:"
+        janela.draw_text(
+            text_equipamento_debug,
+            1430,
+            820 + pos,
+            size=25,
+            color=(255, 255, 0),
+        )
+        pos -= 30
+        for each in aux:
+            pos += 30
+            text_equipamento_debug = each.get_nome() + " +" + str(each.get_poder())
+            janela.draw_text(
+                text_equipamento_debug,
+                1550,
+                820 + pos,
+                size=25,
+                color=(255, 255, 0),
+            )
+
+    # ==============
+    text_equipamento_debug = "2 handed"
+    aux = None
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("2hands")
+    pos += 30
+    if aux:
+        text_equipamento_debug += (
+            ": " + aux[0].get_nome() + " +" + str(aux[0].get_poder())
+        )
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820 + pos,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    # ==============
+    text_equipamento_debug = "None"
+    aux = None
+    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot(None)
+    pos += 30
+    text_equipamento_debug = "No slot"
+    janela.draw_text(
+        text_equipamento_debug,
+        1430,
+        820 + pos,
+        size=25,
+        color=(255, 255, 0),
+    )
+    if aux:
+        text_equipamento_debug = "No slot:"
+        janela.draw_text(
+            text_equipamento_debug,
+            1430,
+            820 + pos,
+            size=25,
+            color=(255, 255, 0),
+        )
+        pos -= 30
+        for each in aux:
+            pos += 30
+            text_equipamento_debug = each.get_nome() + " +" + str(each.get_poder())
+            janela.draw_text(
+                text_equipamento_debug,
+                1550,
+                820 + pos,
+                size=25,
+                color=(255, 255, 0),
+            )
+    # ===========================End of Equipment Debugging Messages===========================
 
     # Número de cartas nas pilhas.
     text_numero_de_cartas = "Cartas na pilha: "

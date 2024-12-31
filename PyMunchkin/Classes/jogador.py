@@ -14,6 +14,9 @@ class Jogador:
         self._discard_callback = None
 
     # Equip stuff
+    def get_itens_em_slot(self, slot):
+        return self.inventario.get_itens_em_slot(slot)
+
     def equipar_classe(self, classe):
         if self.personagem.get_classe() is not None:
             self.discard(self.personagem.get_classe())
@@ -24,11 +27,62 @@ class Jogador:
             self.discard(self.personagem.get_raca())
         self.personagem.equipar_raca(raca)
 
+    def equipar_item(self, item):
+        slot_item_novo = item.get_slot()
+        if self.inventario.tem_espaco_para_equipar(item):
+            self.inventario.equipar_item(item)
+        else:
+            item_a_remover = [item]
+            if slot_item_novo in {"headgear", "armor", "footgear"}:
+                if [item.get_poder()] >= self.inventario.get_poder_no_slot(
+                    slot_item_novo
+                ):
+                    item_a_remover = self.inventario.get_itens_em_slot(slot_item_novo)
+            elif slot_item_novo == "1hand":
+                #  Equipar 1 arma de 1 mão vs duas armas de uma mão
+                if len(self.inventario.get_itens_em_slot("1hand")) == 2:
+                    for each in self.inventario.get_itens_em_slot("1hand"):
+                        if item_a_remover[0].get_poder() >= each.get_poder():
+                            item_a_remover[0] = each
+                # Equipar 1 arma de uma mão vs uma arma de duas mãos
+                elif len(self.inventario.get_itens_em_slot("2hands")) == 1:
+                    for each in self.inventario.get_itens_em_slot("2hands"):
+                        if item_a_remover[0].get_poder() >= each.get_poder() // 2:
+                            item_a_remover[0] = each
+                else:
+                    raise ValueError("Why are we still here… Just to suffer? ")
+            elif slot_item_novo == "2hands":
+                # Equipar uma arma de 2 mãos vs pelo menos uma arma de 1 mão
+                if len(self.inventario.get_itens_em_slot("1hand")) >= 1:
+                    soma_poder = 0
+                    for each in self.inventario.get_itens_em_slot("1hand"):
+                        soma_poder += each.get_poder()
+                    if item_a_remover[0].get_poder() >= soma_poder:
+                        item_a_remover = self.inventario.get_itens_em_slot("1hand")
+                # Equipar uma arma de 2 mãos vs uma arma de 2 mãos
+                elif len(self.inventario.get_itens_em_slot("2hands")) == 1:
+                    for each in self.inventario.get_itens_em_slot("2hands"):
+                        if item_a_remover[0] >= each.get_poder():
+                            item_a_remover[0] = each
+                else:
+                    raise ValueError("Why are we still here… Just to suffer? again?")
+            if item_a_remover[0] != item:
+                for each in item_a_remover:
+                    print(f"Tentando desequipar {each.get_nome()}")
+                    if self.inventario.desequipar_item(each):
+                        print(f"Desquipou {each.get_nome()}")
+                        self.discard(each)
+                self.inventario.equipar_item(item)
+            else:
+                self.devolve_a_mao(item)
+                print("devolver a mao para a carta nao ser jogada")
+
     # Set Discard Callback.
     def set_discard_callback(self, callback):
         self._discard_callback = callback
 
     def discard(self, card):
+        # TODO: utilizar valor sentinela para evitar warning de variável None.
         self._discard_callback(card)
 
     def discard_raca(self):
@@ -94,10 +148,17 @@ class Jogador:
         self.inventario.remove(item)
 
     # Card Managment
+
+    def jogar_carta(self, carta, alvo):
+        carta.jogar_carta(alvo)
+
+    def devolve_a_mao(self, carta):
+        self.add_card(carta)
+
     def has_card(self, card):
         return card in self.mao
 
-    def get_card(self, card):
+    def add_card(self, card):
         self.mao.append(card)
 
     def remove_card(self, card):

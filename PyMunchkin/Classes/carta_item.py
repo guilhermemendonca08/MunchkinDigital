@@ -34,11 +34,15 @@ class Item(Carta):
         print(f"Uso único: {self.uso_unico}")
         print(f"Slot: {self.slot}")
 
+    def get_poder(self):
+        return self.poder
+
     def get_uso_unico(self):
         return self.uso_unico
 
     def jogar_carta(self, alvo):
         if not self.uso_unico:
+            alvo.equipar_item(self)
             print(f"{alvo.get_nome()} equipou {self.get_nome()}")
         if not self.uso_unico:
             self.efeito.aplicar_efeito(alvo)
@@ -48,4 +52,3 @@ class Item(Carta):
 
     def get_slot(self):
         return self.slot
-
