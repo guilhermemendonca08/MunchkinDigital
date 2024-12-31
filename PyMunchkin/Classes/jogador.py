@@ -30,7 +30,18 @@ class Jogador:
     def discard(self, card):
         self._discard_callback(card)
 
+    def discard_raca(self):
+        self.discard(self.personagem.getRaca())
+        self.personagem.equiparRaca(None)
+
+    def discard_classe(self):
+        self.discard(self.personagem.getClasse())
+        self.personagem.equiparClasse(None)
+
     # Avatar stuff
+    def get_hurtbox(self):
+        return self.avatar
+
     def adicionaAoNivelPersonagem(self, quantidade):
         self.personagem.adicionaAoNivel(quantidade)
 

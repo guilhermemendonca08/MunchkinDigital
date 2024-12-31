@@ -39,3 +39,5 @@ class GerenciadorCombate:
     def add_monstro(self, monstro):
         self.monstro.append(monstro)
 
+    def get_monstros(self):
+        return self.monstro

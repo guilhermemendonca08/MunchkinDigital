@@ -1,4 +1,5 @@
 from PPlay.window import mouse
+from PPlay.sound import Sound
 from Classes.estado_inicializacao import Inicializacao
 from Classes.estado_aguardandojogada import AguardandoJogada
 from Classes.estado_caridade import Caridade
@@ -19,7 +20,6 @@ from Classes.ui_handler import UIHandler
 
 
 class ControladorJogo:
-    # def __init__(self, mouse_input):
     def __init__(self, janela):
         self.jogadores = ListaCircular()
         self.observers = []
@@ -42,8 +42,20 @@ class ControladorJogo:
             "Saquear": Saquear(),
         }
         self.uihandler = UIHandler(janela.get_mouse())
+        self.pending_card = None
+        self.choice_needed = False
         self.mouse_input = janela.get_mouse()
         self.janela = janela
+        self.freeze = False
+
+    def Set_SFX(self, hover, reject, select, deal):
+        self.SFX = {"hover": hover, "reject": reject, "select": select, "deal": deal}
+
+    def freeze_game(self):
+        self.freeze = True
+
+    def unfreeze_game(self):
+        self.freeze = False
 
     def colocaCartaEmJogo(self, carta):
         self.cartaEmJogo = carta
@@ -51,14 +63,90 @@ class ControladorJogo:
     def get_cartaEmJogo(self):
         return self.cartaEmJogo
 
+    def play_SFX(self, sound):
+        self.SFX[sound].play()
+
+    # UI related stuff
+
+    # Mouse related stuff
+    def is_mouse_left_click_pressed(self):
+        return self.uihandler.is_mouse_left_click_pressed(self.freeze)
+        # if self.freeze is False:
+        #     return self.mouse_input.is_button_pressed(1)
+        # else:
+        #     return False
+
+    def is_mouse_right_click_pressed(self):
+        if self.freeze is False:
+            return self.mouse_input.is_button_pressed(3)
+        else:
+            return False
+
     def mouse_over_card(self):
         return self.uihandler.mouse_over_card(self.jogadores)
 
     def mouse_over_object(self, objeto):
         return self.uihandler.mouse_over_object(objeto)
 
-    def aceita_carta(self, carta):
-        return self.estadoDoJogo.aceita_carta(carta)
+    def clicked(self, target):
+        return self.uihandler.clicked(target, self.freeze)
+
+    # Game Logic Stuff
+    def is_choice_needed(self):
+        return self.choice_needed
+
+    def get_target_choices(self):
+        acceptable_targets = []
+        acceptable_types = self.pending_card.get_target_type()
+        for target_type in acceptable_types:
+            if target_type == "jogador":
+                for each in self.jogadores:
+                    acceptable_targets.append(each)
+            elif target_type == "monstro":
+                for each in self.gerenciadorCombate.get_monstros():
+                    acceptable_targets.append(each)
+            elif target_type == "self":
+                acceptable_targets.append(self.jogadorAtual)
+            # elif target_type = "carry":
+            # acceptable_targets.append(self.jogadorAtual.get_inventario())
+        return acceptable_targets
+
+    def detect_choice(self):
+        return self.uihandler.detect_choice(self.get_target_choices())
+
+    def play_choice(self, choice):
+        self.play_attempt(self.pending_card, target=choice)
+
+    def play_attempt(self, carta, **kwargs):
+        jogador = self.jogadorAtual
+        if jogador.has_card(carta):
+            if self.estadoDoJogo.aceita_carta(carta):
+                if (
+                    carta.get_tipo() == "raca"
+                    or carta.get_tipo() == "classe"
+                    or (carta.get_tipo() == "item" and not carta.get_usoUnico())
+                ):
+                    self.play_SFX("select")
+                    print(f"I play {carta.get_nome()}!")
+                    carta.jogarCarta(jogador)  # self cast
+                    jogador.remove_card(carta)
+                else:
+                    if kwargs.get("target") is None:
+                        self.pending_card = carta
+                        self.choice_needed = True
+                        self.freeze = True
+                    else:
+                        self.freeze = False
+                        self.choice_needed = False
+                        self.pending_card = None
+                        self.play_SFX("select")
+                        carta.jogarCarta(kwargs.get("target"))
+                        jogador.remove_card(carta)
+            else:
+                # self.play_SFX("reject")
+                print("Carta não pode ser jogada")
+        else:
+            print(f"{carta.get_descricao()}")
 
     # Deck related stuff
     # Adiciona uma carta ao topo deck
@@ -146,3 +234,4 @@ class ControladorJogo:
     def carregaCartas(self, cards, pilha):
         for each in cards:
             pilha.push_wherever(each)
+        pilha.shuffle()

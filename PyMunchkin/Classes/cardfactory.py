@@ -7,8 +7,8 @@ from Classes.efeito import Buff
 from Classes.efeito import AddToLevel
 from Classes.efeito import DiscardGear
 from Classes.efeito import DiscardCards
-from Classes.efeito import DiscardRace
-from Classes.efeito import DiscardClass
+from Classes.efeito import DiscardRaca
+from Classes.efeito import DiscardClasse
 from Classes.efeito import Death
 from Classes.efeito import Equip
 from Classes.classe_clerigo import Clerigo
@@ -36,8 +36,8 @@ class CardFactory:
             "addtolevel": AddToLevel,
             "discardcards": DiscardCards,
             "discardgear": DiscardGear,
-            "discardrace": DiscardRace,
-            "discardclass": DiscardClass,
+            "discardrace": DiscardRaca,
+            "discardclass": DiscardClasse,
             "death": Death,
             "equipar": Equip,
         }

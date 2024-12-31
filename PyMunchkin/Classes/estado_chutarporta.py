@@ -42,10 +42,11 @@ class ChutarPorta(Estado):
 
         # playtarget = controlador.mouse_over_card()
 
-        if controlador.mouse_input.is_button_pressed(1):
+        # if controlador.mouse_input.is_button_pressed(1):
+        if controlador.is_mouse_left_click_pressed():
             self.mouse_click = True
 
-        if (self.mouse_click) and (not controlador.mouse_input.is_button_pressed(1)):
+        if (self.mouse_click) and (not controlador.is_mouse_left_click_pressed()):
             self.mouse_click = False
 
             if target and (not self.door_kicked):

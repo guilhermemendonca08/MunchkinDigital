@@ -34,14 +34,16 @@ hotkey_3 = False
 hotkey_4 = False
 
 # Input default
-mouse_click = False
+# mouse_click = False
 
 # Assets Básicos
 # GameImages estáticos.
 fundo = GameImage("Assets/TableAssets/MarbleBlack.jpg")
+choicefliter = GameImage("Assets/TableAssets/choice.png")
 borda = GameImage("Assets/TableAssets/Border_Gray50.png")
 borda.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
 displaynivel = Sprite("Assets/Niveis/leveldisplay.png", 10)
+msg_selecione_alvo = GameImage("Assets/TableAssets/select_target2.png")
 
 # SFX
 hover = Sound("Assets/SFX/STS_SFX_CardHover3_v1.ogg")
@@ -66,18 +68,15 @@ dungeon_card_data = json.load(dungeon_json_file)
 dungeon_cards = card_factory.carrega_cartas(dungeon_card_data)
 controladorJogo.carregaCartas(dungeon_cards, controladorJogo.get_deckDungeon())
 
-# Inicia Jogador
+# Carrega sons
+controladorJogo.Set_SFX(hover, reject, select, deal)
+
+# Inicia Jogadores
 jogador1 = Jogador("Apollo", "Assets/Portraits/Archer.png")
-# jogador1.set_avatar_position(0, RES_HEIGHT - jogador1.get_avatar_y())
-
 jogador2 = Jogador("Freya", "Assets/Portraits/HumanF4.png")
-# jogador2.set_avatar_position(0, 0)
-
 jogador3 = Jogador("Antares", "Assets/Portraits/HumanM4.png")
-# jogador3.set_avatar_position(0, 0)
-
 jogador4 = Jogador("Raphael", "Assets/Portraits/FiendM1.png")
-# jogador4.set_avatar_position(0, 0)
+
 # Variaveis de apoio.
 time_acc = 0
 
@@ -92,25 +91,12 @@ while True:
 
     # Eventos
     card_hovered = controladorJogo.mouse_over_card()
-    # print(f"card_hovered name: {card_hovered.get_nome() if card_hovered else None}")
+    if controladorJogo.clicked(card_hovered):
+        controladorJogo.play_attempt(card_hovered)
 
-    if mouse.is_button_pressed(1):
-        mouse_click = True
-
-    if (mouse_click) and (not mouse.is_button_pressed(1)):
-        mouse_click = False
-        if card_hovered:
-            jogador = controladorJogo.get_jogadorAtual()
-            if jogador.has_card(card_hovered):
-                if controladorJogo.aceita_carta(card_hovered):
-                    print(f"I play {card_hovered.get_nome()}!")
-                    select.play()
-                    jogador.remove_card(card_hovered)
-                    card_hovered.executarEfeito(jogador)
-                else:
-                    print("Carta não pode ser jogada")
-            else:
-                print(f"{card_hovered.get_descricao()}")
+    if controladorJogo.is_choice_needed():
+        choice = controladorJogo.detect_choice()
+        controladorJogo.play_choice(choice)
 
     # Debugging Events
     # Muda de quem é a vez.
@@ -127,10 +113,10 @@ while True:
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
+
     # Draws
     # Background, everything else should be placed AFTER this.
     fundo.draw()
-
     borda.draw()
 
     # Draw Players' Avatars
@@ -236,5 +222,12 @@ while True:
         size=25,
         color=(255, 255, 0),
     )
+    if controladorJogo.choice_needed:
+        choicefliter.draw()
+        msg_selecione_alvo.set_position(
+            RES_WIDTH / 2 - msg_selecione_alvo.width / 2, RES_HEIGHT * 0.75
+        )
+        msg_selecione_alvo.draw()
+        # DRAW TARGETS OVER YELLOW FILTER
 
     janela.update()

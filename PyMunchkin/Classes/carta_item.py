@@ -37,9 +37,12 @@ class Item(Carta):
     def get_usoUnico(self):
         return self.usoUnico
 
-    def executarEfeito(self, alvo):
+    def jogarCarta(self, alvo):
         if not self.usoUnico:
             print(f"{alvo.get_nome()} equipou {self.get_nome()}")
-            # alvo.equparItem(self)
         if not self.usoUnico:
             self.efeito.aplicarEfeito(alvo)
+
+    def executarEfeito(self, alvo):
+        self.efeito.aplicarEfeito(alvo)
+

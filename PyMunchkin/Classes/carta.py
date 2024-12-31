@@ -18,7 +18,6 @@ class Carta:
         print(f"Deck de origem: {self.deckOrigem}")
 
     def jogarCarta(self, alvo):
-        # self.efeito.executarEfeito(alvo)
         pass
 
     def executarEfeito(self, alvo):
@@ -44,3 +43,6 @@ class Carta:
 
     def get_deckOrigem(self):
         return self.deckOrigem
+
+    def get_acceptable_targets(self):
+        return []

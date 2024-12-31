@@ -12,3 +12,4 @@ class Amplificador(Carta):
         deckOrigem,
     ):
         super().__init__(imagepath, nome, descricao, efeito, tipo, deckOrigem)
+

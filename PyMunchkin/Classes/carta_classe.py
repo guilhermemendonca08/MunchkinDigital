@@ -18,7 +18,7 @@ class Classe(Carta):
     def get_nome_classe(self):
         return self.nomeClasse
 
-    def executarEfeito(self, alvo):
+    def jogarCarta(self, alvo):
         print(f"{alvo.get_nome()} equipou {self.nomeClasse}")
         alvo.equiparClasse(self)
 

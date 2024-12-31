@@ -38,15 +38,15 @@ class DiscardCards(Efeito):
         pass
 
 
-class DiscardRace(Efeito):
+class DiscardRaca(Efeito):
 
     def aplicarEfeito(self, alvo):
-        pass
+        alvo.discard_raca()
 
 
-class DiscardClass(Efeito):
+class DiscardClasse(Efeito):
     def aplicarEfeito(self, alvo):
-        pass
+        alvo.discard_classe()
 
 
 class Death(Efeito):
@@ -54,7 +54,7 @@ class Death(Efeito):
         pass
 
 
-class Equip(Efeito):
+class Equip(Efeito):  # Deprecated
     def aplicarEfeito(self, alvo):
         pass
         # print(f"{alvo.get_nome()} equipou  )

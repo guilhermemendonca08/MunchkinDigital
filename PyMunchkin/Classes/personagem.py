@@ -39,6 +39,7 @@ class Personagem:
             return
         if self.nivel == 1 and quantidade < 0:
             return
+        self.nivel += quantidade
 
     # Combate
     def calcularForcaCombate(self):
