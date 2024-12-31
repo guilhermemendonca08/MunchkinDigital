@@ -16,6 +16,8 @@ from PPlay.window import Window
 from PPlay.sound import Sound
 from Classes.jogador import Jogador
 from Classes.controlador_jogo import ControladorJogo
+from Classes.carta_monstro import Monstro
+from Classes.efeito import AddToLevel
 
 # from Classes.ui_handler import UIHandler
 from Classes.card_factory import CardFactory
@@ -31,7 +33,7 @@ mouse = Window.get_mouse()
 # Debug Hotkeys
 hotkey_1 = False  # passa turno pra outro jogador
 hotkey_2 = False  # +1 level
-hotkey_3 = False
+hotkey_3 = False  # transição p/ combate
 hotkey_4 = False
 
 # Input default
@@ -117,6 +119,24 @@ while True:
         controlador_jogo.get_jogador_atual().adiciona_ao_nivel_personagem(1)
 
     if not teclado.key_pressed("2"):
+        hotkey_2 = False
+
+    # Muda p/ combate.
+    if teclado.key_pressed("3") and not hotkey_3:
+        hotkey_3 = True
+        controlador_jogo.carta_em_jogo = Monstro(
+            "Assets/Door/071 (small).png",
+            "Harpies",
+            "+5 against Wizards",
+            AddToLevel(-2),
+            "monstro",
+            "dungeon",
+            4,
+            2,
+        )
+        controlador_jogo.proximoEstado("Combate")
+
+    if not teclado.key_pressed("3"):
         hotkey_2 = False
 
     # Draws
@@ -370,7 +390,7 @@ while True:
     text_numero_de_cartas += str(controlador_jogo.deck_dungeon.get_size())
     janela.draw_text(
         text_numero_de_cartas,
-        10,
+        RES_WIDTH * 25 / 32,
         RES_HEIGHT * 0.35,
         size=25,
         color=(255, 255, 0),
@@ -380,7 +400,7 @@ while True:
     text_numero_de_cartas += str(controlador_jogo.deck_dungeon_discard.get_size())
     janela.draw_text(
         text_numero_de_cartas,
-        240,
+        1700,
         RES_HEIGHT * 0.62,
         size=25,
         color=(255, 255, 0),
@@ -390,7 +410,7 @@ while True:
     text_numero_de_cartas += str(controlador_jogo.deck_tesouro.get_size())
     janela.draw_text(
         text_numero_de_cartas,
-        RES_WIDTH * 25 / 32,
+        10,
         RES_HEIGHT * 0.35,
         size=25,
         color=(255, 255, 0),
@@ -400,7 +420,7 @@ while True:
     text_numero_de_cartas += str(controlador_jogo.deck_tesouro_discard.get_size())
     janela.draw_text(
         text_numero_de_cartas,
-        1700,
+        240,
         RES_HEIGHT * 0.62,
         size=25,
         color=(255, 255, 0),

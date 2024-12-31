@@ -25,6 +25,8 @@ class ControladorJogo(Subject):
     def __init__(self, janela):
         self.jogadores = ListaCircular()
         self.observers = []
+        self.gerenciador_combate = GerenciadorCombate()
+        self.add_observer(self.gerenciador_combate)
         self.deck_dungeon = CardStack("Assets/Door/000 (small).png")
         self.deck_dungeon_discard = CardStack("Assets/Door/000 (small)darkmode.png")
         self.deck_tesouro = CardStack("Assets/Treasure/100 (small).png")
@@ -32,7 +34,6 @@ class ControladorJogo(Subject):
         self.jogador_atual = None
         self.carta_em_jogo = None
         self.estado_do_jogo = Inicializacao()
-        self.gerenciador_combate = GerenciadorCombate()
         self.estados = {
             "AguardandoJogada": AguardandoJogada(),
             "Caridade": Caridade(),
@@ -106,8 +107,8 @@ class ControladorJogo(Subject):
             if target_type == "jogador":
                 for each in self.jogadores:
                     acceptable_targets.append(each)
-            elif target_type == "monstro":
-                for each in self.gerenciador_combate.get_monstros():
+            elif target_type == "combatentes":
+                for each in self.gerenciador_combate.get_combatentes():
                     acceptable_targets.append(each)
             elif target_type == "self":
                 acceptable_targets.append(self.jogador_atual)
@@ -223,6 +224,7 @@ class ControladorJogo(Subject):
 
     def add_jogador(self, jogador):
         if self.jogadores.get_size() < 4:
+            self.add_observer(jogador)
             jogador.set_discard_callback(self.discard_card)
             self.jogadores.adiciona(jogador)
         else:
@@ -244,6 +246,7 @@ class ControladorJogo(Subject):
         self.estado_do_jogo.executa_fase(self)
 
     def proximoEstado(self, novoEstado):
+        self.notify_observers(novoEstado)
         self.estado_do_jogo = self.estados[novoEstado]
 
     def get_estadoDoJogo(self):
@@ -258,10 +261,12 @@ class ControladorJogo(Subject):
 
     # SUBJECT/ OBSERVER PATTERN
     def add_observer(self, observer: Observer):
-        pass
+        self.observers.append(observer)
 
     def remove_observer(self, observer: Observer):
+        self.observers.remove(observer)
         pass
 
     def notify_observers(self, estado_do_jogo: str):
-        pass
+        for each in self.observers:
+            each.update(estado_do_jogo)

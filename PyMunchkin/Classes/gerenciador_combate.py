@@ -1,8 +1,9 @@
+from Classes.observer import Observer
 from Classes.jogador import Jogador
 from Classes.carta_monstro import Monstro
 
 
-class GerenciadorCombate:
+class GerenciadorCombate(Observer):
 
     def __init__(self):
         self.jogador = []
@@ -41,3 +42,11 @@ class GerenciadorCombate:
 
     def get_monstros(self):
         return self.monstro
+
+    def get_combatentes(self):
+        return self.jogador + self.monstro
+
+    # SUBJECT/ OBSERVER PATTERN
+    def update(self, estado_do_jogo: str):
+        if estado_do_jogo == "Combate":
+            print("MY TIME TO SHINE!!!!")

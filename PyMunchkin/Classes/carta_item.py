@@ -52,3 +52,6 @@ class Item(Carta):
 
     def get_slot(self):
         return self.slot
+
+    def get_target_type(self):
+        return ["combatentes"]
