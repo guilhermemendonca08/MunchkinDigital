@@ -40,9 +40,6 @@ class ChutarPorta(Estado):
         # Door hover/click detection
         target = controlador.mouse_over_object(doorhurtbox)
 
-        # playtarget = controlador.mouse_over_card()
-
-        # if controlador.mouse_input.is_button_pressed(1):
         if controlador.is_mouse_left_click_pressed():
             self.mouse_click = True
 
@@ -53,13 +50,6 @@ class ChutarPorta(Estado):
                 self.door_kicked = True
                 print("chutou porta")
                 self.acc = 0
-
-            # if playtarget:
-            #     if controlador.get_jogadorAtual().has_card(playtarget):
-            #         print(f"I play {playtarget.get_nome()}!")
-            #         controlador.get_jogadorAtual().remove_card(playtarget)
-            #     else:
-            #         print(f"{playtarget.get_descricao()}")
 
         # new card draw
         if self.door_kicked and not self.carddrawn:

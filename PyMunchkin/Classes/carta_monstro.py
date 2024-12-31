@@ -16,3 +16,4 @@ class Monstro(Carta):
         super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
         self.nivel = nivel
         self.qntTesouro = qnt_tesouro
+

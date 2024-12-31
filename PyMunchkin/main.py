@@ -205,6 +205,7 @@ while True:
     controlador_jogo.executarFase()
 
     # Debugging Text
+    # Jogador da vez e Fase do turno
     jogadoratual = controlador_jogo.get_jogadorAtual()
     if jogadoratual:
         player_turn_debug_text = jogadoratual.get_nome()
@@ -226,6 +227,49 @@ while True:
         size=25,
         color=(255, 255, 0),
     )
+
+    # Número de cartas nas pilhas.
+    text_numero_de_cartas = "Cartas na pilha: "
+    text_numero_de_cartas += str(controlador_jogo.deck_dungeon.get_size())
+    janela.draw_text(
+        text_numero_de_cartas,
+        10,
+        RES_HEIGHT * 0.35,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    text_numero_de_cartas = "Cartas na pilha: "
+    text_numero_de_cartas += str(controlador_jogo.deck_dungeon_discard.get_size())
+    janela.draw_text(
+        text_numero_de_cartas,
+        240,
+        RES_HEIGHT * 0.62,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    text_numero_de_cartas = "Cartas na pilha: "
+    text_numero_de_cartas += str(controlador_jogo.deck_tesouro.get_size())
+    janela.draw_text(
+        text_numero_de_cartas,
+        RES_WIDTH * 25 / 32,
+        RES_HEIGHT * 0.35,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    text_numero_de_cartas = "Cartas na pilha: "
+    text_numero_de_cartas += str(controlador_jogo.deck_tesouro_discard.get_size())
+    janela.draw_text(
+        text_numero_de_cartas,
+        1700,
+        RES_HEIGHT * 0.62,
+        size=25,
+        color=(255, 255, 0),
+    )
+
+    # highlights and effects for choice
     if controlador_jogo.is_choice_needed():
         choicefliter.draw()
         msg_selecione_alvo.set_position(

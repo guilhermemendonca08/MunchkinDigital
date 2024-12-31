@@ -46,3 +46,6 @@ class Item(Carta):
     def executar_efeito(self, alvo):
         self.efeito.aplicar_efeito(alvo)
 
+    def get_slot(self):
+        return self.slot
+

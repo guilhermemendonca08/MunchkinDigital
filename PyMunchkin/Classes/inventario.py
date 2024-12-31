@@ -11,9 +11,16 @@ class Inventario:
         self.itens_carregados = []
         self.itens_proibidos = []
 
-    def equiparItem(self, item):
+    def desequipar_item(self, item):
+        if item in self.itens_equipados[item.get_slot()]:
+            self.itens_equipados[item.get_slot()].remove(item)
+        else:
+            raise ValueError("Tentativa de remover item não equipado.")
 
-        if item.tipo in self.itens_equipados:
-            print("discard " + self.itens_equipados[item.tipo].descricao)
-
-        self.itens_equipados[item.tipo] = item
+    def equipar_item(self, item):
+        if item in self.itens_proibidos:
+            return False
+        if item.get_slot() in self.itens_equipados:
+            self.itens_equipados[item.get_tipo()].append(item)
+            return True
+        return False

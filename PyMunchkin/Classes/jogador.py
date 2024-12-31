@@ -1,6 +1,7 @@
 from constants import CARD_WIDTH, CARD_HEIGHT
 from PPlay.gameimage import GameImage
 from Classes.personagem import Personagem
+from Classes.inventario import Inventario
 
 
 class Jogador:
@@ -9,7 +10,7 @@ class Jogador:
         self.nome = nome
         self.personagem = Personagem()
         self.mao = []
-        self.inventario = None
+        self.inventario = Inventario()
         self._discard_callback = None
 
     # Equip stuff
@@ -31,12 +32,14 @@ class Jogador:
         self._discard_callback(card)
 
     def discard_raca(self):
-        self.discard(self.personagem.get_raca())
-        self.personagem.equipar_raca(None)
+        if self.personagem.get_raca() is not None:
+            self.discard(self.personagem.get_raca())
+            self.personagem.equipar_raca(None)
 
     def discard_classe(self):
-        self.discard(self.personagem.get_classe())
-        self.personagem.equipar_classe(None)
+        if self.personagem.get_classe() is not None:
+            self.discard(self.personagem.get_classe())
+            self.personagem.equipar_classe(None)
 
     # Avatar stuff
     def get_hurtbox(self):
@@ -84,6 +87,11 @@ class Jogador:
 
     def fugir(self, monstro):
         pass
+
+    # Iventory Management
+    def desequipar_item(self, item):
+        self.discard(item)
+        self.inventario.remove(item)
 
     # Card Managment
     def has_card(self, card):
