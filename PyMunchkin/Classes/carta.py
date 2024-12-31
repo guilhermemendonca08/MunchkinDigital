@@ -26,6 +26,9 @@ class Carta:
     def get_descricao(self):
         return self.descricao
 
+    def get_hurtbox(self):
+        return self.imagem
+
     def draw(self):
         self.imagem.draw()
 

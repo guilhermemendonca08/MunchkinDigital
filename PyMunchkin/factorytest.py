@@ -2,7 +2,7 @@ from constants import TREASURE_JSON_DATA
 from constants import DUNGEON_JSON_DATA
 import json
 import io
-from Classes.cardfactory import CardFactory
+from Classes.card_factory import CardFactory
 from PPlay.window import Window
 
 # Inicialização da janela e objetos básicos.

@@ -9,19 +9,18 @@ from Classes.estado_finalizado import Finalizado
 from Classes.estado_fuga import Fuga
 from Classes.estado_procurarencrenca import ProcurarEncrenca
 from Classes.estado_saquear import Saquear
-from Classes.gerenciadorcombate import GerenciadorCombate
+from Classes.gerenciador_combate import GerenciadorCombate
 from Classes.carta_item import Item
 from Classes.carta_classe import Classe
 from Classes.carta_raca import Raca
 from Classes.carta_monstro import Monstro
-from Classes.cardstack import CardStack
-from Classes.listacircular import ListaCircular
+from Classes.card_stack import CardStack
+from Classes.lista_circular import ListaCircular
 from Classes.ui_handler import UIHandler
 
 
 class ControladorJogo:
     def __init__(self, janela):
-        self.sfx = None
         self.jogadores = ListaCircular()
         self.observers = []
         self.deck_dungeon = CardStack("Assets/Door/000 (small).png")
@@ -48,6 +47,7 @@ class ControladorJogo:
         self.mouse_input = janela.get_mouse()
         self.janela = janela
         self.freeze = False
+        self.sfx = None
 
     def set_sfx(self, hover, reject, select, deal):
         self.sfx = {"hover": hover, "reject": reject, "select": select, "deal": deal}
@@ -114,6 +114,17 @@ class ControladorJogo:
 
     def detect_choice(self):
         return self.ui_handler.detect_choice(self.get_target_choices())
+
+    def detect_cancel(self):
+        return self.ui_handler.is_mouse_right_click_pressed()
+
+    def cancel_choice(self):
+        if self.choice_needed:
+            self.play_sfx("reject")
+            self.choice_needed = False
+            self.freeze = False
+            self.pending_card = None
+        return
 
     def play_choice(self, choice):
         self.play_attempt(self.pending_card, target=choice)

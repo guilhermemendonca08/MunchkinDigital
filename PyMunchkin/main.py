@@ -15,9 +15,10 @@ from PPlay.sprite import Sprite
 from PPlay.window import Window
 from PPlay.sound import Sound
 from Classes.jogador import Jogador
-from Classes.controladorjogo import ControladorJogo
+from Classes.controlador_jogo import ControladorJogo
+
 # from Classes.ui_handler import UIHandler
-from Classes.cardfactory import CardFactory
+from Classes.card_factory import CardFactory
 
 # from constants import CARD_WIDTH, CARD_HEIGHT
 # from Classes.carta_item import Item
@@ -52,7 +53,7 @@ select = Sound("Assets/SFX/SOTE_SFX_CardSelect_v2.ogg")
 deal = Sound("Assets/SFX/STS_SFX_CardDeal8_v1.ogg")
 
 # Elementos de controle do jogo.
-controladorJogo = ControladorJogo(janela)
+controlador_jogo = ControladorJogo(janela)
 
 # Carregamento de cartas
 card_factory = CardFactory()
@@ -60,16 +61,16 @@ card_factory = CardFactory()
 treasure_json_file = io.StringIO(TREASURE_JSON_DATA)  # Simula abertura do json
 treasure_card_data = json.load(treasure_json_file)  # De json -> dict
 treasure_cards = card_factory.carrega_cartas(treasure_card_data)  # dict -> lista
-controladorJogo.carregaCartas(treasure_cards, controladorJogo.get_deckTesouro())
+controlador_jogo.carregaCartas(treasure_cards, controlador_jogo.get_deckTesouro())
 
 # Carrega cartas Dungeon
 dungeon_json_file = io.StringIO(DUNGEON_JSON_DATA)
 dungeon_card_data = json.load(dungeon_json_file)
 dungeon_cards = card_factory.carrega_cartas(dungeon_card_data)
-controladorJogo.carregaCartas(dungeon_cards, controladorJogo.get_deckDungeon())
+controlador_jogo.carregaCartas(dungeon_cards, controlador_jogo.get_deckDungeon())
 
 # Carrega sons
-controladorJogo.set_sfx(hover, reject, select, deal)
+controlador_jogo.set_sfx(hover, reject, select, deal)
 
 # Inicia Jogadores
 jogador1 = Jogador("Apollo", "Assets/Portraits/Archer.png")
@@ -80,36 +81,39 @@ jogador4 = Jogador("Raphael", "Assets/Portraits/FiendM1.png")
 # Variaveis de apoio.
 time_acc = 0
 
-controladorJogo.add_jogador(jogador1)
-controladorJogo.add_jogador(jogador2)
-controladorJogo.add_jogador(jogador3)
-controladorJogo.add_jogador(jogador4)
+controlador_jogo.add_jogador(jogador1)
+controlador_jogo.add_jogador(jogador2)
+controlador_jogo.add_jogador(jogador3)
+controlador_jogo.add_jogador(jogador4)
 # controladorJogo.executarFase()
 while True:
     dt = janela.delta_time()
     time_acc += dt
+    controlador_jogo.ui_handler.right_clicked()
 
     # Eventos
-    card_hovered = controladorJogo.mouse_over_card()
-    if controladorJogo.clicked(card_hovered):
-        controladorJogo.play_attempt(card_hovered)
+    card_hovered = controlador_jogo.mouse_over_card()
+    if controlador_jogo.clicked(card_hovered):
+        controlador_jogo.play_attempt(card_hovered)
 
-    if controladorJogo.is_choice_needed():
-        choice = controladorJogo.detect_choice()
-        controladorJogo.play_choice(choice)
+    if controlador_jogo.is_choice_needed():
+        choice = controlador_jogo.detect_choice()
+        controlador_jogo.play_choice(choice)
+        if controlador_jogo.detect_cancel():
+            controlador_jogo.cancel_choice()
 
     # Debugging Events
     # Muda de quem é a vez.
     if teclado.key_pressed("1") and not hotkey_1:
         hotkey_1 = True
-        controladorJogo.proximoTurno()
+        controlador_jogo.proximoTurno()
     if not teclado.key_pressed("1"):
         hotkey_1 = False
 
     # Muda o nivel do personagem
     if teclado.key_pressed("2") and not hotkey_2:
         hotkey_2 = True
-        controladorJogo.get_jogadorAtual().adiciona_ao_nivel_personagem(1)
+        controlador_jogo.get_jogadorAtual().adiciona_ao_nivel_personagem(1)
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
@@ -121,8 +125,8 @@ while True:
 
     # Draw Players' Avatars
     avatar_offset_x = 0
-    for each in controladorJogo.jogadores:
-        if each == controladorJogo.get_jogadorAtual():
+    for each in controlador_jogo.jogadores:
+        if each == controlador_jogo.get_jogadorAtual():
             each.avatar.set_position(0, RES_HEIGHT - each.get_avatar_y())
             each.draw()
         else:
@@ -132,8 +136,8 @@ while True:
 
     # Draw Players' Hands
     avatar_offset_x = 0
-    for each in controladorJogo.jogadores:
-        if each == controladorJogo.get_jogadorAtual():
+    for each in controlador_jogo.jogadores:
+        if each == controlador_jogo.get_jogadorAtual():
             each.draw_mao(RES_WIDTH / 2, RES_HEIGHT - CARD_HEIGHT)
         else:
             each.scaled_draw_mao(0 + avatar_offset_x, 100, 80, 124)
@@ -141,8 +145,8 @@ while True:
 
     # Draw Player's level
     avatar_offset_x = 0
-    for each in controladorJogo.jogadores:
-        if each == controladorJogo.get_jogadorAtual():
+    for each in controlador_jogo.jogadores:
+        if each == controlador_jogo.get_jogadorAtual():
             displaynivel.set_position(each.get_avatar_x(), RES_HEIGHT - 100)
             displaynivel.set_curr_frame(each.get_nivel_personagem() - 1)
             displaynivel.draw()
@@ -155,10 +159,10 @@ while True:
     # Draw Player Stats
     player_stats_string = ""
 
-    if controladorJogo.get_jogadorAtual() is None:
+    if controlador_jogo.get_jogadorAtual() is None:
         player_stats_dict = {"No player present": "No player present"}
     else:
-        player_stats_dict = controladorJogo.get_jogadorAtual().get_stats()
+        player_stats_dict = controlador_jogo.get_jogadorAtual().get_stats()
 
     stats_height_offset = 0
     for key, value in player_stats_dict.items():
@@ -174,40 +178,40 @@ while True:
 
     # Draw Card Stacks
     # Door Pile
-    controladorJogo.deck_dungeon.set_position(
+    controlador_jogo.deck_dungeon.set_position(
         RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deck_dungeon.draw()
+    controlador_jogo.deck_dungeon.draw()
 
     # Door Discard Pile
-    controladorJogo.deck_dungeon_discard.set_position(
+    controlador_jogo.deck_dungeon_discard.set_position(
         RES_WIDTH - 1.25 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deck_dungeon_discard.draw()
+    controlador_jogo.deck_dungeon_discard.draw()
 
     # Treasure Pile
-    controladorJogo.deck_tesouro.set_position(
+    controlador_jogo.deck_tesouro.set_position(
         0.25 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deck_tesouro.draw()
+    controlador_jogo.deck_tesouro.draw()
 
     # Treasure Discard Pile
-    controladorJogo.deck_tesouro_discard.set_position(
+    controlador_jogo.deck_tesouro_discard.set_position(
         1.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
     )
-    controladorJogo.deck_tesouro_discard.draw()
+    controlador_jogo.deck_tesouro_discard.draw()
 
     # Game Logic / Draws from phases
-    controladorJogo.executarFase()
+    controlador_jogo.executarFase()
 
     # Debugging Text
-    jogadoratual = controladorJogo.get_jogadorAtual()
+    jogadoratual = controlador_jogo.get_jogadorAtual()
     if jogadoratual:
         player_turn_debug_text = jogadoratual.get_nome()
         player_turn_debug_text += "'s turn"
     else:
         player_turn_debug_text = "Nenhum jogador presente"
-    phase_debug_text = controladorJogo.get_estadoDoJogo()
+    phase_debug_text = controlador_jogo.get_estadoDoJogo()
     janela.draw_text(
         player_turn_debug_text,
         RES_WIDTH - 14 * len(player_turn_debug_text),
@@ -222,12 +226,14 @@ while True:
         size=25,
         color=(255, 255, 0),
     )
-    if controladorJogo.choice_needed:
+    if controlador_jogo.is_choice_needed():
         choicefliter.draw()
         msg_selecione_alvo.set_position(
             RES_WIDTH / 2 - msg_selecione_alvo.width / 2, RES_HEIGHT * 0.75
         )
         msg_selecione_alvo.draw()
         # DRAW TARGETS OVER YELLOW FILTER
+        for each in controlador_jogo.get_target_choices():
+            each.get_hurtbox().draw()
 
     janela.update()
