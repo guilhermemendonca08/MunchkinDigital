@@ -8,6 +8,7 @@ from constants import (
 )
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
+from PPlay.sound import Sound
 
 
 class ChutarPorta(Estado):
@@ -16,6 +17,7 @@ class ChutarPorta(Estado):
         self.mouse_click = False
         self.door_kicked = False
         self.carddrawn = False
+        self.bgm = Sound("Assets/SFX/buildup.ogg")
         self.acc = 0
         self.cardanimation = GameImage("Assets/Door/000 (small)discard.png")
         self.cardanimation.set_position(
@@ -59,6 +61,10 @@ class ChutarPorta(Estado):
 
         # new card draw
         if self.door_kicked and not self.carddrawn:
+            if self.bgm.is_playing() == False:
+                self.bgm.set_volume(20)
+                self.bgm.play()
+            self.intro = False
             self.carddrawn = True
             controlador.coloca_carta_em_jogo(
                 controlador.comprarCarta(controlador.deck_dungeon)

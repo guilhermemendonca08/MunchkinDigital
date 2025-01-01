@@ -27,3 +27,5 @@ class Monstro(Carta):
     def reseta_buffs(self):
         self.bonus_combate = 0
 
+    def get_target_type(self):
+        pass

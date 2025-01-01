@@ -68,6 +68,9 @@ class ControladorJogo(Subject):
     def coloca_carta_em_jogo(self, carta):
         self.carta_em_jogo = carta
 
+    def remove_carta_em_jogo(self):
+        self.carta_em_jogo = None
+
     def get_carta_em_jogo(self):
         return self.carta_em_jogo
 
@@ -140,17 +143,26 @@ class ControladorJogo(Subject):
     def play_choice(self, choice):
         self.play_attempt(self.pending_card, target=choice)
 
+    def detect_exact_choice(self, target):
+        return self.ui_handler.detect_choice(target)
+
     def play_attempt(self, carta, **kwargs):
         jogador = self.jogador_atual
         # TODO: utilizar valor sentinela para evitar warning de variável None.
         if jogador.has_card(carta):
             if self.estado_do_jogo.aceita_carta(carta):
+                # Cartas de uso "instantâneo"
                 if carta.get_tipo() in {"raca", "classe", "equipamento"}:
                     self.play_sfx("select")
                     print(f"I play {carta.get_nome()}!")
                     self.jogador_atual.jogar_carta(carta, jogador)
                     # TODO: utilizar valor sentinela para evitar warning de variável None.
                     jogador.remove_card(carta)
+                # Cartas que necessitam de alvo
+                elif carta.get_tipo() == "monstro":
+                    self.coloca_carta_em_jogo(carta)
+                    self.jogador_atual.remove_card(carta)
+                    self.proximoEstado("Combate")
                 else:
                     if kwargs.get("target") is None:
                         self.pending_card = carta

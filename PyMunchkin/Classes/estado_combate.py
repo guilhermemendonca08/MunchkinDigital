@@ -9,6 +9,7 @@ from constants import (
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
+from PPlay.sound import Sound
 
 
 class Combate(Estado):
@@ -17,12 +18,17 @@ class Combate(Estado):
         self.mouse_click = False
         self.resolve_request = False
         self.cartas_aceitas = ["buff", "amplificador", "combate"]
+        self.bgm = Sound("Assets/SFX/wild_battle.ogg")
 
     def executa_fase(self, controlador):
+        if self.bgm.is_playing() == False:
+            self.bgm.set_repeat(True)
+            self.bgm.set_volume(10)
+            self.bgm.play()
         # print(controlador.get_battle_situation())
-        closeddoor = GameImage("Assets/TableAssets/OpenDoor50.png")
-        closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
-        closeddoor.draw()
+        opendoor = GameImage("Assets/TableAssets/OpenDoor50.png")
+        opendoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
+        opendoor.draw()
 
         controlador.get_carta_em_jogo().set_position(
             RES_WIDTH / 2 - CARD_WIDTH / 2 - 2, RES_HEIGHT / 2 - CARD_HEIGHT / 2
