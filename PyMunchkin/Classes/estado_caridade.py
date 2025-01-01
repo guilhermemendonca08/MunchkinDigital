@@ -6,8 +6,9 @@ class Caridade(Estado):
         self.nome = "Caridade"
 
     def executa_fase(self, controlador):
-        pass
+        print("Caridade")
+        controlador.proximo_turno()
+        controlador.proximo_estado("ChutarPorta")
 
     def get_estado_do_jogo(self):
         return self.nome
-

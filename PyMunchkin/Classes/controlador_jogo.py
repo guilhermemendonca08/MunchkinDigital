@@ -133,6 +133,7 @@ class ControladorJogo(Subject):
             # acceptable_targets.append(self.jogadorAtual.get_inventario())
         return acceptable_targets
 
+    # Needs a target_list, gets it from self.get_target_choices()
     def detect_choice(self):
         return self.ui_handler.detect_choice(self.get_target_choices())
 
@@ -150,6 +151,7 @@ class ControladorJogo(Subject):
     def play_choice(self, choice):
         self.play_attempt(self.pending_card, target=choice)
 
+    # Detecta com alvo [alvo]
     def detect_exact_choice(self, target):
         return self.ui_handler.detect_choice(target)
 

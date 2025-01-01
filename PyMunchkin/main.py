@@ -1,3 +1,12 @@
+# ========================================= MAJOR FIXES NEEDED (TODO LIST):
+# ++CHARITY STATE NOT IMPLEMENTED YET
+# +SOUNDS ARE NOT PROPERLY RESET
+# +++CLICKS TRAVEL THROUGH STATES
+# -STATES NEED MANUAL RESET
+# +LOOT THE ROOM STAGE IS ROUGH
+# ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
+# ++APPLY VICTORY/LOSS CONSEQUENCES.
+
 import json
 import io
 from constants import (
@@ -18,12 +27,23 @@ from Classes.jogador import Jogador
 from Classes.controlador_jogo import ControladorJogo
 from Classes.carta_monstro import Monstro
 from Classes.efeito import AddToLevel
-
-# from Classes.ui_handler import UIHandler
 from Classes.card_factory import CardFactory
 
-# from constants import CARD_WIDTH, CARD_HEIGHT
-# from Classes.carta_item import Item
+# ================================================================================================
+# =====================================PYTHON -> EXE==============================================
+# ================================================================================================
+import os  # pra fazer o .exe com pyinstallelr
+import sys  # pra fazer o .exe com pyinstaller
+
+
+def resource_path(relative_path):
+    """Get the absolute path to a resource."""
+    if hasattr(sys, "_MEIPASS"):  # Temporary folder in --onefile mode
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+
+# ================================================================================================
 
 # Inicialização da janela e objetos básicos.
 janela = Window(RES_WIDTH, RES_HEIGHT)

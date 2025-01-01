@@ -31,6 +31,9 @@ class ChutarPorta(Estado):
             "utilitario",
         ]
 
+    def reset(self):
+        self.__init__()
+
     def executa_fase(self, controlador):
         self.acc += controlador.janela.delta_time()
         # cardanimation = GameImage("Assets/Door/000 (small)discard.png")
@@ -80,8 +83,10 @@ class ChutarPorta(Estado):
                 self.cardanimation.draw()
             else:
                 if controlador.get_carta_em_jogo().get_tipo() == "monstro":
+                    self.reset()
                     controlador.proximo_estado("Combate")
                 else:
+                    self.reset()
                     controlador.proximo_estado("ProcurarEncrenca")
 
     def get_estado_do_jogo(self):

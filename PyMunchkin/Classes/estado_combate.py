@@ -22,6 +22,9 @@ class Combate(Estado):
         self.win_sfx = Sound("Assets/SFX/fanfare.ogg")
         self.lose_sfx = Sound("Assets/SFX/you_died.ogg")
 
+    def reset(self):
+        self.__init__()
+
     def executa_fase(self, controlador):
         if self.bgm.is_playing() == False:
             self.bgm.set_repeat(True)
@@ -74,6 +77,7 @@ class Combate(Estado):
                     self.win_sfx.play()
                     controlador.discard_card(monstro)
                     controlador.remove_carta_em_jogo()
+                    self.reset()
                     controlador.proximo_estado("Caridade")
                 else:
                     # print("Monstro venceu")
@@ -82,6 +86,7 @@ class Combate(Estado):
                     self.lose_sfx.play()
                     controlador.discard_card(monstro)
                     controlador.remove_carta_em_jogo()
+                    self.reset()
                     controlador.proximo_estado("Caridade")
 
     def get_estado_do_jogo(self):

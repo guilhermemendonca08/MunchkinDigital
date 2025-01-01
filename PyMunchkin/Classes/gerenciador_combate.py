@@ -29,6 +29,12 @@ class GerenciadorCombate(Observer):
         else:
             return 0
 
+    def reseta_buffs(self):
+        for each in self.jogador:
+            each.reseta_buffs()
+        for each in self.monstro:
+            each.reseta_buffs()
+
     def get_battle_situation(self):
         string = "Jogador: "
         string += str(self.jogador[0].calcular_forca_combate())

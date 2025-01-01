@@ -24,6 +24,9 @@ class ProcurarEncrenca(
         self.accept_card = False
         self.loot_button = Sprite("Assets/TableAssets/loot_button_highlight.png", 2)
 
+    def reset(self):
+        self.__init__()
+
     def executa_fase(self, controlador):
         if self.bgm.is_playing() == False and self.intro:
             self.bgm.set_volume(20)
@@ -76,6 +79,7 @@ class ProcurarEncrenca(
             self.loot_button.draw()
 
             if controlador.mouse_input.is_button_pressed(1) and target:
+                self.reset()
                 controlador.proximo_estado("Saquear")
 
     def get_estado_do_jogo(self):
