@@ -10,6 +10,7 @@ from Classes.estado import Estado
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
 from PPlay.sound import Sound
+from path import resource_path
 
 
 class ProcurarEncrenca(
@@ -19,10 +20,12 @@ class ProcurarEncrenca(
         self.nome = "Procurar Encrenca"
         # self.cartas_aceitas = ["monstro"]
         self.cartas_aceitas = []
-        self.bgm = Sound("Assets/SFX/item_catch.ogg")
+        self.bgm = Sound(resource_path(resource_path("Assets/SFX/item_catch.ogg")))
         self.intro = True
         self.accept_card = False
-        self.loot_button = Sprite("Assets/TableAssets/loot_button_highlight.png", 2)
+        self.loot_button = Sprite(
+            resource_path("Assets/TableAssets/loot_button_highlight.png"), 2
+        )
 
     def reset(self):
         self.__init__()
@@ -32,10 +35,10 @@ class ProcurarEncrenca(
             self.bgm.set_volume(20)
             self.bgm.play()
             self.intro = False
-        opendoor = GameImage("Assets/TableAssets/OpenDoor50.png")
+        opendoor = GameImage(resource_path("Assets/TableAssets/OpenDoor50.png"))
         opendoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         opendoor.draw()
-        spotlights = GameImage("Assets/TableAssets/spotlights3.png")
+        spotlights = GameImage(resource_path("Assets/TableAssets/spotlights3.png"))
         spotlights.set_position(
             RES_WIDTH / 2 - spotlights.width / 2, RES_HEIGHT / 2 - spotlights.height / 2
         )

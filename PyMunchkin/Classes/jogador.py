@@ -4,11 +4,11 @@ from PPlay.gameimage import GameImage
 from Classes.personagem import Personagem
 from Classes.inventario import Inventario
 from Classes.estado import Estado
-
+from path import resource_path
 
 class Jogador(Observer):
     def __init__(self, nome, avatar_image):
-        self.avatar = GameImage(avatar_image)
+        self.avatar = GameImage(resource_path(avatar_image))
         self.nome = nome
         self.personagem = Personagem()
         self.mao = []

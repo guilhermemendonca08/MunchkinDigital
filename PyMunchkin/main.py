@@ -6,7 +6,11 @@
 # +LOOT THE ROOM STAGE IS ROUGH
 # ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
 # ++APPLY VICTORY/LOSS CONSEQUENCES.
+# import os
+# import sys
 
+# if getattr(sys, "frozen", False):
+#     os.chdir(sys._MEIPASS)
 import json
 import io
 from constants import (
@@ -32,16 +36,17 @@ from Classes.card_factory import CardFactory
 # ================================================================================================
 # =====================================PYTHON -> EXE==============================================
 # ================================================================================================
-import os  # pra fazer o .exe com pyinstallelr
-import sys  # pra fazer o .exe com pyinstaller
+# import os  # pra fazer o .exe com pyinstallelr
+# import sys  # pra fazer o .exe com pyinstaller
+#
+#
+# def resource_path(relative_path):
+#     """Get the absolute path to a resource."""
+#     if hasattr(sys, "_MEIPASS"):  # Temporary folder in --onefile mode
+#         return os.path.join(sys._MEIPASS, relative_path)
+#     return os.path.join(os.path.abspath("."), relative_path)
 
-
-def resource_path(relative_path):
-    """Get the absolute path to a resource."""
-    if hasattr(sys, "_MEIPASS"):  # Temporary folder in --onefile mode
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
-
+from path import resource_path
 
 # ================================================================================================
 
@@ -61,18 +66,18 @@ hotkey_4 = False
 
 # Assets Básicos
 # GameImages estáticos.
-fundo = GameImage("Assets/TableAssets/MarbleBlack.jpg")
-choicefliter = GameImage("Assets/TableAssets/choice.png")
-borda = GameImage("Assets/TableAssets/Border_Gray50.png")
+fundo = GameImage(resource_path("Assets/TableAssets/MarbleBlack.jpg"))
+choicefliter = GameImage(resource_path("Assets/TableAssets/choice.png"))
+borda = GameImage(resource_path("Assets/TableAssets/Border_Gray50.png"))
 borda.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
-displaynivel = Sprite("Assets/Niveis/leveldisplay.png", 10)
-msg_selecione_alvo = GameImage("Assets/TableAssets/select_target2.png")
+displaynivel = Sprite(resource_path("Assets/Niveis/leveldisplay.png"), 10)
+msg_selecione_alvo = GameImage(resource_path("Assets/TableAssets/select_target2.png"))
 
 # SFX
-hover = Sound("Assets/SFX/STS_SFX_CardHover3_v1.ogg")
-reject = Sound("Assets/SFX/SOTE_SFX_CardReject_v1.ogg")
-select = Sound("Assets/SFX/SOTE_SFX_CardSelect_v2.ogg")
-deal = Sound("Assets/SFX/STS_SFX_CardDeal8_v1.ogg")
+hover = Sound(resource_path("Assets/SFX/STS_SFX_CardHover3_v1.ogg"))
+reject = Sound(resource_path("Assets/SFX/SOTE_SFX_CardReject_v1.ogg"))
+select = Sound(resource_path("Assets/SFX/SOTE_SFX_CardSelect_v2.ogg"))
+deal = Sound(resource_path("Assets/SFX/STS_SFX_CardDeal8_v1.ogg"))
 
 # Elementos de controle do jogo.
 controlador_jogo = ControladorJogo(janela)
@@ -95,10 +100,10 @@ controlador_jogo.carrega_cartas(dungeon_cards, controlador_jogo.get_deck_dungeon
 controlador_jogo.set_sfx(hover, reject, select, deal)
 
 # Inicia Jogadores
-jogador1 = Jogador("Apollo", "Assets/Portraits/Archer.png")
-jogador2 = Jogador("Freya", "Assets/Portraits/HumanF4.png")
-jogador3 = Jogador("Antares", "Assets/Portraits/HumanM4.png")
-jogador4 = Jogador("Raphael", "Assets/Portraits/FiendM1.png")
+jogador1 = Jogador("Apollo", resource_path("Assets/Portraits/Archer.png"))
+jogador2 = Jogador("Freya", resource_path("Assets/Portraits/HumanF4.png"))
+jogador3 = Jogador("Antares", resource_path("Assets/Portraits/HumanM4.png"))
+jogador4 = Jogador("Raphael", resource_path("Assets/Portraits/FiendM1.png"))
 
 # Variaveis de apoio.
 time_acc = 0

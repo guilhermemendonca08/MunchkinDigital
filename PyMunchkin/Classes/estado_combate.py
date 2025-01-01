@@ -10,6 +10,7 @@ from Classes.estado import Estado
 from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
 from PPlay.sound import Sound
+from path import resource_path
 
 
 class Combate(Estado):
@@ -18,9 +19,9 @@ class Combate(Estado):
         self.mouse_click = False
         self.resolve_request = False
         self.cartas_aceitas = ["buff", "amplificador", "combate"]
-        self.bgm = Sound("Assets/SFX/wild_battle.ogg")
-        self.win_sfx = Sound("Assets/SFX/fanfare.ogg")
-        self.lose_sfx = Sound("Assets/SFX/you_died.ogg")
+        self.bgm = Sound(resource_path("Assets/SFX/wild_battle.ogg"))
+        self.win_sfx = Sound(resource_path("Assets/SFX/fanfare.ogg"))
+        self.lose_sfx = Sound(resource_path("Assets/SFX/you_died.ogg"))
 
     def reset(self):
         self.__init__()
@@ -31,7 +32,7 @@ class Combate(Estado):
             self.bgm.set_volume(10)
             self.bgm.play()
         # print(controlador.get_battle_situation())
-        opendoor = GameImage("Assets/TableAssets/OpenDoor50.png")
+        opendoor = GameImage(resource_path("Assets/TableAssets/OpenDoor50.png"))
         opendoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         opendoor.draw()
 
@@ -40,7 +41,9 @@ class Combate(Estado):
         )
         controlador.get_carta_em_jogo().draw()
 
-        botao_resolve = Sprite("Assets/TableAssets/ButtonSpriteHighlight.png", 2)
+        botao_resolve = Sprite(
+            resource_path("Assets/TableAssets/ButtonSpriteHighlight.png"), 2
+        )
         botao_resolve.set_position(
             RES_WIDTH - 1.5 * botao_resolve.width,
             RES_HEIGHT - 1.5 * botao_resolve.height,

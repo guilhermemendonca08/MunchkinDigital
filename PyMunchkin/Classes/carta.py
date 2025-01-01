@@ -1,9 +1,9 @@
 from PPlay.gameimage import GameImage
-
+from path import resource_path
 
 class Carta:
     def __init__(self, imagepath, nome, descricao, efeito, tipo, deck_origem=None):
-        self.imagem = GameImage(imagepath)
+        self.imagem = GameImage(resource_path(imagepath))
         self.nome = nome
         self.descricao = descricao
         self.efeito = efeito

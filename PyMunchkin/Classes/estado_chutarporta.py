@@ -9,7 +9,7 @@ from constants import (
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
 from PPlay.sound import Sound
-
+from path import resource_path
 
 class ChutarPorta(Estado):
     def __init__(self):
@@ -17,9 +17,9 @@ class ChutarPorta(Estado):
         self.mouse_click = False
         self.door_kicked = False
         self.carddrawn = False
-        self.bgm = Sound("Assets/SFX/buildup.ogg")
+        self.bgm = Sound(resource_path("Assets/SFX/buildup.ogg"))
         self.acc = 0
-        self.cardanimation = GameImage("Assets/Door/000 (small)discard.png")
+        self.cardanimation = GameImage(resource_path("Assets/Door/000 (small)discard.png"))
         self.cardanimation.set_position(
             RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
@@ -37,11 +37,11 @@ class ChutarPorta(Estado):
     def executa_fase(self, controlador):
         self.acc += controlador.janela.delta_time()
         # cardanimation = GameImage("Assets/Door/000 (small)discard.png")
-        closeddoor = GameImage("Assets/TableAssets/ClosedDoor50.png")
+        closeddoor = GameImage(resource_path("Assets/TableAssets/ClosedDoor50.png"))
         closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         closeddoor.draw()
 
-        doorhurtbox = GameImage("Assets/TableAssets/DoorHurtBoxSemiTransparent.png")
+        doorhurtbox = GameImage(resource_path("Assets/TableAssets/DoorHurtBoxSemiTransparent.png"))
         doorhurtbox.set_position(
             RES_WIDTH / 4 + DOOR_HURTBOX_OFFSET_X,
             RES_HEIGHT / 4 + DOOR_HURTBOX_OFFSET_Y,

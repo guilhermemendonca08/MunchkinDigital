@@ -11,24 +11,35 @@ from constants import (
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
 from PPlay.sound import Sound
+from path import resource_path
 
 
 class Saquear(Estado):
     def __init__(self):
         self.nome = "Saquear"
         self.cartas_aceitas = []
-        self.card_pack = GameImage("Assets/TableAssets/booster_with_card.png")
-        self.card_back = GameImage("Assets/TableAssets/booster_door_card.png")
-        self.card_wrapper = GameImage("Assets/TableAssets/booster_wrapper.png")
-        self.wrapper_bottom = GameImage("Assets/TableAssets/booster_ripped_bottom.png")
-        self.wrapper_top = GameImage("Assets/TableAssets/booster_ripped_top.png")
+        self.card_pack = GameImage(
+            resource_path("Assets/TableAssets/booster_with_card.png")
+        )
+        self.card_back = GameImage(
+            resource_path("Assets/TableAssets/booster_door_card.png")
+        )
+        self.card_wrapper = GameImage(
+            resource_path("Assets/TableAssets/booster_wrapper.png")
+        )
+        self.wrapper_bottom = GameImage(
+            resource_path("Assets/TableAssets/booster_ripped_bottom.png")
+        )
+        self.wrapper_top = GameImage(
+            resource_path("Assets/TableAssets/booster_ripped_top.png")
+        )
         self.unwrap_card = False
         self.take_card = False
-        self.unwrap_sfx = Sound("Assets/SFX/tear_sound.ogg")
+        self.unwrap_sfx = Sound(resource_path("Assets/SFX/tear_sound.ogg"))
         self.acc = 0
         self.mouse_state = False
         self.lock = False
-        self.draw_sfx = Sound("Assets/SFX/STS_SFX_CardDeal8_v1.ogg")
+        self.draw_sfx = Sound(resource_path("Assets/SFX/STS_SFX_CardDeal8_v1.ogg"))
 
     def reset(self):
         self.__init__()

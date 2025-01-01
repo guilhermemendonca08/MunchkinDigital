@@ -1,10 +1,11 @@
 from random import randint
 from PPlay.gameimage import GameImage
+from path import resource_path
 
 
 class CardStack:
     def __init__(self, imagepath):
-        self.imagem = GameImage(imagepath)
+        self.imagem = GameImage(resource_path(imagepath))
         self.pilha = []
 
     # PPLAY stuff
