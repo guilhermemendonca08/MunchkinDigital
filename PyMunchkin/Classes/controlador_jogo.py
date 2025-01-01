@@ -2,6 +2,7 @@ from Classes.subject import Subject
 from Classes.observer import Observer
 from PPlay.window import mouse
 from PPlay.sound import Sound
+from Classes.estado import Estado
 from Classes.estado_inicializacao import Inicializacao
 from Classes.estado_aguardandojogada import AguardandoJogada
 from Classes.estado_caridade import Caridade
@@ -51,6 +52,9 @@ class ControladorJogo(Subject):
         self.janela = janela
         self.freeze = False
         self.sfx = None
+
+    def get_battle_situation(self):
+        return self.gerenciador_combate.get_battle_situation()
 
     def set_sfx(self, hover, reject, select, deal):
         self.sfx = {"hover": hover, "reject": reject, "select": select, "deal": deal}
@@ -110,6 +114,9 @@ class ControladorJogo(Subject):
             elif target_type == "combatentes":
                 for each in self.gerenciador_combate.get_combatentes():
                     acceptable_targets.append(each)
+            elif target_type == "monstro":
+                for each in self.gerenciador_combate.get_monstros():
+                    acceptable_targets.append(each)
             elif target_type == "self":
                 acceptable_targets.append(self.jogador_atual)
             # elif target_type = "carry":
@@ -138,15 +145,10 @@ class ControladorJogo(Subject):
         # TODO: utilizar valor sentinela para evitar warning de variável None.
         if jogador.has_card(carta):
             if self.estado_do_jogo.aceita_carta(carta):
-                if (
-                    carta.get_tipo() == "raca"
-                    or carta.get_tipo() == "classe"
-                    or (carta.get_tipo() == "item" and not carta.get_uso_unico())
-                ):
+                if carta.get_tipo() in {"raca", "classe", "equipamento"}:
                     self.play_sfx("select")
                     print(f"I play {carta.get_nome()}!")
                     self.jogador_atual.jogar_carta(carta, jogador)
-                    # carta.jogar_carta(jogador)  # self cast
                     # TODO: utilizar valor sentinela para evitar warning de variável None.
                     jogador.remove_card(carta)
                 else:
@@ -246,7 +248,7 @@ class ControladorJogo(Subject):
         self.estado_do_jogo.executa_fase(self)
 
     def proximoEstado(self, novoEstado):
-        self.notify_observers(novoEstado)
+        self.notify_observers(novoEstado, self.jogador_atual, self.carta_em_jogo)
         self.estado_do_jogo = self.estados[novoEstado]
 
     def get_estadoDoJogo(self):
@@ -265,8 +267,7 @@ class ControladorJogo(Subject):
 
     def remove_observer(self, observer: Observer):
         self.observers.remove(observer)
-        pass
 
-    def notify_observers(self, estado_do_jogo: str):
+    def notify_observers(self, estado_do_jogo, jogador_atual, carta_em_jogo):
         for each in self.observers:
-            each.update(estado_do_jogo)
+            each.update(estado_do_jogo, jogador_atual, carta_em_jogo)

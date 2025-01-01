@@ -3,6 +3,7 @@ from constants import CARD_WIDTH, CARD_HEIGHT
 from PPlay.gameimage import GameImage
 from Classes.personagem import Personagem
 from Classes.inventario import Inventario
+from Classes.estado import Estado
 
 
 class Jogador(Observer):
@@ -13,6 +14,9 @@ class Jogador(Observer):
         self.mao = []
         self.inventario = Inventario()
         self._discard_callback = None
+
+    def aplicar_buff(self, valor):
+        self.personagem.aplicar_buff(valor)
 
     # Equip stuff
     def get_itens_em_slot(self, slot):
@@ -137,6 +141,9 @@ class Jogador(Observer):
         return stats
 
     # Combate
+    def reseta_buffs(self):
+        self.personagem.reseta_buffs()
+
     def calcular_forca_combate(self):
         somatorio = 0
         somatorio += self.personagem.calcular_forca_combate()
@@ -155,6 +162,8 @@ class Jogador(Observer):
 
     def jogar_carta(self, carta, alvo):
         carta.jogar_carta(alvo)
+        if carta.get_tipo() in {"combate", "maldicao", "utilitario"}:
+            self.discard(carta)
 
     def devolve_a_mao(self, carta):
         self.add_card(carta)
@@ -198,5 +207,5 @@ class Jogador(Observer):
             card.scaled_draw(new_width, new_height)
 
     # SUBJECT/ OBSERVER PATTERN
-    def update(self, estado_do_jogo: str):
+    def update(self, estado_do_jogo, jogador_atual, carta_em_jogo):
         pass

@@ -137,7 +137,7 @@ while True:
         controlador_jogo.proximoEstado("Combate")
 
     if not teclado.key_pressed("3"):
-        hotkey_2 = False
+        hotkey_3 = False
 
     # Draws
     # Background, everything else should be placed AFTER this.
@@ -385,6 +385,36 @@ while True:
             )
     # ===========================End of Equipment Debugging Messages===========================
 
+    # ===========================Debug Combate
+    debug_combat_strenght = "Monstro: "
+    if controlador_jogo.get_estadoDoJogo() == "Combate":
+        debug_combat_strenght += str(
+            controlador_jogo.gerenciador_combate.get_forca_monstros()
+        )
+        janela.draw_text(
+            debug_combat_strenght,
+            RES_WIDTH / 2,
+            750,
+            size=50,
+            color=(255, 0, 0),
+        )
+
+    if controlador_jogo.get_estadoDoJogo() == "Combate":
+        debug_combat_strength = controlador_jogo.gerenciador_combate.jogador[
+            0
+        ].get_nome()
+        debug_combat_strength += ": "
+        debug_combat_strength += str(
+            controlador_jogo.gerenciador_combate.get_forca_jogadores()
+        )
+        janela.draw_text(
+            debug_combat_strength,
+            600,
+            750,
+            size=50,
+            color=(255, 0, 0),
+        )
+    # ===========================Debug Pilhas de Cartas
     # Número de cartas nas pilhas.
     text_numero_de_cartas = "Cartas na pilha: "
     text_numero_de_cartas += str(controlador_jogo.deck_dungeon.get_size())

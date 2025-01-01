@@ -21,7 +21,13 @@ class ChutarPorta(Estado):
         self.cardanimation.set_position(
             RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
-        self.cartas_aceitas = ["maldicao", "classe", "raca"]
+        self.cartas_aceitas = [
+            "maldicao",
+            "classe",
+            "raca",
+            "equipamento",
+            "utilitario",
+        ]
 
     def executa_fase(self, controlador):
         self.acc += controlador.janela.delta_time()
@@ -76,9 +82,7 @@ class ChutarPorta(Estado):
         return self.nome
 
     def aceita_carta(self, carta):
-        if carta.get_tipo() in self.cartas_aceitas or (
-            carta.get_tipo() == "item" and not carta.get_uso_unico()
-        ):
+        if carta.get_tipo() in self.cartas_aceitas:
             return True
         else:
             return False

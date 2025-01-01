@@ -12,6 +12,6 @@ class Subject(ABC):
         pass
 
     @abstractmethod
-    def notify_observers(self, estado_do_jogo: str):
+    def notify_observers(self, estado_do_jogo, jogador_atual, carta_em_jogo):
         pass
 

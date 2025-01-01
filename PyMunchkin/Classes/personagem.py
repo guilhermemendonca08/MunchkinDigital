@@ -8,6 +8,9 @@ class Personagem:
         self.bonus_combate = 0
         self.forcaCombate = self.calcular_forca_combate()
 
+    def aplicar_buff(self, valor):
+        self.bonus_combate += valor
+
     # Gets
     def get_nivel(self):
         return self.nivel
@@ -20,6 +23,9 @@ class Personagem:
 
     def get_forca_combate(self):
         return self.forcaCombate
+
+    def reseta_buffs(self):
+        self.bonus_combate = 0
 
         # stats["Raca"] = self.personagem.getRaca()
         # stats["Classe"] = self.personagem.getClasse()

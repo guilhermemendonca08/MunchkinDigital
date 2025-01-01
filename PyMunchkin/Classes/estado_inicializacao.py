@@ -11,9 +11,9 @@ class Inicializacao(Estado):
 
         for each in controlador.jogadores:
             for _ in range(4):
-                each.receber_carta(controlador.comprarCarta(controlador.deck_dungeon))
-            for _ in range(4):
                 each.receber_carta(controlador.comprarCarta(controlador.deck_tesouro))
+            for _ in range(4):
+                each.receber_carta(controlador.comprarCarta(controlador.deck_dungeon))
             print(f"Jogador {each.get_nome()} recebeu {each.get_size_mao()} cartas")
         controlador.proximoEstado("ChutarPorta")
 

@@ -8,7 +8,7 @@ class Buff(Efeito):
         self.valor = valor
 
     def aplicar_efeito(self, alvo):
-        alvo.mudar_forca_combate(self.valor)
+        alvo.aplicar_buff(self.valor)
 
     # def debug(self):
     #     return f"Buff: {self.valor}"

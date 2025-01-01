@@ -17,6 +17,13 @@ class Monstro(Carta):
         self.nivel = nivel
         self.qntTesouro = qnt_tesouro
         self.bonus_combate = 0
-    
+
     def calcular_forca_combate(self):
         return self.nivel + self.bonus_combate
+
+    def aplicar_buff(self, valor):
+        self.bonus_combate += valor
+
+    def reseta_buffs(self):
+        self.bonus_combate = 0
+

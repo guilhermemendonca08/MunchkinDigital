@@ -13,3 +13,5 @@ class Amplificador(Carta):
     ):
         super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
 
+    def get_target_type(self):
+        return ["monstro"]

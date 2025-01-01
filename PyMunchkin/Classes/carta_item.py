@@ -43,8 +43,7 @@ class Item(Carta):
     def jogar_carta(self, alvo):
         if not self.uso_unico:
             alvo.equipar_item(self)
-            print(f"{alvo.get_nome()} equipou {self.get_nome()}")
-        if not self.uso_unico:
+        else:
             self.efeito.aplicar_efeito(alvo)
 
     def executar_efeito(self, alvo):
@@ -54,4 +53,7 @@ class Item(Carta):
         return self.slot
 
     def get_target_type(self):
-        return ["combatentes"]
+        if self.tipo == "combate":
+            return ["combatentes"]
+        if self.tipo == "utilitario":
+            return ["jogador"]

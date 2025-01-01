@@ -16,9 +16,10 @@ class Combate(Estado):
         self.nome = "Combate"
         self.mouse_click = False
         self.resolve_request = False
-        self.cartas_aceitas = ["buff"]
+        self.cartas_aceitas = ["buff", "amplificador", "combate"]
 
     def executa_fase(self, controlador):
+        # print(controlador.get_battle_situation())
         closeddoor = GameImage("Assets/TableAssets/OpenDoor50.png")
         closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         closeddoor.draw()
@@ -62,9 +63,7 @@ class Combate(Estado):
         return self.nome
 
     def aceita_carta(self, carta):
-        if carta.get_tipo() in self.cartas_aceitas or (
-            carta.get_tipo() == "item" and carta.get_uso_unico()
-        ):
+        if carta.get_tipo() in self.cartas_aceitas:
             return True
         else:
             return False
