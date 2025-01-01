@@ -63,13 +63,13 @@ card_factory = CardFactory()
 treasure_json_file = io.StringIO(TREASURE_JSON_DATA)  # Simula abertura do json
 treasure_card_data = json.load(treasure_json_file)  # De json -> dict
 treasure_cards = card_factory.carrega_cartas(treasure_card_data)  # dict -> lista
-controlador_jogo.carregaCartas(treasure_cards, controlador_jogo.get_deckTesouro())
+controlador_jogo.carrega_cartas(treasure_cards, controlador_jogo.get_deck_tesouro())
 
 # Carrega cartas Dungeon
 dungeon_json_file = io.StringIO(DUNGEON_JSON_DATA)
 dungeon_card_data = json.load(dungeon_json_file)
 dungeon_cards = card_factory.carrega_cartas(dungeon_card_data)
-controlador_jogo.carregaCartas(dungeon_cards, controlador_jogo.get_deckDungeon())
+controlador_jogo.carrega_cartas(dungeon_cards, controlador_jogo.get_deck_dungeon())
 
 # Carrega sons
 controlador_jogo.set_sfx(hover, reject, select, deal)
@@ -108,7 +108,7 @@ while True:
     # Muda de quem é a vez.
     if teclado.key_pressed("1") and not hotkey_1:
         hotkey_1 = True
-        controlador_jogo.proximoTurno()
+        controlador_jogo.proximo_turno()
     if not teclado.key_pressed("1"):
         hotkey_1 = False
 
@@ -206,7 +206,7 @@ while True:
     controlador_jogo.deck_tesouro_discard.draw()
 
     # Game Logic / Draws from phases
-    controlador_jogo.executarFase()
+    controlador_jogo.executar_fase()
 
     # Debugging Text
     # Jogador da vez e Fase do turno
@@ -216,7 +216,7 @@ while True:
         player_turn_debug_text += "'s turn"
     else:
         player_turn_debug_text = "Nenhum jogador presente"
-    phase_debug_text = controlador_jogo.get_estadoDoJogo()
+    phase_debug_text = controlador_jogo.get_estado_do_jogo()
     janela.draw_text(
         player_turn_debug_text,
         RES_WIDTH - 14 * len(player_turn_debug_text),
@@ -369,7 +369,7 @@ while True:
 
     # ===========================Debug Combate
     debug_combat_strenght = "Monstro: "
-    if controlador_jogo.get_estadoDoJogo() == "Combate":
+    if controlador_jogo.get_estado_do_jogo() == "Combate":
         debug_combat_strenght += str(
             controlador_jogo.gerenciador_combate.get_forca_monstros()
         )
@@ -381,7 +381,7 @@ while True:
             color=(255, 0, 0),
         )
 
-    if controlador_jogo.get_estadoDoJogo() == "Combate":
+    if controlador_jogo.get_estado_do_jogo() == "Combate":
         debug_combat_strength = controlador_jogo.gerenciador_combate.jogador[
             0
         ].get_nome()

@@ -15,8 +15,11 @@ class Monstro(Carta):
     ):
         super().__init__(imagepath, nome, descricao, efeito, tipo, deck_origem)
         self.nivel = nivel
-        self.qntTesouro = qnt_tesouro
+        self.qnt_tesouro = qnt_tesouro
         self.bonus_combate = 0
+
+    def get_qnt_tesouro(self):
+        return self.qnt_tesouro
 
     def calcular_forca_combate(self):
         return self.nivel + self.bonus_combate

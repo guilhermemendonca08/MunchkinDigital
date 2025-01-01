@@ -53,6 +53,13 @@ class ControladorJogo(Subject):
         self.freeze = False
         self.sfx = None
 
+    def jogador_compra_carta(self, jogador, deck):
+        carta = self.comprar_carta(deck)
+        jogador.add_card(carta)
+
+    def get_resultado_combate(self):
+        return self.gerenciador_combate.resolver_combate()
+
     def get_battle_situation(self):
         return self.gerenciador_combate.get_battle_situation()
 
@@ -162,7 +169,7 @@ class ControladorJogo(Subject):
                 elif carta.get_tipo() == "monstro":
                     self.coloca_carta_em_jogo(carta)
                     self.jogador_atual.remove_card(carta)
-                    self.proximoEstado("Combate")
+                    self.proximo_estado("Combate")
                 else:
                     if kwargs.get("target") is None:
                         self.pending_card = carta
@@ -185,36 +192,36 @@ class ControladorJogo(Subject):
 
     # Deck related stuff
     # Adiciona uma carta ao topo deck
-    def adicionaAoDeck(self, deck, carta):
+    def adiciona_ao_deck(self, deck, carta):
         deck.push(carta)
 
     # Adiciona uma carta ao fundo do deck
-    def retornaAoDeck(self, deck, carta):
+    def retorna_ao_deck(self, deck, carta):
         deck.push_bottom(carta)
 
     # Embaralha o deck
-    def shuffleDeck(self, deck):
+    def shuffle_deck(self, deck):
         deck.shuffle()
 
     # Remove uma carta do topo do deck e a retorna
-    def comprarCarta(self, deck):
+    def comprar_carta(self, deck):
         return deck.pop()
 
-    def get_deckDungeon(self):
+    def get_deck_dungeon(self):
         return self.deck_dungeon
 
-    def get_deckTesouro(self):
+    def get_deck_tesouro(self):
         return self.deck_tesouro
 
     def discard_card(self, card):
         print(f"Carta descartada: {card.get_nome()}")
         if card.get_deckOrigem() == "dungeon":
-            self.retornaAoDeck(self.deck_dungeon_discard, card)
+            self.retorna_ao_deck(self.deck_dungeon_discard, card)
             print(
                 # f"Novo tamanho da pilha descarte: {self.deckDungeonDiscard.getSize()}"
             )
         elif card.get_deckOrigem() == "tesouro":
-            self.retornaAoDeck(self.deck_tesouro_discard, card)
+            self.retorna_ao_deck(self.deck_tesouro_discard, card)
             print(
                 # f"Novo tamanho da pilha descarte: {self.deckTesouroDiscard.getSize()}"
             )
@@ -223,17 +230,17 @@ class ControladorJogo(Subject):
 
     # End of deck related stuff
 
-    def proximoTurno(self):
+    def proximo_turno(self):
         self.jogador_atual = self.jogadores.proximo()
 
-    def verificarVencedor(self):
+    def verificar_vencedor(self):
         winners = []
         for each in self.jogadores:
             if each.get_character_level() >= 10:
                 winners.append(each)
         return winners
 
-    def finalizarJogo(self):
+    def finalizar_jogo(self):
         pass
 
     def add_jogador(self, jogador):
@@ -244,7 +251,7 @@ class ControladorJogo(Subject):
         else:
             print("Número máximo de jogadores atingido")
 
-    def set_jogadorAtual(self, jogador):
+    def set_jogador_atual(self, jogador):
         self.jogador_atual = jogador
 
     def get_jogador_atual(self):
@@ -253,22 +260,22 @@ class ControladorJogo(Subject):
         return self.jogador_atual
 
     # Gerenciamento de estados do jogo
-    def iniciarJogo(self):
+    def iniciar_jogo(self):
         pass
 
-    def executarFase(self):
+    def executar_fase(self):
         self.estado_do_jogo.executa_fase(self)
 
-    def proximoEstado(self, novoEstado):
+    def proximo_estado(self, novoEstado):
         self.notify_observers(novoEstado, self.jogador_atual, self.carta_em_jogo)
         self.estado_do_jogo = self.estados[novoEstado]
 
-    def get_estadoDoJogo(self):
+    def get_estado_do_jogo(self):
         estadoDoJogo = self.estado_do_jogo.get_estado_do_jogo()
         return estadoDoJogo
 
     # Carregamento de cartas
-    def carregaCartas(self, cards, pilha):
+    def carrega_cartas(self, cards, pilha):
         for each in cards:
             pilha.push_wherever(each)
         pilha.shuffle()

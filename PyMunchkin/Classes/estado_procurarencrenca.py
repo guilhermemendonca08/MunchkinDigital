@@ -8,6 +8,7 @@ from constants import (
 )
 from Classes.estado import Estado
 from PPlay.gameimage import GameImage
+from PPlay.sprite import Sprite
 from PPlay.sound import Sound
 
 
@@ -21,6 +22,7 @@ class ProcurarEncrenca(
         self.bgm = Sound("Assets/SFX/item_catch.ogg")
         self.intro = True
         self.accept_card = False
+        self.loot_button = Sprite("Assets/TableAssets/loot_button_highlight.png", 2)
 
     def executa_fase(self, controlador):
         if self.bgm.is_playing() == False and self.intro:
@@ -58,6 +60,23 @@ class ProcurarEncrenca(
                     controlador.get_jogador_atual().add_card(revealed_card)
                 controlador.remove_carta_em_jogo()
                 self.cartas_aceitas.append("monstro")
+        else:
+
+            self.loot_button.set_position(
+                RES_WIDTH - 1.5 * self.loot_button.width,
+                RES_HEIGHT - 1.5 * self.loot_button.height,
+            )
+
+            # Button Hover
+            target = controlador.mouse_over_object(self.loot_button)
+            if target:
+                self.loot_button.set_curr_frame(1)
+            else:
+                self.loot_button.set_curr_frame(0)
+            self.loot_button.draw()
+
+            if controlador.mouse_input.is_button_pressed(1) and target:
+                controlador.proximo_estado("Saquear")
 
     def get_estado_do_jogo(self):
         return self.nome

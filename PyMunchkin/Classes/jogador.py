@@ -67,7 +67,7 @@ class Jogador(Observer):
                 # Equipar uma arma de 2 mãos vs uma arma de 2 mãos
                 elif len(self.inventario.get_itens_em_slot("2hands")) == 1:
                     for each in self.inventario.get_itens_em_slot("2hands"):
-                        if item_a_remover[0] >= each.get_poder():
+                        if item_a_remover[0].get_poder() >= each.get_poder():
                             item_a_remover[0] = each
                 else:
                     raise ValueError("Why are we still here… Just to suffer? again?")
@@ -159,7 +159,6 @@ class Jogador(Observer):
         self.inventario.remove(item)
 
     # Card Managment
-
     def jogar_carta(self, carta, alvo):
         carta.jogar_carta(alvo)
         if carta.get_tipo() in {"combate", "maldicao", "utilitario"}:

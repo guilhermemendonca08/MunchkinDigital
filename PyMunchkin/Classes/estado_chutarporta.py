@@ -67,7 +67,7 @@ class ChutarPorta(Estado):
             self.intro = False
             self.carddrawn = True
             controlador.coloca_carta_em_jogo(
-                controlador.comprarCarta(controlador.deck_dungeon)
+                controlador.comprar_carta(controlador.deck_dungeon)
             )
             # print(f"Carta nova: {controlador.get_cartaEmJogo().get_nome()}")
 
@@ -80,9 +80,9 @@ class ChutarPorta(Estado):
                 self.cardanimation.draw()
             else:
                 if controlador.get_carta_em_jogo().get_tipo() == "monstro":
-                    controlador.proximoEstado("Combate")
+                    controlador.proximo_estado("Combate")
                 else:
-                    controlador.proximoEstado("ProcurarEncrenca")
+                    controlador.proximo_estado("ProcurarEncrenca")
 
     def get_estado_do_jogo(self):
         return self.nome

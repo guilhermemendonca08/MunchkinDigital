@@ -19,6 +19,8 @@ class Combate(Estado):
         self.resolve_request = False
         self.cartas_aceitas = ["buff", "amplificador", "combate"]
         self.bgm = Sound("Assets/SFX/wild_battle.ogg")
+        self.win_sfx = Sound("Assets/SFX/fanfare.ogg")
+        self.lose_sfx = Sound("Assets/SFX/you_died.ogg")
 
     def executa_fase(self, controlador):
         if self.bgm.is_playing() == False:
@@ -59,11 +61,28 @@ class Combate(Estado):
             self.mouse_click = False
             if target:
                 self.resolve_request = True
-                print("Clicou botao")
-                # LEMBRETE: Aqui o gerenciadorcombate seria chamado
-                # mas agora vo parar para fazer sistema de equipar e
-                # o método de calcular força do jogador e monstro.
-                # Porque são pre-requisitos para o gerenciador de combate.
+                monstro = controlador.get_carta_em_jogo()
+                if controlador.get_resultado_combate():
+                    for _ in range(monstro.get_qnt_tesouro()):
+                        controlador.jogador_compra_carta(
+                            controlador.get_jogador_atual(),
+                            controlador.get_deck_tesouro(),
+                        )
+                    # print("Jogador venceu")
+                    self.bgm.stop()
+                    self.win_sfx.set_volume(20)
+                    self.win_sfx.play()
+                    controlador.discard_card(monstro)
+                    controlador.remove_carta_em_jogo()
+                    controlador.proximo_estado("Caridade")
+                else:
+                    # print("Monstro venceu")
+                    self.bgm.pause()
+                    self.lose_sfx.set_volume(20)
+                    self.lose_sfx.play()
+                    controlador.discard_card(monstro)
+                    controlador.remove_carta_em_jogo()
+                    controlador.proximo_estado("Caridade")
 
     def get_estado_do_jogo(self):
         return self.nome

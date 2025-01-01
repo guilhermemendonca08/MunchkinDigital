@@ -11,18 +11,18 @@ class GerenciadorCombate(Observer):
         self.monstro = []
         self.vantagens = {"jogador": 0, "monstro": 0}
 
-    def resolverCombate(self):
+    def resolver_combate(self):
         """
         Função que resolve o combate entre jogador e monstro
-        :return: 1 se o jogador venceu, 0 se o monstro venceu
+        :return: True se o jogador venceu, False se o monstro venceu
         """
         playerstr = 0
         monstrostr = 0
         for each in self.jogador:
-            playerstr += each.jogador.calcularForca()
+            playerstr += each.calcular_forca_combate()
 
         for each in self.monstro:
-            monstrostr += each.monstro.calcularForca()
+            monstrostr += each.calcular_forca_combate()
 
         if playerstr > monstrostr:
             return 1
@@ -49,10 +49,10 @@ class GerenciadorCombate(Observer):
             soma += each.calcular_forca_combate()
         return soma
 
-    def calcularVantagens(self):
+    def calcular_vantagens(self):
         pass
 
-    def aplicarConsequencias(self, vitoria):
+    def aplicar_consequencias(self, vitoria):
         pass
 
     def add_jogador(self, jogador):
