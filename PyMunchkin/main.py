@@ -121,24 +121,6 @@ while True:
     if not teclado.key_pressed("2"):
         hotkey_2 = False
 
-    # Muda p/ combate.
-    if teclado.key_pressed("3") and not hotkey_3:
-        hotkey_3 = True
-        controlador_jogo.carta_em_jogo = Monstro(
-            "Assets/Door/071 (small).png",
-            "Harpies",
-            "+5 against Wizards",
-            AddToLevel(-2),
-            "monstro",
-            "dungeon",
-            4,
-            2,
-        )
-        controlador_jogo.proximoEstado("Combate")
-
-    if not teclado.key_pressed("3"):
-        hotkey_3 = False
-
     # Draws
     # Background, everything else should be placed AFTER this.
     fundo.draw()
