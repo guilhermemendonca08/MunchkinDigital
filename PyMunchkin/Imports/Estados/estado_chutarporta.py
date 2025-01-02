@@ -73,7 +73,7 @@ class ChutarPorta(Estado):
             if self.buildup.is_playing() is False:
                 self.buildup.set_volume(20)
                 self.buildup.play()
-                self.door_knock.set_volume(100)
+                self.door_knock.set_volume(50)
                 self.door_knock.play()
             self.intro = False
             self.carddrawn = True

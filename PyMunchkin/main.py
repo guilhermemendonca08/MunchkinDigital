@@ -1,17 +1,17 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
-# +++CLICKS TRAVEL THROUGH STATES
 # ++CHARITY STATE NOT IMPLEMENTED YET
 # -STATES NEED MANUAL RESET
-# +LOOT THE ROOM STAGE IS ROUGH
 # ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
 # --HIGHLIGHT PLAYABLE CARDS?
-# -jogador tem add_card e "devolve_a_mao"
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
 
 # ==== Done list ====
+# +++CLICKS TRAVEL THROUGH STATES (I think it's fixed)
+# +LOOT THE ROOM STAGE IS ROUGH  (Much better now)
 # +SOUNDS ARE NOT PROPERLY RESET (Now they are)
 # ++APPLY VICTORY/LOSS CONSEQUENCES. (Done)
 # ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE (Harder than it seemed, but done)
+# -jogador tem add_card e "devolve_a_mao" (devolve_a_mao só era usado, subsituido por add_card)
 
 import json
 import io

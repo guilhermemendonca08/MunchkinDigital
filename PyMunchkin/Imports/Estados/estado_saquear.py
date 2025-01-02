@@ -34,27 +34,22 @@ class Saquear(Estado):
         self.mouse_state = False
         self.lock = False
         self.draw_sfx = Sound(resource_path("Assets/SFX/sfx_card_deal.ogg"))
+        self.display_state = "WRAPPED"  # WRAPPED, UNWRAPPING, UNWRAPPED
+        self.wrapper_top.set_position(
+            RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        )
+        self.wrapper_bottom.set_position(
+            RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        )
 
     def reset(self):
         self.__init__()
 
     def executa_fase(self, controlador):
         self.acc += controlador.janela.delta_time()
-        self.card_back.draw()
 
-        if controlador.mouse_input.is_button_pressed(1):
-            self.mouse_state = True
-
-        if (
-            controlador.mouse_input.is_button_pressed(1)
-            and controlador.mouse_over_object(self.card_back)
-            and not self.unwrap_card
-        ):
-            self.unwrap_card = True
-            self.unwrap_sfx.play()
-            print("aceitou carta")
-
-        if not self.unwrap_card:
+        if self.display_state == "WRAPPED":
+            self.card_back.draw()
             self.card_back.set_position(
                 RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
             )
@@ -62,37 +57,102 @@ class Saquear(Estado):
                 RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
             )
             self.card_wrapper.draw()
-            self.wrapper_top.set_position(
-                RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
-            )
-            self.wrapper_bottom.set_position(
-                RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
-            )
-        else:
-            if self.acc > 0.01:
-                # self.wrapper_bottom.y += 10
-                if self.card_back.y > RES_HEIGHT / 2 - self.card_back.height / 2:
-                    self.card_back.y -= 5
-                self.wrapper_top.y -= 10
-                self.acc = 0
+
+            # Clicou na carta?
+            if (
+                not controlador.mouse_input.is_button_pressed(1)
+                and self.mouse_state
+                and controlador.mouse_over_object(self.card_back)
+            ):
+                self.display_state = "UNWRAPPING"
+                self.unwrap_sfx.play()
+
+        if self.display_state == "UNWRAPPING":
+            self.card_back.draw()
             self.wrapper_bottom.draw()
             self.wrapper_top.draw()
+            if self.acc > 0.01:
+                self.wrapper_top.y -= 10
+                self.acc = 0
+                if self.card_back.y > RES_HEIGHT / 2 - self.card_back.height / 2:
+                    self.card_back.y -= 5
+                elif self.wrapper_top.y < -100:
+                    self.display_state = "UNWRAPPED"
+        if self.display_state == "UNWRAPPED":
+            self.card_back.draw()
+            self.wrapper_bottom.draw()
+            if (
+                not controlador.mouse_input.is_button_pressed(1)
+                and self.mouse_state
+                and controlador.mouse_over_object(self.card_back)
+            ):
+                self.draw_sfx.play()
+                nova_carta = controlador.comprar_carta(controlador.get_deck_dungeon())
+                controlador.get_jogador_atual().add_card(nova_carta)
+                controlador.proximo_estado("Caridade")
 
-        if (
-            controlador.mouse_input.is_button_pressed(1)
-            and controlador.mouse_over_object(self.card_back)
-            and not self.take_card
-            and self.card_back.y <= RES_HEIGHT / 2 - self.card_back.height / 2
-        ):
-            self.take_card = True
+        # if (
+        #     not controlador.mouse_input.is_button_pressed(1)
+        #     and self.mouse_state
+        #     and controlador.mouse_over_object(self.card_back)
+        #     and not self.unwrap_card
+        # ):
+        #     self.unwrap_card = True
+        #     self.unwrap_sfx.play()
+        #     # print("aceitou carta")
+        #
+        # # Card Unwrap animation
+        # if not self.unwrap_card:
+        #     self.card_back.set_position(
+        #         RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        #     )
+        #     self.card_wrapper.set_position(
+        #         RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        #     )
+        #     self.card_wrapper.draw()
+        #     self.wrapper_top.set_position(
+        #         RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        #     )
+        #     self.wrapper_bottom.set_position(
+        #         RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
+        #     )
+        # else:
+        #     if self.acc > 0.01:
+        #         # self.wrapper_bottom.y += 10
+        #         if self.card_back.y > RES_HEIGHT / 2 - self.card_back.height / 2:
+        #             self.card_back.y -= 5
+        #         self.wrapper_top.y -= 10
+        #         self.acc = 0
+        #     self.wrapper_bottom.draw()
+        #     self.wrapper_top.draw()
+        #
+        # if (
+        #     controlador.mouse_input.is_button_pressed(1)
+        #     and controlador.mouse_over_object(self.card_back)
+        #     and not self.take_card
+        #     and self.card_back.y <= RES_HEIGHT / 2 - self.card_back.height / 2
+        # ):
+        #     self.take_card = True
+        #
+        # if self.take_card and not self.lock:
+        #     self.lock = True
+        #     self.draw_sfx.play()
+        #     nova_carta = controlador.comprar_carta(controlador.get_deck_dungeon())
+        #     controlador.get_jogador_atual().add_card(nova_carta)
+        #     self.reset()
+        #     controlador.proximo_estado("Caridade")
+        #
+        # # Atualiza estado anterior do mouse
+        # if controlador.mouse_input.is_button_pressed(1):
+        #     self.mouse_state = True
+        # else:
+        #     self.mouse_state = False
 
-        if self.take_card and not self.lock:
-            self.lock = True
-            self.draw_sfx.play()
-            nova_carta = controlador.comprar_carta(controlador.get_deck_dungeon())
-            controlador.get_jogador_atual().add_card(nova_carta)
-            self.reset()
-            controlador.proximo_estado("Caridade")
+        # Atualiza estado anterior do mouse
+        if controlador.mouse_input.is_button_pressed(1):
+            self.mouse_state = True
+        else:
+            self.mouse_state = False
 
     def get_estado_do_jogo(self):
         return self.nome

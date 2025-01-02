@@ -97,7 +97,7 @@ class Jogador(Observer, Targetable):
                         self.discard(each)
                 self.inventario.equipar_item(item)
             else:
-                self.devolve_a_mao(item)
+                self.add_card(item)
                 print("devolver a mao para a carta nao ser jogada")
 
     # Set Discard Callback.
@@ -211,9 +211,6 @@ class Jogador(Observer, Targetable):
         self.add_card(carta)
         if carta.get_tipo() in {"combate", "maldicao", "utilitario"}:
             self.discard(carta)
-
-    def devolve_a_mao(self, carta):
-        self.add_card(carta)
 
     def has_card(self, card):
         return card in self.mao
