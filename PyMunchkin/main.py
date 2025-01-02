@@ -1,7 +1,6 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
 # ++CHARITY STATE NOT IMPLEMENTED YET
-# +SOUNDS ARE NOT PROPERLY RESET
 # +++CLICKS TRAVEL THROUGH STATES
 # -STATES NEED MANUAL RESET
 # +LOOT THE ROOM STAGE IS ROUGH
@@ -10,15 +9,16 @@
 # ++APPLY VICTORY/LOSS CONSEQUENCES.
 # --HIGHLIGHT PLAYABLE CARDS?
 
+#==== Done list ====
+# +SOUNDS ARE NOT PROPERLY RESET (Now they are)
+
 import json
 import io
-from constants import (
+from Imports.constants import (
     RES_WIDTH,
     RES_HEIGHT,
     CARD_WIDTH,
     CARD_HEIGHT,
-    DOOR_HURTBOX_OFFSET_X,
-    DOOR_HURTBOX_OFFSET_Y,
     TREASURE_JSON_DATA,
     DUNGEON_JSON_DATA,
 )
@@ -26,11 +26,9 @@ from PPlay.gameimage import GameImage
 from PPlay.sprite import Sprite
 from PPlay.window import Window
 from PPlay.sound import Sound
-from Classes.jogador import Jogador
-from Classes.controlador_jogo import ControladorJogo
-from Classes.carta_monstro import Monstro
-from Classes.efeito import AddToLevel
-from Classes.card_factory import CardFactory
+from Imports.jogador import Jogador
+from Imports.controlador_jogo import ControladorJogo
+from Imports.Utils.card_factory import CardFactory
 from path import resource_path
 
 # ================================================================================================
@@ -51,6 +49,8 @@ hotkey_4 = False
 
 # Assets Básicos
 # GameImages estáticos.
+print("heeeey")
+print(resource_path("Assets/TableAssets/MarbleBlack.jpg"))
 fundo = GameImage(resource_path("Assets/TableAssets/MarbleBlack.jpg"))
 choicefliter = GameImage(resource_path("Assets/TableAssets/choice.png"))
 borda = GameImage(resource_path("Assets/TableAssets/Border_Gray50.png"))
