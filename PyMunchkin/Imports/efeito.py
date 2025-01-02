@@ -1,8 +1,12 @@
+from random import choice
+
+
 class Efeito:
     def aplicar_efeito(self, alvo):
         pass
 
 
+# Done
 class Buff(Efeito):
     def __init__(self, valor):
         self.valor = valor
@@ -11,6 +15,7 @@ class Buff(Efeito):
         alvo.aplicar_buff(self.valor)
 
 
+# Done
 class AddToLevel(Efeito):
     def __init__(self, valor):
         self.valor = valor
@@ -19,25 +24,31 @@ class AddToLevel(Efeito):
         alvo.adiciona_ao_nivel_personagem(self.valor)
 
 
-class DiscardGear(Efeito):
-    def __init__(self, valor):
-        self.valor = valor
-
-    def aplicar_efeito(self, alvo):
-        pass
-
-
+# Done
 class DiscardCards(Efeito):
     def __init__(self, valor):
         self.valor = valor
 
     def aplicar_efeito(self, alvo):
-        print("Running discard effect")
         alvo.descarta_cartas(self.valor)
 
 
-class DiscardRaca(Efeito):
+class DiscardGear(Efeito):
+    def __init__(self, valor):
+        self.valor = valor
 
+    def aplicar_efeito(self, alvo):
+        gear_list = alvo.request_gear(self.valor)
+        if gear_list:
+            alvo.desequipar_item(choice(gear_list))
+        # footgear
+        # bigitem
+        # any (card 69, 72)
+        # smallitem?
+        # 80
+
+
+class DiscardRaca(Efeito):
     def aplicar_efeito(self, alvo):
         alvo.discard_raca()
 
@@ -49,7 +60,7 @@ class DiscardClasse(Efeito):
 
 class Death(Efeito):
     def aplicar_efeito(self, alvo):
-        pass
+        alvo.morrer()
 
 
 class Equip(Efeito):  # Deprecated

@@ -8,8 +8,9 @@
 # ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
 # ++APPLY VICTORY/LOSS CONSEQUENCES.
 # --HIGHLIGHT PLAYABLE CARDS?
+# jogador tem add_card e "devolve_a_mao"
 
-#==== Done list ====
+# ==== Done list ====
 # +SOUNDS ARE NOT PROPERLY RESET (Now they are)
 
 import json
@@ -59,10 +60,10 @@ displaynivel = Sprite(resource_path("Assets/Niveis/leveldisplay.png"), 10)
 msg_selecione_alvo = GameImage(resource_path("Assets/TableAssets/select_target2.png"))
 
 # SFX
-hover = Sound(resource_path("Assets/SFX/STS_SFX_CardHover3_v1.ogg"))
-reject = Sound(resource_path("Assets/SFX/SOTE_SFX_CardReject_v1.ogg"))
-select = Sound(resource_path("Assets/SFX/SOTE_SFX_CardSelect_v2.ogg"))
-deal = Sound(resource_path("Assets/SFX/STS_SFX_CardDeal8_v1.ogg"))
+hover = Sound(resource_path("Assets/SFX/sfx_card_hover.ogg"))
+reject = Sound(resource_path("Assets/SFX/sfx_card_reject.ogg"))
+select = Sound(resource_path("Assets/SFX/sfx_card_select.ogg"))
+deal = Sound(resource_path("Assets/SFX/sfx_card_deal.ogg"))
 
 # Elementos de controle do jogo.
 controlador_jogo = ControladorJogo(janela)
@@ -467,4 +468,5 @@ while True:
         for each in controlador_jogo.get_target_choices():
             each.get_hurtbox().draw()
 
+    # print(controlador_jogo.jogador_atual.request_gear("headgear"))
     janela.update()

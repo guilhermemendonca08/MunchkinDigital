@@ -34,6 +34,9 @@ class Item(Carta):
         print(f"Uso único: {self.uso_unico}")
         print(f"Slot: {self.slot}")
 
+    def get_tamanho(self):
+        return self.tamanho
+
     def get_poder(self):
         return self.poder
 

@@ -1,3 +1,6 @@
+from math import copysign
+
+
 class Personagem:
     def __init__(self):
         self.nivel = 1
@@ -12,6 +15,11 @@ class Personagem:
         self.bonus_combate += valor
 
     # Gets
+    def morrer(self):
+        self.nivel = 1
+        # perde todos os itens equipados.
+        return
+
     def get_nivel(self):
         return self.nivel
 
@@ -27,10 +35,6 @@ class Personagem:
     def reseta_buffs(self):
         self.bonus_combate = 0
 
-        # stats["Raca"] = self.personagem.getRaca()
-        # stats["Classe"] = self.personagem.getClasse()
-        # stats["Forca"] = self.personagem.getForcaCombate()
-
     # Sets/Alter
     def equipar_raca(self, raca):
         self.raca = raca
@@ -42,11 +46,11 @@ class Personagem:
         self.forcaCombate += quantidade
 
     def adiciona_ao_nivel(self, quantidade):
-        if self.nivel == 10 and quantidade > 0:
-            return
-        if self.nivel == 1 and quantidade < 0:
-            return
-        self.nivel += quantidade
+        for _ in range(abs(quantidade)):
+            self.nivel += int(copysign(1, quantidade))
+            print(f"nivel é : {self.nivel}, adição de {quantidade}")
+            if self.nivel == 10 or self.nivel == 1:
+                return
 
     # Combate
     def calcular_forca_combate(self):

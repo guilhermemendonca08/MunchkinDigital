@@ -18,6 +18,19 @@ class Jogador(Observer, Targetable):
         self._discard_callback = None
 
     # Equip stuff
+    def morrer(self):
+        self.personagem.morrer()
+
+    def request_gear(self, param):
+        itens = []
+        if param == "big" or param == "small":
+            itens = self.inventario.get_itens_por_tamanho(param)
+        else:
+            itens = self.inventario.get_itens_em_slot(param)
+        # print(f"Pedi itens de {param} e recebi {itens}")
+        # print(f"Em contraste: {self.inventario.get_itens_em_slot("headgear")}")
+        return itens
+
     def get_itens_em_slot(self, slot):
         return self.inventario.get_itens_em_slot(slot)
 
@@ -86,6 +99,9 @@ class Jogador(Observer, Targetable):
         self._discard_callback = callback
 
     def discard(self, card):
+        """NÃO RETIRA CARTA DA MÃO, APENAS DESCARTA. (DEVOLVE A PILHA)
+        TROCAR NOME??
+        """
         # TODO: utilizar valor sentinela para evitar warning de variável None.
         self._discard_callback(card)
 
@@ -102,7 +118,7 @@ class Jogador(Observer, Targetable):
     # Apenas descarta cartas da mão pois "carregar" foi apenas
     # parcialmente implementada.
     def descarta_cartas(self, quantidade):
-        if self.get_size_mao() < quantidade:
+        if quantidade > self.get_size_mao():
             quantidade = self.get_size_mao()
         for _ in range(quantidade):
             carta = choice(self.mao)
@@ -173,6 +189,10 @@ class Jogador(Observer, Targetable):
         pass
 
     # Iventory Management
+    def desequipar_item(self, item):
+        self.discard(item)
+        self.inventario.desequipar_item(item)
+
     # def desequipar_item(self, item):
     #     self.discard(item)
     #     # self.inventario.remove(item)
@@ -180,7 +200,9 @@ class Jogador(Observer, Targetable):
 
     # Card Managment
     def jogar_carta(self, carta, alvo):
+        self.remove_card(carta)  # Remove a carta da mão do jogador
         carta.jogar_carta(alvo)
+        self.add_card(carta)
         if carta.get_tipo() in {"combate", "maldicao", "utilitario"}:
             self.discard(carta)
 

@@ -33,7 +33,7 @@ class Saquear(Estado):
         self.acc = 0
         self.mouse_state = False
         self.lock = False
-        self.draw_sfx = Sound(resource_path("Assets/SFX/STS_SFX_CardDeal8_v1.ogg"))
+        self.draw_sfx = Sound(resource_path("Assets/SFX/sfx_card_deal.ogg"))
 
     def reset(self):
         self.__init__()

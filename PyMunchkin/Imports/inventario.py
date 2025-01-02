@@ -12,8 +12,22 @@ class Inventario:
         self.itens_proibidos = []
 
     # Getters
+    def get_itens_por_tamanho(self, tamanho):
+        itens_por_tamanho = []
+
+        for item in self.get_itens_em_slot("any"):
+            if item.get_tamanho() == tamanho:
+                itens_por_tamanho.append(item)
+        return itens_por_tamanho
+
     def get_itens_em_slot(self, slot):
-        return self.itens_equipados[slot]
+        equip_list = []
+        if slot == "any":
+            for each in self.itens_equipados:
+                equip_list += self.itens_equipados[each]
+        else:
+            equip_list = self.itens_equipados[slot]
+        return equip_list
 
     def get_poder_no_slot(self, slot):
         poderes_em_slot = []

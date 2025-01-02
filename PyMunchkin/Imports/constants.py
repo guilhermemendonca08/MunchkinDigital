@@ -552,7 +552,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 2,
             "qnt_tesouro": 1,
-            "parameters": {"valor": "bigitem"}
+            "parameters": {"valor": "big"}
         }
     },
     {
