@@ -19,14 +19,20 @@ class Jogador(Observer, Targetable):
 
     # Equip stuff
     def morrer(self):
-        self.personagem.morrer()
+        gear_list = self.request_gear(["any"])
+        for each in gear_list:
+            self.desequipar_item(each)
+        # self.personagem.morrer()
 
     def request_gear(self, param):
         itens = []
-        if param == "big" or param == "small":
-            itens = self.inventario.get_itens_por_tamanho(param)
-        else:
-            itens = self.inventario.get_itens_em_slot(param)
+        print(f"param: {param}")
+        for p in param:
+            print(f"p: {p}")
+            if p in {"big", "small"}:
+                itens += self.inventario.get_itens_por_tamanho(p)
+            else:
+                itens += self.inventario.get_itens_em_slot(p)
         # print(f"Pedi itens de {param} e recebi {itens}")
         # print(f"Em contraste: {self.inventario.get_itens_em_slot("headgear")}")
         return itens
@@ -190,8 +196,8 @@ class Jogador(Observer, Targetable):
 
     # Iventory Management
     def desequipar_item(self, item):
-        self.discard(item)
-        self.inventario.desequipar_item(item)
+        if self.inventario.desequipar_item(item):
+            self.discard(item)
 
     # def desequipar_item(self, item):
     #     self.discard(item)

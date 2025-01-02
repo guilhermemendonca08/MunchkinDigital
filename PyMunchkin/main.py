@@ -135,7 +135,10 @@ while True:
     # Muda o nivel do personagem
     if teclado.key_pressed("3") and not hotkey_3:
         hotkey_3 = True
-        controlador_jogo.proximo_estado("Saquear")
+        # controlador_jogo.proximo_estado("Saquear")
+        nome_carta = "3872 Orcs"
+        controlador_jogo.load_card_by_name_in_deck(nome_carta)
+        print("loaded card:", nome_carta)
 
     if not teclado.key_pressed("3"):
         hotkey_3 = False

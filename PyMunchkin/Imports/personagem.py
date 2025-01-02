@@ -15,10 +15,9 @@ class Personagem:
         self.bonus_combate += valor
 
     # Gets
-    def morrer(self):
-        self.nivel = 1
-        # perde todos os itens equipados.
-        return
+    # def morrer(self):
+    #     # perde todos os itens equipados.
+    #     return
 
     def get_nivel(self):
         return self.nivel

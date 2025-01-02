@@ -291,3 +291,27 @@ class ControladorJogo(Subject):
     def notify_observers(self, estado_do_jogo, jogador_atual, carta_em_jogo):
         for each in self.observers:
             each.update(estado_do_jogo, jogador_atual, carta_em_jogo)
+
+    # Debug stuff
+    def load_card_by_name_in_deck(self, card_name):
+        carta = self.busca_carta_por_nome(card_name)
+        if carta is None:
+            print("Carta não encontrada")
+            return False
+        if carta.get_deckOrigem() == "dungeon":
+            self.deck_dungeon.push(carta)
+        elif carta.get_deckOrigem() == "tesouro":
+            self.deck_tesouro.push(carta)
+        else:
+            print("Carta não possui deck de origem")
+            return False
+        return True
+
+    def busca_carta_por_nome(self, nome):
+        for each in self.deck_dungeon:
+            if each.get_nome() == nome:
+                return each
+        for each in self.deck_tesouro:
+            if each.get_nome() == nome:
+                return each
+        return None

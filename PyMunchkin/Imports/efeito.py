@@ -1,7 +1,9 @@
+from abc import ABC, abstractmethod
 from random import choice
 
 
-class Efeito:
+class Efeito(ABC):
+    @abstractmethod
     def aplicar_efeito(self, alvo):
         pass
 
@@ -33,36 +35,42 @@ class DiscardCards(Efeito):
         alvo.descarta_cartas(self.valor)
 
 
+# Done
 class DiscardGear(Efeito):
-    def __init__(self, valor):
+    def __init__(self, valor, quantidade=None):
         self.valor = valor
+        self.quantidade = quantidade
 
     def aplicar_efeito(self, alvo):
+        if self.quantidade is None:
+            self.quantidade = 1
+
         gear_list = alvo.request_gear(self.valor)
-        if gear_list:
-            alvo.desequipar_item(choice(gear_list))
-        # footgear
-        # bigitem
-        # any (card 69, 72)
-        # smallitem?
-        # 80
+        for _ in range(self.quantidade):
+            if gear_list:
+                alvo.desequipar_item(choice(gear_list))
+                gear_list = alvo.request_gear(self.valor)
 
 
+# Done
 class DiscardRaca(Efeito):
     def aplicar_efeito(self, alvo):
         alvo.discard_raca()
 
 
+# Done
 class DiscardClasse(Efeito):
     def aplicar_efeito(self, alvo):
         alvo.discard_classe()
 
 
+# Done
 class Death(Efeito):
     def aplicar_efeito(self, alvo):
         alvo.morrer()
 
 
+# efeito nao conhece 'carta' para pedir para o jogador equipar 'carta'
 class Equip(Efeito):  # Deprecated
     def aplicar_efeito(self, alvo):
         pass

@@ -8,6 +8,9 @@ class CardStack:
         self.imagem = GameImage(resource_path(imagepath))
         self.pilha = []
 
+    def __iter__(self):
+        return iter(self.pilha)
+
     # PPLAY stuff
     def draw(self):
         self.imagem.draw()

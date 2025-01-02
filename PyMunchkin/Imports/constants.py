@@ -462,7 +462,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 1,
             "qnt_tesouro": 1,
-            "parameters": {"valor": "footgear"}
+            "parameters": {"valor": ["footgear"]}
         }
     },
     {
@@ -477,7 +477,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 1,
             "qnt_tesouro": 1,
-            "parameters": {"valor": "footgear"}
+            "parameters": {"valor": ["armor", "footgear"], "quantidade": 99}
         }
     },
     {
@@ -552,7 +552,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 2,
             "qnt_tesouro": 1,
-            "parameters": {"valor": "big"}
+            "parameters": {"valor": ["big"]}
         }
     },
     {
@@ -612,7 +612,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 4,
             "qnt_tesouro": 2,
-            "parameters": {"valor": "any"}
+            "parameters": {"valor": ["any"]}
         }
     },
     {
@@ -657,7 +657,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 4,
             "qnt_tesouro": 2,
-            "parameters": {"valor": "any"}
+            "parameters": {"valor": ["any"]}
         }
     },
     {
@@ -687,7 +687,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 6,
             "qnt_tesouro": 2,
-            "parameters": {"valor": 5}
+            "parameters": {"valor": 10}
         }
     },
     {
@@ -777,7 +777,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 8,
             "qnt_tesouro": 2,
-            "parameters": {"valor": "headgear"}
+            "parameters": {"valor": ["headgear"]}
         }
     },
     {
@@ -837,7 +837,7 @@ DUNGEON_JSON_DATA = """
 
             "nivel": 12,
             "qnt_tesouro": 3,
-            "parameters": {"valor": "headgear"}
+            "parameters": {"valor": ["headgear"]}
         }
     },
     {
