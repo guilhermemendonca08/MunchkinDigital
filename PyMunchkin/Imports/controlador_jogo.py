@@ -206,7 +206,20 @@ class ControladorJogo(Subject):
 
     # Remove uma carta do topo do deck e a retorna
     def comprar_carta(self, deck):
+        if deck.get_size() == 0:
+            if deck == self.deck_dungeon:
+                self.recarrega_deck(self.deck_dungeon, self.deck_dungeon_discard)
+            elif deck == self.deck_tesouro:
+                self.recarrega_deck(self.deck_tesouro, self.deck_tesouro_discard)
+            else:
+                raise Exception("Deck de descarte associado não encontrado")
         return deck.pop()
+
+    def recarrega_deck(self, deck, deck_discard):
+        while deck_discard.get_size() > 0:
+            carta = deck_discard.pop()
+            deck.push(carta)
+        deck.shuffle()
 
     def get_deck_dungeon(self):
         return self.deck_dungeon

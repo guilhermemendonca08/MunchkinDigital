@@ -4,7 +4,6 @@
 # -STATES NEED MANUAL RESET
 # +LOOT THE ROOM STAGE IS ROUGH
 # ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
-# ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
 # --HIGHLIGHT PLAYABLE CARDS?
 # -jogador tem add_card e "devolve_a_mao"
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
@@ -12,6 +11,7 @@
 # ==== Done list ====
 # +SOUNDS ARE NOT PROPERLY RESET (Now they are)
 # ++APPLY VICTORY/LOSS CONSEQUENCES. (Done)
+# ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE (Harder than it seemed, but done)
 
 import json
 import io
@@ -42,7 +42,7 @@ mouse = Window.get_mouse()
 # Debug Hotkeys
 hotkey_1 = False  # passa turno pra outro jogador
 hotkey_2 = False  # +1 level
-hotkey_3 = False  # transição p/ loot the room
+hotkey_3 = False  # carrega carta especifica no topo do deck.
 hotkey_4 = False
 
 # Input default
@@ -132,16 +132,26 @@ while True:
     if not teclado.key_pressed("2"):
         hotkey_2 = False
 
-    # Muda o nivel do personagem
+    # Carrega carta especifica no topo do deck.
     if teclado.key_pressed("3") and not hotkey_3:
         hotkey_3 = True
-        # controlador_jogo.proximo_estado("Saquear")
         nome_carta = "Crabs"
         controlador_jogo.load_card_by_name_in_deck(nome_carta)
         print("loaded card:", nome_carta)
 
     if not teclado.key_pressed("3"):
         hotkey_3 = False
+
+    # DEBUG 4
+    if teclado.key_pressed("4") and not hotkey_4:
+        hotkey_4 = True
+        controlador_jogo.jogador_compra_carta(
+            controlador_jogo.get_jogador_atual(), controlador_jogo.deck_tesouro
+        )
+        # Compra uma carta tipo tesouro.
+
+    if not teclado.key_pressed("4"):
+        hotkey_4 = False
 
     # Draws
     # Background, everything else should be placed AFTER this.
