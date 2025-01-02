@@ -2,3 +2,4 @@
 /PyMunchkin/PPlay/__pycache__/
 /PyMunchkin/Classes/__pycache__/
 /PyMunchkin/__pycache__/
+*.pyc
