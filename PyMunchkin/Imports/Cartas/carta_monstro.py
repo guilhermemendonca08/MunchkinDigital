@@ -39,4 +39,3 @@ class Monstro(Carta, Targetable):
 
     def executar_efeito(self, alvo):
         self.efeito.aplicar_efeito(alvo)
-

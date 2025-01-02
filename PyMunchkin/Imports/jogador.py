@@ -5,6 +5,7 @@ from Imports.personagem import Personagem
 from Imports.inventario import Inventario
 from path import resource_path
 from Imports.targetable import Targetable
+from random import choice
 
 
 class Jogador(Observer, Targetable):
@@ -97,6 +98,16 @@ class Jogador(Observer, Targetable):
         if self.personagem.get_classe() is not None:
             self.discard(self.personagem.get_classe())
             self.personagem.equipar_classe(None)
+
+    # Apenas descarta cartas da mão pois "carregar" foi apenas
+    # parcialmente implementada.
+    def descarta_cartas(self, quantidade):
+        if self.get_size_mao() < quantidade:
+            quantidade = self.get_size_mao()
+        for _ in range(quantidade):
+            carta = choice(self.mao)
+            self.discard(carta)
+            self.mao.remove(carta)
 
     # Avatar stuff
     def get_hurtbox(self):

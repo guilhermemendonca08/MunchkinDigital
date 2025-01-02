@@ -32,7 +32,8 @@ class DiscardCards(Efeito):
         self.valor = valor
 
     def aplicar_efeito(self, alvo):
-        pass
+        print("Running discard effect")
+        alvo.descarta_cartas(self.valor)
 
 
 class DiscardRaca(Efeito):
