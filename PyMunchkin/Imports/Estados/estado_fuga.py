@@ -5,7 +5,10 @@ class Fuga(Estado):
     def __init__(self):
         self.nome = "Fuga"
 
-    def executa_fase(self):
+    def reset(self):
+        self.__init__()
+
+    def executa_fase(self, controlador):
         pass
 
     def get_estado_do_jogo(self):

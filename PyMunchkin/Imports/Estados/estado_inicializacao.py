@@ -5,6 +5,9 @@ class Inicializacao(Estado):
     def __init__(self):
         self.nome = "Inicializacao"
 
+    def reset(self):
+        self.__init__()
+
     def executa_fase(self, controlador):
         print("Executando fase", controlador.get_estado_do_jogo())
         controlador.set_jogador_atual(controlador.jogadores.proximo())

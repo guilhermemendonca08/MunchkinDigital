@@ -12,6 +12,9 @@ class Caridade(Estado):
             "utilitario",
         ]
 
+    def reset(self):
+        self.__init__()
+
     def executa_fase(self, controlador):
         pass
         # print("Caridade")

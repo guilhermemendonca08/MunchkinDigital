@@ -11,15 +11,19 @@ from PPlay.gameimage import GameImage
 from PPlay.sound import Sound
 from path import resource_path
 
+
 class ChutarPorta(Estado):
     def __init__(self):
         self.nome = "Chutar Porta"
         self.mouse_click = False
         self.door_kicked = False
         self.carddrawn = False
-        self.bgm = Sound(resource_path("Assets/SFX/buildup.ogg"))
+        self.buildup = Sound(resource_path("Assets/SFX/buildup.ogg"))
+        self.door_knock = Sound(resource_path("Assets/SFX/door_knock.ogg"))
         self.acc = 0
-        self.cardanimation = GameImage(resource_path("Assets/Door/000 (small)discard.png"))
+        self.cardanimation = GameImage(
+            resource_path("Assets/Door/000 (small)discard.png")
+        )
         self.cardanimation.set_position(
             RES_WIDTH - 2.5 * CARD_WIDTH, RES_HEIGHT / 2 - CARD_HEIGHT / 2
         )
@@ -41,7 +45,9 @@ class ChutarPorta(Estado):
         closeddoor.set_position(RES_WIDTH / 4, RES_HEIGHT / 4)
         closeddoor.draw()
 
-        doorhurtbox = GameImage(resource_path("Assets/TableAssets/DoorHurtBoxSemiTransparent.png"))
+        doorhurtbox = GameImage(
+            resource_path("Assets/TableAssets/DoorHurtBoxSemiTransparent.png")
+        )
         doorhurtbox.set_position(
             RES_WIDTH / 4 + DOOR_HURTBOX_OFFSET_X,
             RES_HEIGHT / 4 + DOOR_HURTBOX_OFFSET_Y,
@@ -64,9 +70,11 @@ class ChutarPorta(Estado):
 
         # new card draw
         if self.door_kicked and not self.carddrawn:
-            if self.bgm.is_playing() == False:
-                self.bgm.set_volume(20)
-                self.bgm.play()
+            if self.buildup.is_playing() is False:
+                self.buildup.set_volume(20)
+                self.buildup.play()
+                self.door_knock.set_volume(100)
+                self.door_knock.play()
             self.intro = False
             self.carddrawn = True
             controlador.coloca_carta_em_jogo(
@@ -83,10 +91,8 @@ class ChutarPorta(Estado):
                 self.cardanimation.draw()
             else:
                 if controlador.get_carta_em_jogo().get_tipo() == "monstro":
-                    self.reset()
                     controlador.proximo_estado("Combate")
                 else:
-                    self.reset()
                     controlador.proximo_estado("ProcurarEncrenca")
 
     def get_estado_do_jogo(self):

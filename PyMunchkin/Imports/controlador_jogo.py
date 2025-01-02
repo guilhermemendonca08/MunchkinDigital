@@ -269,6 +269,7 @@ class ControladorJogo(Subject):
 
     def proximo_estado(self, novoEstado):
         self.notify_observers(novoEstado, self.jogador_atual, self.carta_em_jogo)
+        self.estado_do_jogo.reset()
         self.estado_do_jogo = self.estados[novoEstado]
 
     def get_estado_do_jogo(self):

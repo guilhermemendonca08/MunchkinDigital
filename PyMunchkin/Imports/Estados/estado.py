@@ -9,3 +9,7 @@ class Estado(ABC):
     @abstractmethod
     def get_estado_do_jogo(self) -> str:
         pass
+
+    @abstractmethod
+    def reset(self):
+        pass

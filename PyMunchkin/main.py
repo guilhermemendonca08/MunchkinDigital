@@ -1,17 +1,17 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
-# ++++MAKE THE GAME OBNOXIOUSLY LOUD
-# ++CHARITY STATE NOT IMPLEMENTED YET
 # +++CLICKS TRAVEL THROUGH STATES
+# ++CHARITY STATE NOT IMPLEMENTED YET
 # -STATES NEED MANUAL RESET
 # +LOOT THE ROOM STAGE IS ROUGH
 # ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
 # ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
-# ++APPLY VICTORY/LOSS CONSEQUENCES.
 # --HIGHLIGHT PLAYABLE CARDS?
-# jogador tem add_card e "devolve_a_mao"
+# -jogador tem add_card e "devolve_a_mao"
+# ++++MAKE THE GAME OBNOXIOUSLY LOUD
 
 # ==== Done list ====
 # +SOUNDS ARE NOT PROPERLY RESET (Now they are)
+# ++APPLY VICTORY/LOSS CONSEQUENCES. (Done)
 
 import json
 import io
@@ -136,7 +136,7 @@ while True:
     if teclado.key_pressed("3") and not hotkey_3:
         hotkey_3 = True
         # controlador_jogo.proximo_estado("Saquear")
-        nome_carta = "3872 Orcs"
+        nome_carta = "Crabs"
         controlador_jogo.load_card_by_name_in_deck(nome_carta)
         print("loaded card:", nome_carta)
 
