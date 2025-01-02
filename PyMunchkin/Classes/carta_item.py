@@ -41,7 +41,7 @@ class Item(Carta):
         return self.uso_unico
 
     def jogar_carta(self, alvo):
-        if not self.uso_unico:
+        if self.tipo == "equipamento":
             alvo.equipar_item(self)
         else:
             self.efeito.aplicar_efeito(alvo)

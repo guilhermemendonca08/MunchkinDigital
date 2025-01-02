@@ -1,16 +1,15 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
+# ++++MAKE THE GAME OBNOXIOUSLY LOUD
 # ++CHARITY STATE NOT IMPLEMENTED YET
 # +SOUNDS ARE NOT PROPERLY RESET
 # +++CLICKS TRAVEL THROUGH STATES
 # -STATES NEED MANUAL RESET
 # +LOOT THE ROOM STAGE IS ROUGH
+# ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
 # ++RESHUFFLE WHEN YOU TRY TO DRAW FROM EMPTY PILE
 # ++APPLY VICTORY/LOSS CONSEQUENCES.
-# import os
-# import sys
+# --HIGHLIGHT PLAYABLE CARDS?
 
-# if getattr(sys, "frozen", False):
-#     os.chdir(sys._MEIPASS)
 import json
 import io
 from constants import (
@@ -32,20 +31,6 @@ from Classes.controlador_jogo import ControladorJogo
 from Classes.carta_monstro import Monstro
 from Classes.efeito import AddToLevel
 from Classes.card_factory import CardFactory
-
-# ================================================================================================
-# =====================================PYTHON -> EXE==============================================
-# ================================================================================================
-# import os  # pra fazer o .exe com pyinstallelr
-# import sys  # pra fazer o .exe com pyinstaller
-#
-#
-# def resource_path(relative_path):
-#     """Get the absolute path to a resource."""
-#     if hasattr(sys, "_MEIPASS"):  # Temporary folder in --onefile mode
-#         return os.path.join(sys._MEIPASS, relative_path)
-#     return os.path.join(os.path.abspath("."), relative_path)
-
 from path import resource_path
 
 # ================================================================================================
@@ -58,7 +43,7 @@ mouse = Window.get_mouse()
 # Debug Hotkeys
 hotkey_1 = False  # passa turno pra outro jogador
 hotkey_2 = False  # +1 level
-hotkey_3 = False  # transição p/ combate
+hotkey_3 = False  # transição p/ loot the room
 hotkey_4 = False
 
 # Input default
@@ -145,6 +130,14 @@ while True:
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
+
+    # Muda o nivel do personagem
+    if teclado.key_pressed("3") and not hotkey_3:
+        hotkey_3 = True
+        controlador_jogo.proximo_estado("Saquear")
+
+    if not teclado.key_pressed("3"):
+        hotkey_3 = False
 
     # Draws
     # Background, everything else should be placed AFTER this.

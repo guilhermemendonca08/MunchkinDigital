@@ -6,6 +6,7 @@ from Classes.inventario import Inventario
 from Classes.estado import Estado
 from path import resource_path
 
+
 class Jogador(Observer):
     def __init__(self, nome, avatar_image):
         self.avatar = GameImage(resource_path(avatar_image))
@@ -154,9 +155,10 @@ class Jogador(Observer):
         pass
 
     # Iventory Management
-    def desequipar_item(self, item):
-        self.discard(item)
-        self.inventario.remove(item)
+    # def desequipar_item(self, item):
+    #     self.discard(item)
+    #     # self.inventario.remove(item)
+    #     self.inventario.desequipar_item(item)
 
     # Card Managment
     def jogar_carta(self, carta, alvo):

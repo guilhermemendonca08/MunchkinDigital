@@ -84,7 +84,7 @@ class Combate(Estado):
                     controlador.proximo_estado("Caridade")
                 else:
                     # print("Monstro venceu")
-                    self.bgm.pause()
+                    self.bgm.stop()
                     self.lose_sfx.set_volume(20)
                     self.lose_sfx.play()
                     controlador.discard_card(monstro)

@@ -19,7 +19,7 @@ class Maldicao(Carta):
         self.executar_efeito(alvo)
 
     def executar_efeito(self, alvo):
-        print(f"{alvo.get_nome()} sofreu {self.get_nome()}")
+        # print(f"{alvo.get_nome()} sofreu {self.get_nome()}")
         self.efeito.aplicar_efeito(alvo)
 
     def get_target_type(self):

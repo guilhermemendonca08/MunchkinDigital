@@ -57,6 +57,9 @@ class ProcurarEncrenca(
                 if revealed_card.get_tipo() == "maldicao":
                     controlador.get_jogador_atual().add_card(revealed_card)
                     self.cartas_aceitas.append("maldicao")
+                    # controlador.get_jogador_atual().jogar_carta(
+                    #     revealed_card, controlador.get_jogador_atual()
+                    # )
                     controlador.play_attempt(
                         revealed_card, target=controlador.get_jogador_atual()
                     )
