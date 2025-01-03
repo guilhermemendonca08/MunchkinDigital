@@ -1,10 +1,11 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
-# ++CHARITY STATE NOT IMPLEMENTED YET
-# Make players obey order of play accordingly
 # --HIGHLIGHT PLAYABLE CARDS?
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
 
 # ==== Done list ====
+# Make players obey order of play accordingly (Done)
+# Re testar death (implemented ressurection system)
+# ++CHARITY STATE NOT IMPLEMENTED YET (Done)
 # ++++ BUG: Curse do pato me deixou com -1 de nível. (fixed)
 # ++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (CAN'T REPRODUCE BUG, so it's fixed lol)
 # -STATES NEED MANUAL RESET (Controlador does this during .proximo_estado_estado() call)
@@ -137,7 +138,8 @@ while True:
     if teclado.key_pressed("3") and not hotkey_3:
         hotkey_3 = True
         # nome_carta = "Crabs"
-        nome_carta = "Duck of doom"
+        nome_carta = "Plutonium Dragon"
+        # nome_carta = "Duck of doom"
         controlador_jogo.load_card_by_name_in_deck(nome_carta)
         print("loaded card:", nome_carta)
 
@@ -244,9 +246,9 @@ while True:
 
     # Debugging Text
     # Jogador da vez e Fase do turno
-    jogadoratual = controlador_jogo.get_jogador_ativo()
-    if jogadoratual:
-        player_turn_debug_text = jogadoratual.get_nome()
+    jogador_atual = controlador_jogo.get_jogador_atual()
+    if jogador_atual:
+        player_turn_debug_text = jogador_atual.get_nome()
         player_turn_debug_text += "'s turn"
     else:
         player_turn_debug_text = "Nenhum jogador presente"

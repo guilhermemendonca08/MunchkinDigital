@@ -82,7 +82,7 @@ class ProcurarEncrenca(
                 self.loot_button.set_curr_frame(0)
             self.loot_button.draw()
 
-            if controlador.mouse_input.is_button_pressed(1) and target:
+            if controlador.mouse_input.is_button_pressed(1) and target and controlador.is_their_turn():
                 self.reset()
                 controlador.proximo_estado("Saquear")
 

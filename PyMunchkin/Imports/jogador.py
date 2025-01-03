@@ -16,12 +16,29 @@ class Jogador(Observer, Targetable):
         self.mao = []
         self.inventario = Inventario()
         self._discard_callback = None
+        self.vivo = True
+
+    def revive(self):
+        self.vivo = True
+
+    def esta_vivo(self):
+        return self.vivo
+
+    def get_tamanho_mao(self):
+        return len(self.mao)
+
+    def get_mao(self):
+        return self.mao
 
     # Equip stuff
     def morrer(self):
+        self.vivo = False
+        # print("jogador morreu")
         gear_list = self.request_gear(["any"])
         for each in gear_list:
             self.desequipar_item(each)
+        self.descarta_cartas(self.get_size_mao())
+
         # self.personagem.morrer()
 
     def request_gear(self, param):
@@ -220,9 +237,6 @@ class Jogador(Observer, Targetable):
 
     def remove_card(self, card):
         self.mao.remove(card)
-
-    def receber_carta(self, carta):
-        self.mao.append(carta)
 
     def get_size_mao(self):
         return len(self.mao)

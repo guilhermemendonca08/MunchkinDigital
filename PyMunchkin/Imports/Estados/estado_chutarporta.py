@@ -39,6 +39,16 @@ class ChutarPorta(Estado):
         self.__init__()
 
     def executa_fase(self, controlador):
+        if not controlador.get_jogador_ativo().esta_vivo():
+            for _ in range(4):
+                controlador.get_jogador_ativo().add_card(
+                    controlador.comprar_carta(controlador.deck_tesouro)
+                )
+            for _ in range(4):
+                controlador.get_jogador_ativo().add_card(
+                    controlador.comprar_carta(controlador.deck_dungeon)
+                )
+            controlador.revive_jogador(controlador.get_jogador_ativo())
         self.acc += controlador.janela.delta_time()
         # cardanimation = GameImage("Assets/Door/000 (small)discard.png")
         closeddoor = GameImage(resource_path("Assets/TableAssets/ClosedDoor50.png"))
@@ -63,7 +73,7 @@ class ChutarPorta(Estado):
         if (self.mouse_click) and (not controlador.is_mouse_left_click_pressed()):
             self.mouse_click = False
 
-            if target and (not self.door_kicked):
+            if target and (not self.door_kicked) and controlador.is_their_turn():
                 self.door_kicked = True
                 # print("chutou porta")
                 self.acc = 0

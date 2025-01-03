@@ -26,6 +26,7 @@ class ControladorJogo(Subject):
         self.deck_tesouro = CardStack("Assets/Treasure/100 (small).png")
         self.deck_tesouro_discard = CardStack("Assets/Treasure/100 (small)darkmode.png")
         self.jogador_ativo = None
+        self.jogador_atual = None
         self.carta_em_jogo = None
         self.estado_do_jogo = Inicializacao()
         self.estados = {
@@ -45,6 +46,15 @@ class ControladorJogo(Subject):
         self.janela = janela
         self.freeze = False
         self.sfx = None
+
+    def revive_jogador(self, jogador):
+        jogador.revive()
+
+    def get_lista_jogadores(self):
+        return self.jogadores.exporta_lista()
+
+    def proximo_depois_de(self, jogador):
+        return self.jogadores.proximo_depois_de(jogador)
 
     def level_up(self, jogador):
         jogador.level_up()
@@ -151,6 +161,9 @@ class ControladorJogo(Subject):
     def play_choice(self, choice):
         self.play_attempt(self.pending_card, target=choice)
 
+    def is_their_turn(self):
+        return self.jogador_ativo == self.jogador_atual
+
     # Detecta com alvo [alvo]
     def detect_exact_choice(self, target):
         return self.ui_handler.detect_choice(target)
@@ -169,9 +182,12 @@ class ControladorJogo(Subject):
                     jogador.remove_card(carta)
                 # Cartas que necessitam de alvo
                 elif carta.get_tipo() == "monstro":
-                    self.coloca_carta_em_jogo(carta)
-                    self.jogador_ativo.remove_card(carta)
-                    self.proximo_estado("Combate")
+                    if self.is_their_turn():
+                        self.coloca_carta_em_jogo(carta)
+                        self.jogador_ativo.remove_card(carta)
+                        self.proximo_estado("Combate")
+                    else:
+                        print(f"{carta.get_descricao()}")
                 else:
                     if kwargs.get("target") is None:
                         self.pending_card = carta
@@ -269,10 +285,18 @@ class ControladorJogo(Subject):
     def set_jogador_ativo(self, jogador):
         self.jogador_ativo = jogador
 
+    def set_jogador_atual(self, jogador):
+        self.jogador_atual = jogador
+
     def get_jogador_ativo(self):
         if not self.jogador_ativo:
             return None
         return self.jogador_ativo
+
+    def get_jogador_atual(self):
+        if not self.jogador_atual:
+            return None
+        return self.jogador_atual
 
     # Gerenciamento de estados do jogo
     def iniciar_jogo(self):

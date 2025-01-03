@@ -75,6 +75,7 @@ class Saquear(Estado):
                 not controlador.mouse_input.is_button_pressed(1)
                 and self.mouse_state
                 and controlador.mouse_over_object(self.card_back)
+                and controlador.is_their_turn()
             ):
                 self.display_state = "UNWRAPPING"
                 self.unwrap_sfx.play()
@@ -99,6 +100,7 @@ class Saquear(Estado):
                 not controlador.mouse_input.is_button_pressed(1)
                 and self.mouse_state
                 and controlador.mouse_over_object(self.card_back)
+                and controlador.is_their_turn()
             ):
                 self.mouse_state = False
                 self.draw_sfx.play()
@@ -125,6 +127,7 @@ class Saquear(Estado):
                 not controlador.mouse_input.is_button_pressed(1)
                 and self.mouse_state
                 and controlador.mouse_over_object(self.botao_ir_para_caridade)
+                and controlador.is_their_turn()
             ):
                 controlador.proximo_estado("Caridade")
 
