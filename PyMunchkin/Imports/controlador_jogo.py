@@ -52,6 +52,7 @@ class ControladorJogo(Subject):
     def jogador_compra_carta(self, jogador, deck):
         carta = self.comprar_carta(deck)
         jogador.add_card(carta)
+        return carta
 
     def get_resultado_combate(self):
         return self.gerenciador_combate.resolver_combate()

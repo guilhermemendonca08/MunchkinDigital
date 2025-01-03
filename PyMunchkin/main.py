@@ -51,7 +51,6 @@ hotkey_4 = False
 
 # Assets Básicos
 # GameImages estáticos.
-print("heeeey")
 print(resource_path("Assets/TableAssets/MarbleBlack.jpg"))
 fundo = GameImage(resource_path("Assets/TableAssets/MarbleBlack.jpg"))
 choicefliter = GameImage(resource_path("Assets/TableAssets/choice.png"))

@@ -18,7 +18,7 @@ class Caridade(Estado):
         #     resource_path(resource_path("Assets/TableAssets/charity.png"))
         # )
         self.bg = GameImage(
-            resource_path(resource_path("Assets/TableAssets/carta_caridade.png"))
+            resource_path(resource_path("Assets/TableAssets/carta_caridade_alt.png"))
         )
         self.bg.set_position(
             RES_WIDTH / 2 - self.bg.width / 2, RES_HEIGHT / 2 - self.bg.height / 2

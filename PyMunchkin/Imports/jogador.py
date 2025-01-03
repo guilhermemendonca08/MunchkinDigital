@@ -26,9 +26,9 @@ class Jogador(Observer, Targetable):
 
     def request_gear(self, param):
         itens = []
-        print(f"param: {param}")
+        # print(f"param: {param}")
         for p in param:
-            print(f"p: {p}")
+            # print(f"p: {p}")
             if p in {"big", "small"}:
                 itens += self.inventario.get_itens_por_tamanho(p)
             else:
