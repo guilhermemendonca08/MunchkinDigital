@@ -22,7 +22,7 @@ class ProcurarEncrenca(
         self.intro = True
         self.accept_card = False
         self.loot_button = Sprite(
-            resource_path("Assets/TableAssets/loot_button_highlight.png"), 2
+            resource_path("Assets/TableAssets/sprite_saquear_sala.png"), 2
         )
 
     def reset(self):

@@ -1,11 +1,12 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
 # ++CHARITY STATE NOT IMPLEMENTED YET
-# -STATES NEED MANUAL RESET
 # ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
 # --HIGHLIGHT PLAYABLE CARDS?
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
+# Make players obey order of play accordingly
 
 # ==== Done list ====
+# -STATES NEED MANUAL RESET (Controlador does this during .proximo_estado_estado() call)
 # +++CLICKS TRAVEL THROUGH STATES (I think it's fixed)
 # +LOOT THE ROOM STAGE IS ROUGH  (Much better now)
 # +SOUNDS ARE NOT PROPERLY RESET (Now they are)
@@ -277,7 +278,7 @@ while True:
         text_equipamento_debug,
         1430,
         820,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
     # ==============
@@ -293,7 +294,7 @@ while True:
         text_equipamento_debug,
         1430,
         820 + pos,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
 
@@ -310,7 +311,7 @@ while True:
         text_equipamento_debug,
         1430,
         820 + pos,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
 
@@ -323,7 +324,7 @@ while True:
         text_equipamento_debug,
         1430,
         820 + pos,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
     if aux:
@@ -332,7 +333,7 @@ while True:
             text_equipamento_debug,
             1430,
             820 + pos,
-            size=25,
+            size=20,
             color=(255, 255, 0),
         )
         pos -= 30
@@ -343,7 +344,7 @@ while True:
                 text_equipamento_debug,
                 1550,
                 820 + pos,
-                size=25,
+                size=20,
                 color=(255, 255, 0),
             )
 
@@ -360,7 +361,7 @@ while True:
         text_equipamento_debug,
         1430,
         820 + pos,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
 
@@ -374,7 +375,7 @@ while True:
         text_equipamento_debug,
         1430,
         820 + pos,
-        size=25,
+        size=20,
         color=(255, 255, 0),
     )
     if aux:
@@ -383,7 +384,7 @@ while True:
             text_equipamento_debug,
             1430,
             820 + pos,
-            size=25,
+            size=20,
             color=(255, 255, 0),
         )
         pos -= 30
@@ -394,7 +395,7 @@ while True:
                 text_equipamento_debug,
                 1550,
                 820 + pos,
-                size=25,
+                size=20,
                 color=(255, 255, 0),
             )
     # ===========================End of Equipment Debugging Messages===========================

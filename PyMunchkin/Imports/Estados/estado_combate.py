@@ -18,8 +18,8 @@ class Combate(Estado):
         self.resolve_request = False
         self.cartas_aceitas = ["buff", "amplificador", "combate"]
         self.bgm = Sound(resource_path("Assets/SFX/wild_battle.ogg"))
-        self.win_sfx = Sound(resource_path("Assets/SFX/fanfare.ogg"))
-        self.lose_sfx = Sound(resource_path("Assets/SFX/you_died.ogg"))
+        self.win_sfx = Sound(resource_path("Assets/SFX/battle_victory.ogg"))
+        self.lose_sfx = Sound(resource_path("Assets/SFX/battle_defeat.ogg"))
 
     def reset(self):
         self.__init__()
@@ -39,7 +39,7 @@ class Combate(Estado):
         controlador.get_carta_em_jogo().draw()
 
         botao_resolve = Sprite(
-            resource_path("Assets/TableAssets/ButtonSpriteHighlight.png"), 2
+            resource_path("Assets/TableAssets/sprite_resolver_combate.png"), 2
         )
         botao_resolve.set_position(
             RES_WIDTH - 1.5 * botao_resolve.width,

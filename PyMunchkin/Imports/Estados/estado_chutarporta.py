@@ -46,7 +46,7 @@ class ChutarPorta(Estado):
         closeddoor.draw()
 
         doorhurtbox = GameImage(
-            resource_path("Assets/TableAssets/DoorHurtBoxSemiTransparent.png")
+            resource_path("Assets/TableAssets/DoorHurtBoxTransparent.png")
         )
         doorhurtbox.set_position(
             RES_WIDTH / 4 + DOOR_HURTBOX_OFFSET_X,

@@ -27,12 +27,12 @@ class Saquear(Estado):
         self.wrapper_top = GameImage(
             resource_path("Assets/TableAssets/booster_ripped_top.png")
         )
+        # self.take_card = False
+        # self.lock = False
         self.unwrap_card = False
-        self.take_card = False
         self.unwrap_sfx = Sound(resource_path("Assets/SFX/tear_sound.ogg"))
         self.acc = 0
         self.mouse_state = False
-        self.lock = False
         self.draw_sfx = Sound(resource_path("Assets/SFX/sfx_card_deal.ogg"))
         self.display_state = "WRAPPED"  # WRAPPED, UNWRAPPING, UNWRAPPED
         self.wrapper_top.set_position(
@@ -81,6 +81,8 @@ class Saquear(Estado):
         if self.display_state == "UNWRAPPED":
             self.card_back.draw()
             self.wrapper_bottom.draw()
+
+            # Clicou na carta?
             if (
                 not controlador.mouse_input.is_button_pressed(1)
                 and self.mouse_state
