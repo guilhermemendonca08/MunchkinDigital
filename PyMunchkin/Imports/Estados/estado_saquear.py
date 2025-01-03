@@ -1,9 +1,12 @@
 from Imports.constants import (
     RES_WIDTH,
     RES_HEIGHT,
+    CARD_WIDTH,
+    CARD_HEIGHT,
 )
 from Imports.Estados.estado import Estado
 from PPlay.gameimage import GameImage
+from PPlay.sprite import Sprite
 from PPlay.sound import Sound
 from path import resource_path
 
@@ -27,20 +30,29 @@ class Saquear(Estado):
         self.wrapper_top = GameImage(
             resource_path("Assets/TableAssets/booster_ripped_top.png")
         )
-        # self.take_card = False
-        # self.lock = False
         self.unwrap_card = False
         self.unwrap_sfx = Sound(resource_path("Assets/SFX/tear_sound.ogg"))
         self.acc = 0
         self.mouse_state = False
         self.draw_sfx = Sound(resource_path("Assets/SFX/sfx_card_deal.ogg"))
-        self.display_state = "WRAPPED"  # WRAPPED, UNWRAPPING, UNWRAPPED
+        self.display_state = "WRAPPED"  # WRAPPED, UNWRAPPING, UNWRAPPED, DISPLAY LOOT
         self.wrapper_top.set_position(
             RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
         )
         self.wrapper_bottom.set_position(
             RES_WIDTH / 2 - self.card_back.width / 2, RES_HEIGHT / 2
         )
+        self.botao_ir_para_caridade = Sprite(
+            resource_path("Assets/TableAssets/sprite_ir_para_caridade.png"), 2
+        )
+        self.botao_ir_para_caridade.set_position(
+            RES_WIDTH - 1.5 * self.botao_ir_para_caridade.width,
+            RES_HEIGHT - 1.5 * self.botao_ir_para_caridade.height,
+        )
+        self.mensagem_loot_recebido = GameImage(
+            resource_path("Assets/TableAssets/loot_recebido.png")
+        )
+        self.nova_carta = None
 
     def reset(self):
         self.__init__()
@@ -88,9 +100,32 @@ class Saquear(Estado):
                 and self.mouse_state
                 and controlador.mouse_over_object(self.card_back)
             ):
+                self.mouse_state = False
                 self.draw_sfx.play()
-                nova_carta = controlador.comprar_carta(controlador.get_deck_dungeon())
-                controlador.get_jogador_atual().add_card(nova_carta)
+                self.nova_carta = controlador.comprar_carta(
+                    controlador.get_deck_dungeon()
+                )
+                controlador.get_jogador_atual().add_card(self.nova_carta)
+                self.display_state = "DISPLAY LOOT"
+        if self.display_state == "DISPLAY LOOT":
+            self.botao_ir_para_caridade.draw()
+            if controlador.mouse_over_object(self.botao_ir_para_caridade):
+                self.botao_ir_para_caridade.set_curr_frame(1)
+            else:
+                self.botao_ir_para_caridade.set_curr_frame(0)
+            self.mensagem_loot_recebido.set_position(
+                RES_WIDTH / 2 - self.mensagem_loot_recebido.width / 2, RES_HEIGHT / 4
+            )
+            self.mensagem_loot_recebido.draw()
+            self.nova_carta.set_position(
+                RES_WIDTH / 2 - CARD_WIDTH / 2, RES_HEIGHT / 2 - CARD_HEIGHT / 2
+            )
+            self.nova_carta.draw()
+            if (
+                not controlador.mouse_input.is_button_pressed(1)
+                and self.mouse_state
+                and controlador.mouse_over_object(self.botao_ir_para_caridade)
+            ):
                 controlador.proximo_estado("Caridade")
 
         # if (

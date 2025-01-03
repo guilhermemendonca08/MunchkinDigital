@@ -35,11 +35,11 @@ class Combate(Estado):
             resource_path("Assets/TableAssets/sprite_ir_para_caridade.png"), 2
         )
         self.botao_ir_para_caridade.set_position(
-            RES_WIDTH - 1.5 * self.botao_resolve.width,
-            RES_HEIGHT - 1.5 * self.botao_resolve.height,
+            RES_WIDTH - 1.5 * self.botao_ir_para_caridade.width,
+            RES_HEIGHT - 1.5 * self.botao_ir_para_caridade.height,
         )
         self.recompensas = []
-        self.loot_recebido = GameImage(
+        self.mensagem_loot_recebido = GameImage(
             resource_path("Assets/TableAssets/loot_recebido.png")
         )
         self.you_lost = GameImage(resource_path("Assets/TableAssets/you_lost.png"))
@@ -111,10 +111,10 @@ class Combate(Estado):
 
         if self.battle_state == "WIN":
             # Exibir cartas recebidos da lista 'recompensas'
-            self.loot_recebido.set_position(
-                RES_WIDTH / 2 - self.loot_recebido.width / 2, RES_HEIGHT / 4
+            self.mensagem_loot_recebido.set_position(
+                RES_WIDTH / 2 - self.mensagem_loot_recebido.width / 2, RES_HEIGHT / 4
             )
-            self.loot_recebido.draw()
+            self.mensagem_loot_recebido.draw()
             card_draw_offset_x = 0
             pixel_size_recompensas = CARD_WIDTH * len(self.recompensas)
             for each in self.recompensas:

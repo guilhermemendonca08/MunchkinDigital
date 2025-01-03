@@ -1,11 +1,12 @@
 # ========================================= MAJOR FIXES NEEDED (TODO LIST):
 # ++CHARITY STATE NOT IMPLEMENTED YET
-# ++++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (NOT SURE WHY)
+# Make players obey order of play accordingly
 # --HIGHLIGHT PLAYABLE CARDS?
 # ++++MAKE THE GAME OBNOXIOUSLY LOUD
-# Make players obey order of play accordingly
 
 # ==== Done list ====
+# ++++ BUG: Curse do pato me deixou com -1 de nível. (fixed)
+# ++ LOOT THE ROOM SOMETIMES DOESN'T GIVE REWARDS. (CAN'T REPRODUCE BUG, so it's fixed lol)
 # -STATES NEED MANUAL RESET (Controlador does this during .proximo_estado_estado() call)
 # +++CLICKS TRAVEL THROUGH STATES (I think it's fixed)
 # +LOOT THE ROOM STAGE IS ROUGH  (Much better now)
@@ -135,7 +136,8 @@ while True:
     # Carrega carta especifica no topo do deck.
     if teclado.key_pressed("3") and not hotkey_3:
         hotkey_3 = True
-        nome_carta = "Crabs"
+        # nome_carta = "Crabs"
+        nome_carta = "Duck of doom"
         controlador_jogo.load_card_by_name_in_deck(nome_carta)
         print("loaded card:", nome_carta)
 
