@@ -483,5 +483,5 @@ while True:
         for each in controlador_jogo.get_target_choices():
             each.get_hurtbox().draw()
 
-    # print(controlador_jogo.jogador_atual.request_gear("headgear"))
+    # print(controlador_jogo.jogador_ativo.request_gear("headgear"))
     janela.update()

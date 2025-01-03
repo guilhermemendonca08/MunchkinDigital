@@ -74,12 +74,12 @@ class GerenciadorCombate(Observer):
         return self.jogador + self.monstro
 
     # SUBJECT/ OBSERVER PATTERN
-    def update(self, estado_do_jogo, jogador_atual, carta_em_jogo):
+    def update(self, estado_do_jogo, jogador_ativo, carta_em_jogo):
         if estado_do_jogo == "Combate":
             # print("beep, boop, gerenciador de combate diz:")
             # print("Jogador atual: ", jogador_atual.get_nome())
             # print("Monstro atual: ", carta_em_jogo.get_nome())
-            self.jogador = [jogador_atual]
+            self.jogador = [jogador_ativo]
             self.jogador[0].reseta_buffs()
             self.monstro = [carta_em_jogo]
             self.monstro[0].reseta_buffs()

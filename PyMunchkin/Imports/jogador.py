@@ -251,5 +251,5 @@ class Jogador(Observer, Targetable):
             card.scaled_draw(new_width, new_height)
 
     # SUBJECT/ OBSERVER PATTERN
-    def update(self, estado_do_jogo, jogador_atual, carta_em_jogo):
+    def update(self, estado_do_jogo, jogador_ativo, carta_em_jogo):
         pass
