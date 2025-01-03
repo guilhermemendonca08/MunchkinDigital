@@ -9,4 +9,4 @@
 ## Pronto! O executável estará na pasta `dist`
 
 ## No caso particular deste jogo.
-* pyinstaller --onedir --add-data "Assets:Assets" --name Munchkin --icon=icon.ico main.py
+    * pyinstaller --onedir --add-data "Assets:Assets" --name Munchkin --icon=icon.ico main.py
