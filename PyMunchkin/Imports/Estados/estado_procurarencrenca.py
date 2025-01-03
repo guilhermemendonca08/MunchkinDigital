@@ -53,18 +53,18 @@ class ProcurarEncrenca(
                 self.accept_card = True
                 # Se for maldicão, joga em si mesmo.
                 if revealed_card.get_tipo() == "maldicao":
-                    controlador.get_jogador_atual().add_card(revealed_card)
+                    controlador.get_jogador_ativo().add_card(revealed_card)
                     self.cartas_aceitas.append("maldicao")
                     # controlador.get_jogador_atual().jogar_carta(
                     #     revealed_card, controlador.get_jogador_atual()
                     # )
                     controlador.play_attempt(
-                        revealed_card, target=controlador.get_jogador_atual()
+                        revealed_card, target=controlador.get_jogador_ativo()
                     )
                     self.cartas_aceitas.remove("maldicao")
 
                 else:
-                    controlador.get_jogador_atual().add_card(revealed_card)
+                    controlador.get_jogador_ativo().add_card(revealed_card)
                 controlador.remove_carta_em_jogo()
                 self.cartas_aceitas.append("monstro")
         else:

@@ -25,7 +25,7 @@ class ControladorJogo(Subject):
         self.deck_dungeon_discard = CardStack("Assets/Door/000 (small)darkmode.png")
         self.deck_tesouro = CardStack("Assets/Treasure/100 (small).png")
         self.deck_tesouro_discard = CardStack("Assets/Treasure/100 (small)darkmode.png")
-        self.jogador_atual = None
+        self.jogador_ativo = None
         self.carta_em_jogo = None
         self.estado_do_jogo = Inicializacao()
         self.estados = {
@@ -128,7 +128,7 @@ class ControladorJogo(Subject):
                 for each in self.gerenciador_combate.get_monstros():
                     acceptable_targets.append(each)
             elif target_type == "self":
-                acceptable_targets.append(self.jogador_atual)
+                acceptable_targets.append(self.jogador_ativo)
             # elif target_type = "carry":
             # acceptable_targets.append(self.jogadorAtual.get_inventario())
         return acceptable_targets
@@ -156,7 +156,7 @@ class ControladorJogo(Subject):
         return self.ui_handler.detect_choice(target)
 
     def play_attempt(self, carta, **kwargs):
-        jogador = self.jogador_atual
+        jogador = self.jogador_ativo
         # TODO: utilizar valor sentinela para evitar warning de variável None.
         if jogador.has_card(carta):
             if self.estado_do_jogo.aceita_carta(carta):
@@ -164,13 +164,13 @@ class ControladorJogo(Subject):
                 if carta.get_tipo() in {"raca", "classe", "equipamento"}:
                     self.play_sfx("select")
                     print(f"I play {carta.get_nome()}!")
-                    self.jogador_atual.jogar_carta(carta, jogador)
+                    self.jogador_ativo.jogar_carta(carta, jogador)
                     # TODO: utilizar valor sentinela para evitar warning de variável None.
                     jogador.remove_card(carta)
                 # Cartas que necessitam de alvo
                 elif carta.get_tipo() == "monstro":
                     self.coloca_carta_em_jogo(carta)
-                    self.jogador_atual.remove_card(carta)
+                    self.jogador_ativo.remove_card(carta)
                     self.proximo_estado("Combate")
                 else:
                     if kwargs.get("target") is None:
@@ -182,7 +182,7 @@ class ControladorJogo(Subject):
                         self.choice_needed = False
                         self.pending_card = None
                         self.play_sfx("select")
-                        self.jogador_atual.jogar_carta(carta, kwargs.get("target"))
+                        self.jogador_ativo.jogar_carta(carta, kwargs.get("target"))
                         # carta.jogar_carta(kwargs.get("target"))
                         # TODO: utilizar valor sentinela para evitar warning de variável None.
                         jogador.remove_card(carta)
@@ -246,7 +246,7 @@ class ControladorJogo(Subject):
     # End of deck related stuff
 
     def proximo_turno(self):
-        self.jogador_atual = self.jogadores.proximo()
+        self.jogador_ativo = self.jogadores.proximo()
 
     def verificar_vencedor(self):
         winners = []
@@ -266,13 +266,13 @@ class ControladorJogo(Subject):
         else:
             print("Número máximo de jogadores atingido")
 
-    def set_jogador_atual(self, jogador):
-        self.jogador_atual = jogador
+    def set_jogador_ativo(self, jogador):
+        self.jogador_ativo = jogador
 
-    def get_jogador_atual(self):
-        if not self.jogador_atual:
+    def get_jogador_ativo(self):
+        if not self.jogador_ativo:
             return None
-        return self.jogador_atual
+        return self.jogador_ativo
 
     # Gerenciamento de estados do jogo
     def iniciar_jogo(self):
@@ -282,7 +282,7 @@ class ControladorJogo(Subject):
         self.estado_do_jogo.executa_fase(self)
 
     def proximo_estado(self, novoEstado):
-        self.notify_observers(novoEstado, self.jogador_atual, self.carta_em_jogo)
+        self.notify_observers(novoEstado, self.jogador_ativo, self.carta_em_jogo)
         self.estado_do_jogo.reset()
         self.estado_do_jogo = self.estados[novoEstado]
 
@@ -303,9 +303,9 @@ class ControladorJogo(Subject):
     def remove_observer(self, observer: Observer):
         self.observers.remove(observer)
 
-    def notify_observers(self, estado_do_jogo, jogador_atual, carta_em_jogo):
+    def notify_observers(self, estado_do_jogo, jogador_ativo, carta_em_jogo):
         for each in self.observers:
-            each.update(estado_do_jogo, jogador_atual, carta_em_jogo)
+            each.update(estado_do_jogo, jogador_ativo, carta_em_jogo)
 
     # Debug stuff
     def load_card_by_name_in_deck(self, card_name):

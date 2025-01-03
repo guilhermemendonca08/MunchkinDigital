@@ -79,16 +79,16 @@ class Combate(Estado):
                     for _ in range(monstro.get_qnt_tesouro()):
                         self.recompensas.append(
                             controlador.jogador_compra_carta(
-                                controlador.get_jogador_atual(),
+                                controlador.get_jogador_ativo(),
                                 controlador.get_deck_tesouro(),
                             )
                         )
-                    controlador.level_up(controlador.get_jogador_atual())
+                    controlador.level_up(controlador.get_jogador_ativo())
                     self.win_sfx.set_volume(20)
                     self.win_sfx.play()
                     self.battle_state = "WIN"
                 else:
-                    monstro.aplica_bad_stuff(controlador.get_jogador_atual())
+                    monstro.aplica_bad_stuff(controlador.get_jogador_ativo())
                     self.lose_sfx.set_volume(20)
                     self.lose_sfx.play()
                     self.battle_state = "LOSE"

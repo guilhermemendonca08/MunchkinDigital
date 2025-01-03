@@ -65,7 +65,7 @@ class ChutarPorta(Estado):
 
             if target and (not self.door_kicked):
                 self.door_kicked = True
-                print("chutou porta")
+                # print("chutou porta")
                 self.acc = 0
 
         # new card draw

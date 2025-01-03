@@ -51,7 +51,7 @@ class Personagem:
             if self.nivel == 10 and quantidade > 0:
                 return
             self.nivel += int(copysign(1, quantidade))
-            print(f"nivel é : {self.nivel}, adição de {quantidade}")
+            # print(f"nivel é : {self.nivel}, adição de {quantidade}")
             # if self.nivel == 10 or self.nivel == 1:
             #     return
 

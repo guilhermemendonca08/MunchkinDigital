@@ -10,7 +10,7 @@ class Inicializacao(Estado):
 
     def executa_fase(self, controlador):
         print("Executando fase", controlador.get_estado_do_jogo())
-        controlador.set_jogador_atual(controlador.jogadores.proximo())
+        controlador.set_jogador_ativo(controlador.jogadores.proximo())
 
         for each in controlador.jogadores:
             for _ in range(4):

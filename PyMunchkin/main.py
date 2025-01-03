@@ -128,7 +128,7 @@ while True:
     if teclado.key_pressed("2") and not hotkey_2:
         hotkey_2 = True
         # TODO: utilizar valor sentinela para evitar warning de variável None.
-        controlador_jogo.get_jogador_atual().adiciona_ao_nivel_personagem(1)
+        controlador_jogo.get_jogador_ativo().adiciona_ao_nivel_personagem(1)
 
     if not teclado.key_pressed("2"):
         hotkey_2 = False
@@ -148,7 +148,7 @@ while True:
     if teclado.key_pressed("4") and not hotkey_4:
         hotkey_4 = True
         controlador_jogo.jogador_compra_carta(
-            controlador_jogo.get_jogador_atual(), controlador_jogo.deck_tesouro
+            controlador_jogo.get_jogador_ativo(), controlador_jogo.deck_tesouro
         )
         # Compra uma carta tipo tesouro.
 
@@ -163,7 +163,7 @@ while True:
     # Draw Players' Avatars
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogador_atual():
+        if each == controlador_jogo.get_jogador_ativo():
             each.avatar.set_position(0, RES_HEIGHT - each.get_avatar_y())
             each.draw()
         else:
@@ -174,7 +174,7 @@ while True:
     # Draw Players' Hands
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogador_atual():
+        if each == controlador_jogo.get_jogador_ativo():
             each.draw_mao(RES_WIDTH / 2, RES_HEIGHT - CARD_HEIGHT)
         else:
             each.scaled_draw_mao(0 + avatar_offset_x, 100, 80, 124)
@@ -183,7 +183,7 @@ while True:
     # Draw Player's level
     avatar_offset_x = 0
     for each in controlador_jogo.jogadores:
-        if each == controlador_jogo.get_jogador_atual():
+        if each == controlador_jogo.get_jogador_ativo():
             displaynivel.set_position(each.get_avatar_x(), RES_HEIGHT - 100)
             displaynivel.set_curr_frame(each.get_nivel_personagem() - 1)
             displaynivel.draw()
@@ -196,11 +196,11 @@ while True:
     # Draw Player Stats
     player_stats_string = ""
 
-    if controlador_jogo.get_jogador_atual() is None:
+    if controlador_jogo.get_jogador_ativo() is None:
         player_stats_dict = {"No player present": "No player present"}
     else:
         # TODO: utilizar valor sentinela para evitar warning de variável None.
-        player_stats_dict = controlador_jogo.get_jogador_atual().get_stats()
+        player_stats_dict = controlador_jogo.get_jogador_ativo().get_stats()
 
     stats_height_offset = 0
     for key, value in player_stats_dict.items():
@@ -244,7 +244,7 @@ while True:
 
     # Debugging Text
     # Jogador da vez e Fase do turno
-    jogadoratual = controlador_jogo.get_jogador_atual()
+    jogadoratual = controlador_jogo.get_jogador_ativo()
     if jogadoratual:
         player_turn_debug_text = jogadoratual.get_nome()
         player_turn_debug_text += "'s turn"
@@ -270,7 +270,7 @@ while True:
     # Equipamentos do jogador atual
     pos = 0
     text_equipamento_debug = "headgear"
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("headgear")
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot("headgear")
     if aux:
         text_equipamento_debug += (
             ": " + aux[0].get_nome() + " +" + str(aux[0].get_poder())
@@ -285,7 +285,7 @@ while True:
     # ==============
     text_equipamento_debug = "armor"
     aux = None
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("armor")
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot("armor")
     pos += 30
     if aux:
         text_equipamento_debug += (
@@ -302,7 +302,7 @@ while True:
     # ==============
     text_equipamento_debug = "footgear"
     aux = None
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("footgear")
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot("footgear")
     pos += 30
     if aux:
         text_equipamento_debug += (
@@ -318,7 +318,7 @@ while True:
 
     # ==============
     aux = None
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("1hand")
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot("1hand")
     pos += 30
     text_equipamento_debug = "1 handed"
     janela.draw_text(
@@ -352,7 +352,7 @@ while True:
     # ==============
     text_equipamento_debug = "2 handed"
     aux = None
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot("2hands")
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot("2hands")
     pos += 30
     if aux:
         text_equipamento_debug += (
@@ -369,7 +369,7 @@ while True:
     # ==============
     text_equipamento_debug = "None"
     aux = None
-    aux = controlador_jogo.get_jogador_atual().get_itens_em_slot(None)
+    aux = controlador_jogo.get_jogador_ativo().get_itens_em_slot(None)
     pos += 30
     text_equipamento_debug = "No slot"
     janela.draw_text(

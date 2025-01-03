@@ -105,7 +105,7 @@ class Saquear(Estado):
                 self.nova_carta = controlador.comprar_carta(
                     controlador.get_deck_dungeon()
                 )
-                controlador.get_jogador_atual().add_card(self.nova_carta)
+                controlador.get_jogador_ativo().add_card(self.nova_carta)
                 self.display_state = "DISPLAY LOOT"
         if self.display_state == "DISPLAY LOOT":
             self.botao_ir_para_caridade.draw()
