@@ -485,5 +485,14 @@ while True:
         for each in controlador_jogo.get_target_choices():
             each.get_hurtbox().draw()
 
+    card_description = controlador_jogo.get_card_description()
+    janela.draw_text(
+        card_description,
+        mouse.get_position()[0],
+        mouse.get_position()[1],
+        size=25,
+        # color=(117, 15, 15),
+        color=(255, 0, 0),
+    )
     # print(controlador_jogo.jogador_ativo.request_gear("headgear"))
     janela.update()

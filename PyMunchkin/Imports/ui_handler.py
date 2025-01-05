@@ -3,10 +3,11 @@ from PPlay.window import Window
 
 
 class UIHandler:
-    def __init__(self, mouse):
-        self.mouse = mouse
+    def __init__(self, janela):
+        self.mouse = janela.mouse
         self.mouse_clicked_state = False
         self.mouse_right_clicked_state = False
+        self.janela = janela
 
     def detect_choice(self, target_list):
         selection = None
@@ -29,6 +30,16 @@ class UIHandler:
                     # resolve carta sobrepostas pegando a última seleção
                     selection = carta
         return selection
+
+    def get_card_description(self, jogadores):
+        text = ""
+        for jogador in jogadores:
+            for carta in jogador.mao:
+                if self.mouse.is_over_object(carta.get_hurtbox()):
+                    # resolve carta sobrepostas pegando a última seleção
+                    selection = carta
+                    text = selection.get_descricao()
+        return text
 
     def mouse_over_object(self, objeto):
         if self.mouse.is_over_object(objeto):

@@ -39,13 +39,16 @@ class ControladorJogo(Subject):
             "ProcurarEncrenca": ProcurarEncrenca(),
             "Saquear": Saquear(),
         }
-        self.ui_handler = UIHandler(janela.get_mouse())
+        self.ui_handler = UIHandler(janela)
         self.pending_card = None
         self.choice_needed = False
         self.mouse_input = janela.get_mouse()
         self.janela = janela
         self.freeze = False
         self.sfx = None
+
+    def get_card_description(self):
+        return self.ui_handler.get_card_description(self.jogadores)
 
     def revive_jogador(self, jogador):
         jogador.revive()
